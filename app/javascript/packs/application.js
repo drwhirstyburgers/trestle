@@ -20,6 +20,7 @@ import 'bootstrap'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
+import AdminDash from '../components/dash/AdminDash'
 
 Vue.use(TurbolinksAdapter)
 document.addEventListener('turbolinks:load', () => {
@@ -30,6 +31,8 @@ document.addEventListener('turbolinks:load', () => {
         message: "Can you say hello?"
       }
     },
-    components: { App }
+    components: { App, 
+                  AdminDash
+                }
   })
 })
