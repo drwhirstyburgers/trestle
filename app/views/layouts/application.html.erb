@@ -23,6 +23,9 @@
           <%= flash[:alert] %>
         </div>
       <% end %>
+      <% if user_signed_in? %>
+        <navbar />
+      <% end %> 
       <%= yield %>
     </div>
   </body>
