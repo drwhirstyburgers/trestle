@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require('perfect-scrollbar')
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -17,6 +18,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 import '../stylesheets/application'
 import 'bootstrap'
+import '@coreui/coreui'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
