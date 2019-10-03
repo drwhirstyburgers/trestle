@@ -31,16 +31,6 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item mt-auto">
-        <a class="nav-link nav-link-success" href="https://coreui.io">
-          <i class="nav-icon cui-cloud-download"></i> Download CoreUI</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link nav-link-danger" href="https://coreui.io/pro/">
-          <i class="nav-icon cui-layers"></i> Try CoreUI
-          <strong>PRO</strong>
-        </a>
-      </li>
     </ul>
   </nav>
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>
@@ -48,5 +38,8 @@
 </template>
 
 <style scoped>
-
+.sidebar-nav {
+    min-height: 100%;
+    height: 100%;
+}
 </style>

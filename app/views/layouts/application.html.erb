@@ -13,22 +13,33 @@
   </head>
 
   <body>
-    <div data-behavior="vue" class='container'>
-    <% if user_signed_in? %>
-      <navbar />
-    <% end %> 
-      <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:notice] %>
-        </div>
-      <% elsif flash[:alert] %>
-        <div class="alert alert-warning">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:alert] %>
-        </div>
+    <div data-behavior="vue">
+      <% if user_signed_in? %>
+        <topbar></topbar>
       <% end %>
-      <%= yield %>
+      <div class='app-body'>
+      <% if user_signed_in? %>
+        <navbar />
+      <% end %>
+      <main class="main">
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+          </div>
+        <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+            <%= yield %>
+          </div>
+        </div>
+      </main>
+      </div>
     </div>
   </body>
 </html>

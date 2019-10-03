@@ -24,6 +24,7 @@ import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 import admindash from '../components/dash/admindash'
 import navbar from '../components/dash/navbar'
+import topbar from '../components/dash/topbar'
 
 Vue.use(TurbolinksAdapter)
 document.addEventListener('turbolinks:load', () => {
@@ -36,7 +37,8 @@ document.addEventListener('turbolinks:load', () => {
     },
     components: { App, 
                   admindash,
-                  navbar
+                  navbar,
+                  topbar
                 }
   })
 })
