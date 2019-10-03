@@ -38,7 +38,7 @@
 </template>
 
 <style scoped>
-.sidebar-nav {
+.sidebar {
     min-height: 100%;
     height: 100%;
 }
