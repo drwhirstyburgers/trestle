@@ -16,8 +16,14 @@
 
  @import '@coreui/coreui/dist/css/coreui.min';
 
-.container {
-    min-height: 100%;
+html {
     height: 100%;
-    max-width: 30;
+}
+    
+body {
+    height: 100%;
+}
+
+.app-body {
+    height: 96%;
 }

@@ -13,33 +13,93 @@
   </head>
 
   <body>
-    <div data-behavior="vue">
       <% if user_signed_in? %>
-        <topbar></topbar>
+        <header class="app-header navbar">
+          <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a href='#'>Trestle</a>
+          <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="nav navbar-nav d-md-down-none">
+            <li class="nav-item px-3">
+              <a href='#' class='nav-link'>Dashboard</a>
+            </li>
+            <li class="nav-item px-3">
+                <a class="nav-link" href="https://sim.ametroslearning.com">Sim Platform</a>
+            </li>
+            <li class="nav-item"><a href="#">Login</a></li>
+          </ul>
+        
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user fa-2x"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+              </div>
+            </li>
+          </ul>
+        </header>
       <% end %>
       <div class='app-body'>
-      <% if user_signed_in? %>
-        <navbar />
-      <% end %>
-      <main class="main">
-        <% if flash[:notice] %>
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:notice] %>
-          </div>
-        <% elsif flash[:alert] %>
-          <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= flash[:alert] %>
-          </div>
-        <% end %>
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-            <%= yield %>
-          </div>
+        <% if user_signed_in? %>
+          <div class="sidebar">
+          <nav class="sidebar-nav">
+            <ul class="nav">
+              <li class="nav-title">Nav Title</li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="nav-icon cui-speedometer"></i> Nav item
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="nav-icon cui-speedometer"></i> With badge
+                  <span class="badge badge-primary">NEW</span>
+                </a>
+              </li>
+              <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                  <i class="nav-icon cui-puzzle"></i> Nav dropdown
+                </a>
+                <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="nav-icon cui-puzzle"></i> Nav dropdown item
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <i class="nav-icon cui-puzzle"></i> Nav dropdown item
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
-      </main>
+        <% end %>
+        <main class="main">
+          <% if flash[:notice] %>
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:notice] %>
+            </div>
+          <% elsif flash[:alert] %>
+            <div class="alert alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <div data-behavior="vue" class="container-fluid">
+            <div class="animated fadeIn">
+              <%= yield %>
+            </div>
+          </div>
+        </main>
       </div>
-    </div>
   </body>
 </html>
