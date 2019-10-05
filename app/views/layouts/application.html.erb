@@ -13,23 +13,22 @@
   </head>
 
   <body>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.admin? %>
         <header class="app-header navbar">
           <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a href='#'>Trestle</a>
+          <a href='#'>Trestle Admin</a>
           <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
           </button>
           <ul class="nav navbar-nav d-md-down-none">
             <li class="nav-item px-3">
-              <a href='#' class='nav-link'>Dashboard</a>
+              <%= link_to 'Dashboard', root_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="https://sim.ametroslearning.com">Sim Platform</a>
+            <li class="nav-item">
+              <%= link_to 'Log out', destroy_user_session_path %>
             </li>
-            <li class="nav-item"><a href="#">Login</a></li>
           </ul>
         
           <ul class="nav navbar-nav ml-auto">
@@ -42,16 +41,14 @@
             </li>
           </ul>
         </header>
-      <% end %>
-      <div class='app-body'>
-        <% if user_signed_in? %>
+        <div class='app-body'>
           <div class="sidebar">
           <nav class="sidebar-nav">
             <ul class="nav">
-              <li class="nav-title">Nav Title</li>
+              <li class="nav-title">Navigation</li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="nav-icon cui-speedometer"></i> Nav item
+                  <i class="nav-icon cui-speedometer">
+                  <%= link_to 'Users Index', users_path, class: "nav-link" %>
                 </a>
               </li>
               <li class="nav-item">
@@ -81,25 +78,25 @@
           </nav>
           <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
-        <% end %>
-        <main class="main">
-          <% if flash[:notice] %>
-            <div class="alert alert-success">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <%= flash[:notice] %>
-            </div>
-          <% elsif flash[:alert] %>
-            <div class="alert alert-warning">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <%= flash[:alert] %>
-            </div>
-          <% end %>
-          <div data-behavior="vue" class="container-fluid">
-            <div class="animated fadeIn">
-              <%= yield %>
-            </div>
+      <% end %>
+      <main class="main">
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
           </div>
-        </main>
-      </div>
+        <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <div data-behavior="vue" class="container-fluid">
+          <div class="animated fadeIn">
+            <%= yield %>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
