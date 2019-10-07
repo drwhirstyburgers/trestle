@@ -22,7 +22,7 @@ import '@coreui/coreui'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
-import admindash from '../components/dash/admindash'
+import courseform from '../components/courses/courseform'
 import navbar from '../components/dash/navbar'
 import topbar from '../components/dash/topbar'
 
@@ -32,11 +32,11 @@ document.addEventListener('turbolinks:load', () => {
     el: '[data-behavior="vue"]',
     data: () => {
       return {
-        message: "Can you say hello?"
+        
       }
     },
     components: { App, 
-                  admindash,
+                  courseform,
                   navbar,
                   topbar
                 }
