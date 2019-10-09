@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <courseform />
+    <div class="container-fluid">
+        <div class='row'>
+            <div class='col-xl'>
+                <courseform />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -16,3 +20,9 @@ export default {
     components: { courseform }
 }
 </script>
+
+<style scoped>
+.container-fluid {
+    margin-top: 40px;
+}
+</style>

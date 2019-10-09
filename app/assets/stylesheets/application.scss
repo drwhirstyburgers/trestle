@@ -26,6 +26,15 @@ body {
 }
 
 .app-body {
-    height: 95%;
+    margin-top: 0px !important;
+    height: 100%;
     background-color: azure;
+}
+
+main {
+    height: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
 }

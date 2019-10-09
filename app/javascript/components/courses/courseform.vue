@@ -1,12 +1,56 @@
 <template>
-    <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <div class="card">
+        <div class="card-header">
+            New Course
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="title">Course Title</label>
+                    <input v-model="title" type="text" class="form-control" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <label for="title">Accreditation name</label>
+                    <input v-model="accreditation" type="text" class="form-control" placeholder="Accreditation">
+                </div>
+                <div class="form-group">
+                    <label for="price">Course price</label>
+                    <input v-model="price" type="number" class="form-control" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label for="price">Course duration</label>
+                    <input v-model="duration" type="number" class="form-control" placeholder="Duration">
+                    <small class="form-text text-muted">
+                        In months and whole numbers.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Course Description</label>
+                    <textarea v-model="description" class="form-control" rows="3"></textarea>
+                </div>
+                <button v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
+            </form>
         </div>
-    </form>
+    </div>
 </template>
+
+<script>
+
+export default {
+    data () {
+        return {
+            title: '',
+            description: '',
+            price: 0,
+            duration: 0,
+            accreditation: '',
+        }
+    },
+    methods: {
+        submitCourse() {
+            console.log('course submitted')
+        }
+    }
+}
+
+</script>

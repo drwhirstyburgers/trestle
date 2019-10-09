@@ -39,35 +39,35 @@
         </header>
         <div class='app-body'>
           <div class="sidebar">
-          <nav class="sidebar-nav">
-            <ul class="nav">
-              <li class="nav-title">Navigation</li>
-              <li class="nav-item">
-                  <%= link_to '<i class="fa fa-user fa"></i> Users'.html_safe, users_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="nav-icon cui-speedometer"></i> With badge
-                  <span class="badge badge-primary">NEW</span>
-                </a>
-              </li>
-              <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#">
-                  Course Building
-                </a>
-                <ul class="nav-dropdown-items">
-                  <li class="nav-item">
-                    <%= link_to "New Course", new_course_path, class: "nav-link" %>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <i class="nav-icon cui-puzzle"></i> Nav dropdown item
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+            <nav class="sidebar-nav">
+              <ul class="nav">
+                <li class="nav-title">Navigation</li>
+                <li class="nav-item">
+                    <%= link_to '<i class="fa fa-user fa"></i> Users'.html_safe, users_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="nav-icon cui-speedometer"></i> With badge
+                    <span class="badge badge-primary">NEW</span>
+                  </a>
+                </li>
+                <li class="nav-item nav-dropdown">
+                  <a class="nav-link nav-dropdown-toggle" href="#">
+                    Course Building
+                  </a>
+                  <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                      <%= link_to "New Course", new_course_path, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="nav-icon cui-puzzle"></i> Nav dropdown item
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
         </div>
       <% end %>
       <main class="main">
