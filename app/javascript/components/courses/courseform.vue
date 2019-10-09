@@ -48,7 +48,19 @@ export default {
     },
     methods: {
         submitCourse() {
-            console.log('course submitted')
+            const title = this.title
+            const description = this.description
+            const price = this.price
+            const duration = this.duration
+            const accreditation = this.accreditation
+            $.ajax({
+                method: 'POST',
+                url: '/courses',
+                data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation } },
+                success: (data) => {
+                    console.log(data)
+                }
+            })
         }
     }
 }
