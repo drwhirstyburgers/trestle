@@ -3,7 +3,7 @@
         <div class='row'>
             <div class='col-xl'>
                 <courseform v-if="created" v-on:courseCreated="hideCourseForm" />
-                <courseoverview v-if="!created" />
+                <courseoverview v-if="!created" :course="course" />
             </div>
         </div>
     </div>
@@ -17,7 +17,6 @@ export default {
     data () {
         return {
             created: true,
-
             course: {}
         }
     },

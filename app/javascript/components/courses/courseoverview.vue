@@ -1,17 +1,17 @@
 <template>
-    <h1>HELLO</h1>
+    <h1>{{course.title}}</h1>
 </template>
 
 <script>
 export default {
     data () {
         return {
-
+            course: this.course
         }
     },
-    props: [],
+    props: ['course'],
     methods: {
-        
+
     }
 }
 </script>
