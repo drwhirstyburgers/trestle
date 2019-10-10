@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <div class='row'>
             <div class='col-xl'>
-                <courseform />
+                <courseform v-if="created" v-on:courseCreated="hideCourseForm" />
+                <courseoverview v-if="!created" />
             </div>
         </div>
     </div>
@@ -10,14 +11,23 @@
 
 <script>
 import courseform from './courseform'
+import  courseoverview from './courseoverview'
 
 export default {
     data () {
         return {
+            created: true,
 
+            course: {}
         }
     },
-    components: { courseform }
+    methods: {
+        hideCourseForm(data) {
+            this.created = false
+            this.course = data
+        },
+    },
+    components: { courseform, courseoverview },
 }
 </script>
 

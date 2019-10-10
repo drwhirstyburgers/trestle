@@ -28,6 +28,15 @@
                     <label for="exampleFormControlTextarea1">Course Description</label>
                     <textarea v-model="description" class="form-control" rows="3"></textarea>
                 </div>
+                <div class="form-check">
+                    <input v-model="active" class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="active">
+                        Course active
+                    </label>
+                    <small class="form-text text-muted">
+                        Makes course publicly available
+                    </small>
+                </div>
                 <button v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
             </form>
         </div>
@@ -44,6 +53,7 @@ export default {
             price: 0,
             duration: 0,
             accreditation: '',
+            active: false,
         }
     },
     methods: {
@@ -53,12 +63,14 @@ export default {
             const price = this.price
             const duration = this.duration
             const accreditation = this.accreditation
+            const active = this.active
             $.ajax({
                 method: 'POST',
                 url: '/courses',
-                data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation } },
+                data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation, active: active } },
                 success: (data) => {
                     console.log(data)
+                    this.$emit('courseCreated', data) 
                 }
             })
         }
