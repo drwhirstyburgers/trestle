@@ -5,10 +5,16 @@
             {{newCourse.title}}
         </div>
         <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">${{newCourse.price}} - {{newCourse.duration}} months - Accreditation: {{newCourse.accreditation}} - Active: {{newCourse.active}}</h6>
-            <p class="card-text">
-                {{newCourse.description}}
-            </p>
+            <h6 class="card-subtitle mb-2 text-muted">Price: ${{newCourse.price}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Duration: {{newCourse.duration}} months</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Accreditation: {{newCourse.accreditation}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Active: {{newCourse.active}}</h6>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    {{newCourse.description}}
+                </div>
+            </div>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><button v-on:click="showSectionForm" type="button" class="btn btn-outline-primary">Create a new course section</button></li>
