@@ -22,7 +22,9 @@ import '@coreui/coreui'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
-import coursebuild from '../components/courses/coursebuild'
+import courseform from '../components/courses/courseform'
+import courseoverview from '../components/courses/courseoverview'
+import sectionform from '../components/courses/sectionform'
 import navbar from '../components/dash/navbar'
 import topbar from '../components/dash/topbar'
 
@@ -36,7 +38,9 @@ document.addEventListener('turbolinks:load', () => {
       }
     },
     components: { App, 
-                  coursebuild,
+                  courseform,
+                  sectionform,
+                  courseoverview,
                   navbar,
                   topbar
                 }

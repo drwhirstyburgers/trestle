@@ -1,44 +1,50 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            New Course
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label for="title">Course Title</label>
-                    <input v-model="title" type="text" class="form-control" placeholder="Title">
+<div class="container-fluid">
+        <div class='row'>
+            <div class='col-xl'>
+                <div class="card">
+                    <div class="card-header">
+                        New Course
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="title">Course Title</label>
+                                <input v-model="title" type="text" class="form-control" placeholder="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Accreditation name</label>
+                                <input v-model="accreditation" type="text" class="form-control" placeholder="Accreditation">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Course price</label>
+                                <input v-model="price" type="number" class="form-control" placeholder="Price">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Course duration</label>
+                                <input v-model="duration" type="number" class="form-control" placeholder="Duration">
+                                <small class="form-text text-muted">
+                                    In months and whole numbers.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Course Description</label>
+                                <textarea v-model="description" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-check">
+                                <input v-model="active" class="form-check-input" type="checkbox">
+                                <label class="form-check-label" for="active">
+                                    Course active
+                                </label>
+                                <small class="form-text text-muted">
+                                    Makes course publicly available
+                                </small>
+                            </div>
+                            <button v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="title">Accreditation name</label>
-                    <input v-model="accreditation" type="text" class="form-control" placeholder="Accreditation">
-                </div>
-                <div class="form-group">
-                    <label for="price">Course price</label>
-                    <input v-model="price" type="number" class="form-control" placeholder="Price">
-                </div>
-                <div class="form-group">
-                    <label for="price">Course duration</label>
-                    <input v-model="duration" type="number" class="form-control" placeholder="Duration">
-                    <small class="form-text text-muted">
-                        In months and whole numbers.
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Course Description</label>
-                    <textarea v-model="description" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="form-check">
-                    <input v-model="active" class="form-check-input" type="checkbox">
-                    <label class="form-check-label" for="active">
-                        Course active
-                    </label>
-                    <small class="form-text text-muted">
-                        Makes course publicly available
-                    </small>
-                </div>
-                <button v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
-            </form>
+            </div>
         </div>
     </div>
 </template>
@@ -69,8 +75,7 @@ export default {
                 url: '/courses',
                 data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation, active: active } },
                 success: (data) => {
-                    console.log(data)
-                    this.$emit('courseCreated', data) 
+                    console.log('Course created')
                 }
             })
         }
@@ -78,3 +83,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.container-fluid {
+    margin-top: 40px;
+}
+</style>
