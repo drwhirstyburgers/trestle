@@ -48,10 +48,11 @@
 export default {
     data () {
         return {
-            newCourse: this.course
+            newCourse: this.course,
+            allSections: this.sections
         }
     },
-    props: ['course'],
+    props: ['course', 'sections'],
     methods: {
         showSectionForm() {
             console.log("hello")

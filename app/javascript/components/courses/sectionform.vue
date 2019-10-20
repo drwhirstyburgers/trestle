@@ -9,6 +9,12 @@
                 <div class="card-body">
                     <form>
                         <div class="form-group">
+                            <label for="course">Section Course</label>
+                            <select @change="selectCourse" class="form-control">
+                                <option v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" :value="JSON.stringify(course)" >{{course.title}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="title">Section Title</label>
                             <input v-model="title" type="text" class="form-control" placeholder="Title">
                         </div>
@@ -21,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Estimated time to complete as percent</label>
-                            <input v-model="timeToComplete" type="number" class="form-control" placeholder="Title">
+                            <input v-model="timeToComplete" type="number" class="form-control" placeholder="Time to complete">
                         </div>
                         <button v-on:click="submitSection" type="button" class="btn btn-outline-success pull-right">Submit</button>
                     </form>
@@ -37,22 +43,25 @@
 export default {
     data () {
         return {
-            newCourse: this.course,
+            allCourses: this.courses,
+            selectedCourse: {},
             title: '',
             orderNumber: 0,
             timeToComplete: 0,
         }
     },
-    props: ['course'],
+    props: ['courses'],
     methods: {
+        selectCourse(evt){
+            this.selectedCourse = JSON.parse(evt.target.value)
+        },
         submitSection() {
             $.ajax({
                 method: 'POST',
                 url: '/sections',
-                data: { section: { course: this.newCourse.id, name: title, description: this.description, time_to_complete: this.timeToComplete, order_number: this.orderNumber } },
+                data: { section: { course_id: this.selectedCourse.id, name: this.title, time_to_complete: this.timeToComplete, order_number: this.orderNumber } },
                 success: (data) => {
                     console.log(data)
-                    this.$emit('courseCreated', data) 
                 }
             })
         }
