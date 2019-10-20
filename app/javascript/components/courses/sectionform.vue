@@ -4,11 +4,11 @@
         <div class='col-xl'>
             <div class="card">
                 <div class="card-header">
-                    New Section
+                    Section
                 </div>
                 <div class="card-body">
                     <form>
-                        <div class="form-group">
+                        <div class="form-group" v-if="!editing">
                             <label for="course">Section Course</label>
                             <select @change="selectCourse" class="form-control">
                                 <option v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" :value="JSON.stringify(course)" >{{course.title}}</option>
@@ -29,7 +29,12 @@
                             <label for="exampleFormControlTextarea1">Estimated time to complete as percent</label>
                             <input v-model="timeToComplete" type="number" class="form-control" placeholder="Time to complete">
                         </div>
-                        <button v-on:click="submitSection" type="button" class="btn btn-outline-success pull-right">Submit</button>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Section Description</label>
+                            <textarea v-model="description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button v-if="!editing" v-on:click="submitSection" type="button" class="btn btn-outline-success pull-right">Submit</button>
+                        <button v-if="editing" v-on:click="updateSection" type="button" class="btn btn-outline-success pull-right">Update</button>
                     </form>
                 </div>
             </div>
@@ -43,15 +48,30 @@
 export default {
     data () {
         return {
+            editing: false,
             allCourses: this.courses,
             selectedCourse: {},
             title: '',
             orderNumber: 0,
             timeToComplete: 0,
+            description: '',
         }
     },
-    props: ['courses'],
+    props: ['courses', 'section'],
+    mounted() {
+        this.setSectionOnEdit()
+    },
     methods: {
+        setSectionOnEdit(){
+            this.title = this.section.name
+            this.description = this.section.description
+            this.orderNumber = this.section.order_number
+            this.timeToComplete = this.section.time_to_complete
+            this.selectedCourse = this.allCourses.filter(course => {
+                return course.id === this.section.course_id
+            })[0]
+            this.editing = true
+        },
         selectCourse(evt){
             this.selectedCourse = JSON.parse(evt.target.value)
         },
@@ -59,7 +79,17 @@ export default {
             $.ajax({
                 method: 'POST',
                 url: '/sections',
-                data: { section: { course_id: this.selectedCourse.id, name: this.title, time_to_complete: this.timeToComplete, order_number: this.orderNumber } },
+                data: { section: { course_id: this.selectedCourse.id, description: this.description, name: this.title, time_to_complete: this.timeToComplete, order_number: this.orderNumber } },
+                success: (data) => {
+                    console.log(data)
+                }
+            })
+        },
+        updateSection() {
+            $.ajax({
+                method: 'PATCH',
+                url: '/sections/'+ this.section.id,
+                data: { section: { course_id: this.selectedCourse.id, description: this.description, name: this.title, time_to_complete: this.timeToComplete, order_number: this.orderNumber } },
                 success: (data) => {
                     console.log(data)
                 }
@@ -73,5 +103,10 @@ export default {
 <style scoped>
 .container-fluid {
     margin-top: 40px;
+}
+
+.card-header {
+    background-color: #3b3a39;
+    color: whitesmoke;
 }
 </style>

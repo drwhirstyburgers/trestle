@@ -20,6 +20,7 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/edit
   def edit
+    @course = Course.all
   end
 
   # POST /sections
@@ -42,10 +43,11 @@ class SectionsController < ApplicationController
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
+    @course = Course.find(section_params[:course_id])
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { render :show, status: :ok, location: @section }
+        format.html { redirect_to @course, notice: 'Section was successfully updated.' }
+        format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
         format.json { render json: @section.errors, status: :unprocessable_entity }

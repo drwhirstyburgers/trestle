@@ -1,6 +1,1 @@
-<h1>Editing Section</h1>
-
-<%= render 'form', section: @section %>
-
-<%= link_to 'Show', @section %> |
-<%= link_to 'Back', sections_path %>
+<sectionform :courses="<%= @course.to_json %>" :section="<%= @section.to_json %>"/>

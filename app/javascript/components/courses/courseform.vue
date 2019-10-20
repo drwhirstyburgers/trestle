@@ -88,4 +88,8 @@ export default {
 .container-fluid {
     margin-top: 40px;
 }
+.card-header {
+    background-color: #3b3a39;
+    color: whitesmoke;
+}
 </style>
