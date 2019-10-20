@@ -40,7 +40,8 @@
                                     Makes course publicly available
                                 </small>
                             </div>
-                            <button v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
+                            <button v-if="!editing" v-on:click="submitCourse" type="button" class="btn btn-outline-success pull-right">Submit</button>
+                            <button v-if="editing" v-on:click="updateCourse" type="button" class="btn btn-outline-success pull-right">Update</button>
                         </form>
                     </div>
                 </div>
@@ -54,6 +55,7 @@
 export default {
     data () {
         return {
+            editing: false,
             title: '',
             description: '',
             price: 0,
@@ -62,7 +64,20 @@ export default {
             active: false,
         }
     },
+    props: ['course'],
+    mounted() {
+        this.setCourseData();
+    },
     methods: {
+        setCourseData(){
+            this.title = this.course.title
+            this.description = this.course.description
+            this.price = this.course.price
+            this.duration = this.course.duration
+            this.accreditation = this.course.accreditation
+            this.active = this.course.active
+            this.editing = true
+        },
         submitCourse() {
             const title = this.title
             const description = this.description
@@ -73,6 +88,22 @@ export default {
             $.ajax({
                 method: 'POST',
                 url: '/courses',
+                data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation, active: active } },
+                success: (data) => {
+                    console.log('Course created')
+                }
+            })
+        },
+        updateCourse() {
+            const title = this.title
+            const description = this.description
+            const price = this.price
+            const duration = this.duration
+            const accreditation = this.accreditation
+            const active = this.active
+            $.ajax({
+                method: 'PATCH',
+                url: '/courses/'+ this.course.id,
                 data: { course: { title: title, description: description, price: price, duration: duration, accreditation: accreditation, active: active } },
                 success: (data) => {
                     console.log('Course created')

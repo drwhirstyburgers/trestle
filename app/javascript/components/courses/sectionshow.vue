@@ -5,7 +5,7 @@
             Section Name: {{sec.name}}
             <div class="dropdown pull-right">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sections Menu
+                    Section Menu
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <a href='/modules/new'><button class="dropdown-item" type="button">New Section Module</button></a>
