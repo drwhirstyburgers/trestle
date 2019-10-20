@@ -1,7 +1,2 @@
-<div class="container-fluid" style="margin-top: 40px;">
-  <div class="row">
-    <%= @courses.each do |course| %>
-      <courseindex :c="<%= course.to_json %>" />
-    <% end %>
-  </div>
-</div>
+<courseindex :c="<%= @courses.to_json %>" />
+
