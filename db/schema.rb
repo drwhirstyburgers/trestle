@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_005035) do
+ActiveRecord::Schema.define(version: 2019_10_20_220859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkpoints", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
+    t.bigint "section_id", null: false
+    t.string "video_url"
+    t.integer "order_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_checkpoints_on_section_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
@@ -67,5 +78,6 @@ ActiveRecord::Schema.define(version: 2019_10_10_005035) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "checkpoints", "sections"
   add_foreign_key "sections", "courses"
 end
