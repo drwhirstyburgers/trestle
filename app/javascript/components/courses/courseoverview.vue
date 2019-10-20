@@ -11,7 +11,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 <a href='/sections/new'><button class="dropdown-item" type="button">New Course Section</button></a>
-                                <a v-bind:href="'/courses/'+ newCourse.id +'/edit/'"><button class="dropdown-item" type="button">Edit course</button></a>
+                                <a v-bind:href="'/courses/'+ newCourse.id +'/edit/'"><button class="dropdown-item" type="button">Edit Course</button></a>
                             </div>
                         </div>
                     </div>

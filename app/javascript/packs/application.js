@@ -27,6 +27,7 @@ import courseoverview from '../components/courses/courseoverview'
 import sectionform from '../components/courses/sectionform'
 import navbar from '../components/dash/navbar'
 import topbar from '../components/dash/topbar'
+import courseindex from '../components/indexes/courseindex'
 
 Vue.use(TurbolinksAdapter)
 document.addEventListener('turbolinks:load', () => {
@@ -42,7 +43,8 @@ document.addEventListener('turbolinks:load', () => {
                   sectionform,
                   courseoverview,
                   navbar,
-                  topbar
+                  topbar,
+                  courseindex
                 }
   })
 })
