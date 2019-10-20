@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
     <div class="row">
-        <div v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="col-sm">
+        <div v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="col-md-4">
             <coursecard :ic="course" />
         </div>
     </div>
