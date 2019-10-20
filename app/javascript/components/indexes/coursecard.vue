@@ -29,3 +29,15 @@ export default {
     props: ['ic']
 }
 </script>
+
+<style scoped>
+.card {
+    background-color: #3b3a39;
+    color: whitesmoke;
+}
+
+.list-group-item {
+    background-color: #3b3a39;
+    color: whitesmoke;
+}
+</style>
