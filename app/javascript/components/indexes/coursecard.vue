@@ -15,6 +15,8 @@
             <div class="card-body">
                 <a v-bind:href="'/courses/'+ course.id" class="card-link">Go to course</a>
                 <a v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link">Edit Course</a>
+                <a v-if="course.active == false" v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link pull-right">Activate Course</a>
+                <a v-else v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link pull-right">Deactivate Course</a>
             </div>
         </div>
 </template>
