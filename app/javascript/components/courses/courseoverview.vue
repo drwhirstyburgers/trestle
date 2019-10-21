@@ -12,6 +12,8 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 <a href='/sections/new'><button class="dropdown-item" type="button">New Course Section</button></a>
                                 <a v-bind:href="'/courses/'+ newCourse.id +'/edit/'"><button class="dropdown-item" type="button">Edit Course</button></a>
+                                <a href="/courses/"><button class="dropdown-item" type="button">All courses</button></a>
+                                <button @click="deleteCourse" class="dropdown-item" type="button">Delete Course</button></a>
                             </div>
                         </div>
                     </div>
@@ -62,6 +64,18 @@ export default {
         showSectionForm() {
             console.log("hello")
             this.$emit('showSection')
+        },
+        deleteCourse(){
+            console.log("hello")
+            if (confirm('Are you sure you want to delete the course?')){
+                $.ajax({
+                    method: 'DELETE',
+                    url: '/courses/'+ this.newCourse.id,
+                    success: (data) => {
+                        console.log('Course destroyed')
+                    }
+                })
+            }
         }
     }
 }
