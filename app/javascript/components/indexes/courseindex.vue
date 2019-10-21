@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
     <div class="row">
-        <div v-if="courses.length > 0" v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="col-md-4">
+        <div v-if="courses.length > 0" v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="col-md-4 d-flex align-items-stretch">
             <coursecard :ic="course" />
         </div>
         <div v-else>

@@ -8,7 +8,7 @@
                 Accreditation: {{ course.accreditation }}
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Price: {{ course.price }}</li>
+                <li class="list-group-item">Price: ${{ course.price }}</li>
                 <li class="list-group-item">Duration: {{ course.duration }} months</li>
                 <li class="list-group-item">Course Active: {{ course.active }}</li>
             </ul>
