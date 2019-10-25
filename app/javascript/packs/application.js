@@ -28,6 +28,7 @@ import sectionform from '../components/courses/sectionform'
 import navbar from '../components/dash/navbar'
 import topbar from '../components/dash/topbar'
 import courseindex from '../components/indexes/courseindex'
+import checkpointform from '../components/checkpoints/checkpointform'
 
 Vue.use(TurbolinksAdapter)
 document.addEventListener('turbolinks:load', () => {
@@ -44,7 +45,8 @@ document.addEventListener('turbolinks:load', () => {
                   courseoverview,
                   navbar,
                   topbar,
-                  courseindex
+                  courseindex,
+                  checkpointform
                 }
   })
 })

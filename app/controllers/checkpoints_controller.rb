@@ -15,6 +15,7 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints/new
   def new
     @checkpoint = Checkpoint.new
+    @sections = Section.all
   end
 
   # GET /checkpoints/1/edit
@@ -26,14 +27,12 @@ class CheckpointsController < ApplicationController
   def create
     @checkpoint = Checkpoint.new(checkpoint_params)
 
-    respond_to do |format|
-      if @checkpoint.save
-        format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
-        format.json { render :show, status: :created, location: @checkpoint }
-      else
-        format.html { render :new }
-        format.json { render json: @checkpoint.errors, status: :unprocessable_entity }
-      end
+    if @checkpoint.save!
+      flash[:notice] = "Checkpoint was saved."
+      render json: @checkpoint.to_json, status: :ok
+    else
+      flash[:alert] = "There was an error saving the checkpoint"
+      render json: "There was an error".to_json
     end
   end
 
@@ -69,6 +68,6 @@ class CheckpointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checkpoint_params
-      params.require(:checkpoint).permit(:name, :section_id, :order_number, :description)
+      params.require(:checkpoint).permit(:name, :section_id, :order_number, :description, :time_to_complete)
     end
 end
