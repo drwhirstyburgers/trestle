@@ -82,7 +82,7 @@ export default {
             checkpointId: null,
         }
     },
-    props: ['sec', 'check', 'estSect'],
+    props: ['sec', 'check'],
     components: {checkpointcontentform},
     mounted() {
         this.setCheckpoint()
@@ -92,7 +92,9 @@ export default {
         setCheckpoint(){
             if(this.checkpoint){
                 this.editing = true
-                this.section = this.estSection
+                this.section = this.sections.filter((sec) => {
+                    this.checkpoint.section_id === sec.id
+                })[0]
                 this.name = this.checkpoint.name
                 this.orderNumber = this.checkpoint.order_number
                 this.timeToComplete = this.checkpoint.time_to_complete

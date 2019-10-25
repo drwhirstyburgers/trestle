@@ -20,6 +20,7 @@ class CheckpointsController < ApplicationController
 
   # GET /checkpoints/1/edit
   def edit
+    @sections = Section.all
   end
 
   # POST /checkpoints
