@@ -14,10 +14,10 @@ class CheckpointsTest < ApplicationSystemTestCase
     visit checkpoints_url
     click_on "New Checkpoint"
 
-    fill_in "Content", with: @checkpoint.content
+    fill_in "Description", with: @checkpoint.description
     fill_in "Name", with: @checkpoint.name
-    fill_in "References", with: @checkpoint.references
-    fill_in "Video url", with: @checkpoint.video_url
+    fill_in "Order number", with: @checkpoint.order_number
+    fill_in "Section", with: @checkpoint.section_id
     click_on "Create Checkpoint"
 
     assert_text "Checkpoint was successfully created"
@@ -28,10 +28,10 @@ class CheckpointsTest < ApplicationSystemTestCase
     visit checkpoints_url
     click_on "Edit", match: :first
 
-    fill_in "Content", with: @checkpoint.content
+    fill_in "Description", with: @checkpoint.description
     fill_in "Name", with: @checkpoint.name
-    fill_in "References", with: @checkpoint.references
-    fill_in "Video url", with: @checkpoint.video_url
+    fill_in "Order number", with: @checkpoint.order_number
+    fill_in "Section", with: @checkpoint.section_id
     click_on "Update Checkpoint"
 
     assert_text "Checkpoint was successfully updated"

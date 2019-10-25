@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Checkpoint Contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Text</th>
+      <th>Video url</th>
+      <th>Order</th>
+      <th>Checkpoint</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @checkpoint_contents.each do |checkpoint_content| %>
+      <tr>
+        <td><%= checkpoint_content.type %></td>
+        <td><%= checkpoint_content.text %></td>
+        <td><%= checkpoint_content.video_url %></td>
+        <td><%= checkpoint_content.order %></td>
+        <td><%= checkpoint_content.checkpoint_id %></td>
+        <td><%= link_to 'Show', checkpoint_content %></td>
+        <td><%= link_to 'Edit', edit_checkpoint_content_path(checkpoint_content) %></td>
+        <td><%= link_to 'Destroy', checkpoint_content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Checkpoint Content', new_checkpoint_content_path %>

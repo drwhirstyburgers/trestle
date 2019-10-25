@@ -1,0 +1,2 @@
+module CheckpointContentsHelper
+end

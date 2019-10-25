@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  content: MyString
-  references: 
-  video_url: MyString
+  section: one
+  order_number: 1
+  description: MyString
 
 two:
   name: MyString
-  content: MyString
-  references: 
-  video_url: MyString
+  section: two
+  order_number: 1
+  description: MyString

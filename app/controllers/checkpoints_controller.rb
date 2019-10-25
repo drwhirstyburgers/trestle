@@ -69,6 +69,6 @@ class CheckpointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checkpoint_params
-      params.require(:checkpoint).permit(:name, :content, :references, :video_url)
+      params.require(:checkpoint).permit(:name, :section_id, :order_number, :description)
     end
 end
