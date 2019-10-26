@@ -4,42 +4,42 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
 
-                <div class="modal-header">
-                    <slot name="header">
-                        Select content type
-                    </slot>
-                </div>
+                    <div class="modal-header">
+                        <slot name="header">
+                            Select content type
+                        </slot>
+                    </div>
 
-                <div class="modal-body">
-                    <slot name="body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Photo
-                            </label>
-                        </div>
+                    <div class="modal-body">
+                        <slot name="body">
                             <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                                Video
-                            </label>
-                        </div>
-                            <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                            <label class="form-check-label" for="exampleRadios3">
-                                Text
-                            </label>
-                        </div>
-                    </slot>
-                </div>
+                                <input v-model="choice" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="photo">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Photo
+                                </label>
+                            </div>
+                                <div class="form-check">
+                                <input v-model="choice" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="video">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Video
+                                </label>
+                            </div>
+                                <div class="form-check">
+                                <input v-model="choice" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="text">
+                                <label class="form-check-label" for="exampleRadios3">
+                                    Text
+                                </label>
+                            </div>
+                        </slot>
+                    </div>
 
-                <div class="modal-footer">
-                    <slot name="footer">
-                        <button type="button" class="btn btn-outline-success">
-                            Submit
-                        </button>
-                    </slot>
-                </div>
+                    <div class="modal-footer">
+                        <slot name="footer">
+                            <button @click="submitContentType" type="button" class="btn btn-outline-success">
+                                Submit
+                            </button>
+                        </slot>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,11 +50,18 @@
 export default {
     data() {
         return {
-
+            choice: ''
         }
     },
     methods:{
-
+        submitContentType(){
+            let choice = {
+                choice: this.choice
+            }
+            if(this.$emit('contentChoice', choice)){
+                console.log(choice)
+            }
+        }
     }
 }
 </script>

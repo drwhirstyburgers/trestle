@@ -3,7 +3,7 @@
     <checkpointmodal />
     <div class='row'>
         <div class='col-xl'>
-            <div v-if="!checkpointCreated" class="card">
+            <div v-if="!checkpointCreated" v-on:contentChoice="afterChoiceMade(choice)" class="card">
                 <div class="card-header">
                     Checkpoint
                 </div>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import checkpointcontentform from './checkpointcontentform'
+import textcontentform from './textcontentform'
 import checkpointmodal from './checkpointmodal'
 
 export default {
@@ -66,7 +66,7 @@ export default {
         }
     },
     props: ['sec', 'check'],
-    components: {checkpointcontentform, checkpointmodal},
+    components: {textcontentform, checkpointmodal},
     mounted() {
         this.setCheckpoint()
         this.setDefaultSection()
@@ -97,7 +97,15 @@ export default {
         })
     },
     updateCheckpoint(){
-
+        $.ajax({
+            method: 'PATCH',
+            url: '/checkpoints/'+ this.checkpoint.id,
+            data: { checkpoint: { name: this.name, description: this.description, section_id: this.section.id, order_number: this.orderNumber, time_to_complete: this.timeToComplete } },
+            success: (data) => {
+                console.log('Checkpoint updated')
+                this.checkpointId = data.id
+            }
+        })
     },
     selectSection(evt){
         console.log("hello")
