@@ -15,8 +15,8 @@
             <div class="card-body">
                 <a v-bind:href="'/courses/'+ course.id" class="card-link">Go to course</a>
                 <a v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link">Edit Course</a>
-                <a v-if="course.active == false" v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link pull-right">Activate Course</a>
-                <a v-else v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link pull-right">Deactivate Course</a>
+                <a v-if="course.active == false" @click="activateCourse(course.id)" class="card-link pull-right">Activate Course</a>
+                <a v-else @click="activateCourse(course.id)" class="card-link pull-right">Deactivate Course</a>
             </div>
         </div>
 </template>
@@ -28,7 +28,20 @@ export default {
             course: this.ic
         }
     },
-    props: ['ic']
+    props: ['ic'],
+    methods: {
+        activateCourse(id){
+            $.ajax({
+                method: 'POST',
+                url: '/activate',
+                data: { id: id },
+                success: (data) =>  {
+                    console.log('Course (de)activated')
+                    this.course = data
+                }
+            })
+        }
+    }
 }
 </script>
 

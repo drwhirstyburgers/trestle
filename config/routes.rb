@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sections
   resources :courses
   devise_for :users
+  post '/activate', to: 'courses#toggle_activate_course'
 
   resources :landing_pages
 

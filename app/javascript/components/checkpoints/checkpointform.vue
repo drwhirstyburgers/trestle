@@ -30,7 +30,7 @@
                             <input v-model="timeToComplete" type="number" class="form-control" placeholder="Time to complete">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Section Description</label>
+                            <label for="exampleFormControlTextarea1">Checkpoint Description</label>
                             <textarea v-model="description" class="form-control" rows="3"></textarea>
                         </div>
                         <button v-if="!editing" v-on:click="submitCheckpoint" type="button" class="btn btn-outline-success pull-right">Submit</button>

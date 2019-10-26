@@ -63,6 +63,19 @@ class CoursesController < ApplicationController
     end
   end
 
+  def toggle_activate_course
+    course = Course.find(params[:id])
+    if course.active == false
+      course.active = true
+    else
+      course.active = false
+    end
+    
+    if course.save!
+      render json: course.to_json, status: :ok
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

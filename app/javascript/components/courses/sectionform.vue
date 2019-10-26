@@ -60,23 +60,17 @@ export default {
     props: ['courses', 'section'],
     mounted() {
         this.setSectionOnEdit()
-        this.setDefaultCourse()
     },
     methods: {
         setSectionOnEdit(){
-            if(this.section !== undefined){
-                this.title = this.section.name
-                this.description = this.section.description
-                this.orderNumber = this.section.order_number
-                this.timeToComplete = this.section.time_to_complete
-                this.selectedCourse = this.allCourses.filter(course => {
-                    return course.id === this.section.course_id
-                })[0]
-                this.editing = true
-            }
-        },
-        setDefaultCourse(){
-            this.selectedCourse = this.allCourses[0]
+            this.title = this.section.name
+            this.description = this.section.description
+            this.orderNumber = this.section.order_number
+            this.timeToComplete = this.section.time_to_complete
+            this.selectedCourse = this.allCourses.filter(course => {
+                return course.id === this.section.course_id
+            })[0]
+            this.editing = true
         },
         selectCourse(evt){
             this.selectedCourse = JSON.parse(evt.target.value)
