@@ -6,21 +6,37 @@
 
                 <div class="modal-header">
                     <slot name="header">
-                        default header
+                        Select content type
                     </slot>
                 </div>
 
                 <div class="modal-body">
                     <slot name="body">
-                        default body
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Photo
+                            </label>
+                        </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Video
+                            </label>
+                        </div>
+                            <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Text
+                            </label>
+                        </div>
                     </slot>
                 </div>
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        default footer
-                        <button class="modal-default-button" @click="$emit('close')">
-                            OK
+                        <button type="button" class="btn btn-outline-success">
+                            Submit
                         </button>
                     </slot>
                 </div>
@@ -62,7 +78,7 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 500px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;

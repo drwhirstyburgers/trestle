@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid">
-    <checkpointmodal v-if="queryModal" />
+    <checkpointmodal />
     <div class='row'>
         <div class='col-xl'>
             <div v-if="!checkpointCreated" class="card">
