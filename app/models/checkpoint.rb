@@ -1,4 +1,4 @@
 class Checkpoint < ApplicationRecord
+  has_rich_text :content
   belongs_to :section
-  has_many :checkpoint_contents, dependent: :destroy
 end

@@ -1,1 +1,6 @@
-<checkpointform :sec="<%= @sections.to_json%>" :check="<%= @checkpoint.to_json%>" />
+<h1>Editing Checkpoint</h1>
+
+<%= render 'form', checkpoint: @checkpoint %>
+
+<%= link_to 'Show', @checkpoint %> |
+<%= link_to 'Back', checkpoints_path %>

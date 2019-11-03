@@ -1,6 +1,5 @@
 <template>
 <div class="container-fluid">
-    <checkpointmodal />
     <div class='row'>
         <div class='col-xl'>
             <div v-if="!checkpointCreated" v-on:contentChoice="afterChoiceMade(choice)" class="card">
@@ -12,6 +11,7 @@
                         <div class="form-group" v-if="!editing">
                             <label for="course">Checkpoint Section</label>
                             <select @change="selectSection" class="form-control">
+                                <option value="" selected disabled>Please Select</option>
                                 <option v-for="section in sections" v-bind:section="section" v-bind:key="section.key" :value="JSON.stringify(section)" placeholder="Pick the section that the checkpoint is associated with">{{section.name}}</option>
                             </select>
                         </div>
@@ -33,6 +33,11 @@
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Checkpoint Description</label>
                             <textarea v-model="description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Content</label>
+                            <input id="contentTrix" type="hidden" name="content">
+                            <trix-editor input="contentTrix"></trix-editor>
                         </div>
                         <button v-if="!editing" v-on:click="submitCheckpoint" type="button" class="btn btn-outline-success pull-right">Submit</button>
                         <button v-if="editing" v-on:click="updateCheckpoint" type="button" class="btn btn-outline-success pull-right">Update</button>
@@ -63,17 +68,17 @@ export default {
             description: '',
             queryModal: false,
             checkpointId: null,
+            content: null,
         }
     },
     props: ['sec', 'check'],
     components: {textcontentform, checkpointmodal},
     mounted() {
         this.setCheckpoint()
-        this.setDefaultSection()
     },
     methods: {
         setCheckpoint(){
-            if(this.checkpoint){
+            if(this.checkpoint.id != null){
                 this.editing = true
                 this.section = this.sections.filter((sec) => {
                     this.checkpoint.section_id === sec.id
@@ -84,36 +89,36 @@ export default {
                 this.description = this.checkpoint.description
             }
         },
-    submitCheckpoint(){
-        $.ajax({
-                method: 'POST',
-                url: '/checkpoints',
+        submitCheckpoint(){
+            var element = document.querySelector("trix-editor")
+            var trixContent = element.value
+            this.content = trixContent
+            $.ajax({
+                    method: 'POST',
+                    url: '/checkpoints',
+                    data: { checkpoint: { title: this.name, description: this.description, section_id: this.section.id, order_number: this.orderNumber, time_to_complete: this.timeToComplete, content: this.content } },
+                    success: (data) => {
+                        console.log('Checkpoint Created')
+                        this.queryModal = true
+                        this.checkpointId = data.id
+                    }
+            })
+        },
+        updateCheckpoint(){
+            $.ajax({
+                method: 'PATCH',
+                url: '/checkpoints/'+ this.checkpoint.id,
                 data: { checkpoint: { name: this.name, description: this.description, section_id: this.section.id, order_number: this.orderNumber, time_to_complete: this.timeToComplete } },
                 success: (data) => {
-                    console.log('Checkpoint Created')
-                    this.queryModal = true
+                    console.log('Checkpoint updated')
                     this.checkpointId = data.id
                 }
-        })
-    },
-    updateCheckpoint(){
-        $.ajax({
-            method: 'PATCH',
-            url: '/checkpoints/'+ this.checkpoint.id,
-            data: { checkpoint: { name: this.name, description: this.description, section_id: this.section.id, order_number: this.orderNumber, time_to_complete: this.timeToComplete } },
-            success: (data) => {
-                console.log('Checkpoint updated')
-                this.checkpointId = data.id
-            }
-        })
-    },
-    selectSection(evt){
-        console.log("hello")
-        this.section = JSON.parse(evt.target.value)
-    },
-    setDefaultSection(){
-        this.section = this.sections[0]
-    }
+            })
+        },
+        selectSection(evt){
+            console.log("hello")
+            this.section = JSON.parse(evt.target.value)
+        },
     }
 }
 </script>
@@ -126,5 +131,9 @@ export default {
 .card-header {
     background-color: #3b3a39;
     color: whitesmoke;
+}
+
+trix-editor {
+    min-height: 500px;
 }
 </style>

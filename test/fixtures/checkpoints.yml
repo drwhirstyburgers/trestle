@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  title: MyString
   section: one
-  order_number: 1
   description: MyString
+  time_to_complete: 1
 
 two:
-  name: MyString
+  title: MyString
   section: two
-  order_number: 1
   description: MyString
+  time_to_complete: 1

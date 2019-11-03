@@ -1,37 +1,52 @@
-<%= form_with(model: checkpoint, local: true) do |form| %>
-  <% if checkpoint.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>
+<div class="card">
+  <div class="card-header" style='background-color: #3b3a39; color: whitesmoke;'>
+    Course
+  </div>
+  <div class="card-body">
+    <form>
+      <%= form_with(model: checkpoint, local: true) do |form| %>
+        <% if checkpoint.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>
 
-      <ul>
-        <% checkpoint.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <ul>
+              <% checkpoint.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+        <div class="form-group">
+          <%= form.label :section_id %>
+          <%= form.collection_select :section_id, Section.order(:name), :id, :name, include_blank: true, input_html: { class: "dropdown" } %>
+        </div>
 
-  <div class="field">
-    <%= form.label :section_id %>
-    <%= form.text_field :section_id %>
-  </div>
+        <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= form.label :order_number %>
-    <%= form.number_field :order_number %>
-  </div>
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+        <div class="form-group">
+          <%= form.label :time_to_complete, "Time to complete as percentage of section" %>
+          <%= form.number_field :time_to_complete, class: "form-control" %>
+        </div>
 
-  <div class="actions">
-    <%= form.submit %>
+        <div>
+          <%= form.label :content %>
+          <%= form.rich_text_area :content %>
+        </div>
+        <br />
+
+        <div class="form-group">
+          <%= form.button :submit, class: "btn btn-outline-success pull-right" %>
+        </div>
+      <% end %>
+    </form>
   </div>
-<% end %>
+</div>

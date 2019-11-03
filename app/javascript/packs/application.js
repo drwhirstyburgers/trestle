@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('perfect-scrollbar')
+require("trix")
+require("@rails/actiontext")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -30,23 +32,23 @@ import topbar from '../components/dash/topbar'
 import courseindex from '../components/indexes/courseindex'
 import checkpointform from '../components/checkpoints/checkpointform'
 
-Vue.use(TurbolinksAdapter)
-document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '[data-behavior="vue"]',
-    data: () => {
-      return {
-        
-      }
-    },
-    components: { App, 
-                  courseform,
-                  sectionform,
-                  courseoverview,
-                  navbar,
-                  topbar,
-                  courseindex,
-                  checkpointform
-                }
-  })
-})
+//Vue.use(TurbolinksAdapter)
+//document.addEventListener('turbolinks:load', () => {
+//  const app = new Vue({
+//    el: '[data-behavior="vue"]',
+//    data: () => {
+//      return {
+//        
+//      }
+//    },
+//    components: { App, 
+//                  courseform,
+//                  sectionform,
+//                  courseoverview,
+//                  navbar,
+//                  topbar,
+//                  courseindex,
+//                  checkpointform
+//                }
+//  })
+//})

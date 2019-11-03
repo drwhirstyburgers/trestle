@@ -15,9 +15,9 @@ class CheckpointsTest < ApplicationSystemTestCase
     click_on "New Checkpoint"
 
     fill_in "Description", with: @checkpoint.description
-    fill_in "Name", with: @checkpoint.name
-    fill_in "Order number", with: @checkpoint.order_number
     fill_in "Section", with: @checkpoint.section_id
+    fill_in "Time to complete", with: @checkpoint.time_to_complete
+    fill_in "Title", with: @checkpoint.title
     click_on "Create Checkpoint"
 
     assert_text "Checkpoint was successfully created"
@@ -29,9 +29,9 @@ class CheckpointsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Description", with: @checkpoint.description
-    fill_in "Name", with: @checkpoint.name
-    fill_in "Order number", with: @checkpoint.order_number
     fill_in "Section", with: @checkpoint.section_id
+    fill_in "Time to complete", with: @checkpoint.time_to_complete
+    fill_in "Title", with: @checkpoint.title
     click_on "Update Checkpoint"
 
     assert_text "Checkpoint was successfully updated"

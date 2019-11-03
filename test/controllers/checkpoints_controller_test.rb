@@ -17,7 +17,7 @@ class CheckpointsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create checkpoint" do
     assert_difference('Checkpoint.count') do
-      post checkpoints_url, params: { checkpoint: { description: @checkpoint.description, name: @checkpoint.name, order_number: @checkpoint.order_number, section_id: @checkpoint.section_id } }
+      post checkpoints_url, params: { checkpoint: { description: @checkpoint.description, section_id: @checkpoint.section_id, time_to_complete: @checkpoint.time_to_complete, title: @checkpoint.title } }
     end
 
     assert_redirected_to checkpoint_url(Checkpoint.last)
@@ -34,7 +34,7 @@ class CheckpointsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update checkpoint" do
-    patch checkpoint_url(@checkpoint), params: { checkpoint: { description: @checkpoint.description, name: @checkpoint.name, order_number: @checkpoint.order_number, section_id: @checkpoint.section_id } }
+    patch checkpoint_url(@checkpoint), params: { checkpoint: { description: @checkpoint.description, section_id: @checkpoint.section_id, time_to_complete: @checkpoint.time_to_complete, title: @checkpoint.title } }
     assert_redirected_to checkpoint_url(@checkpoint)
   end
 

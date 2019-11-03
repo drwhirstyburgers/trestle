@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :checkpoint_contents
   resources :checkpoints
   resources :sections
   resources :courses

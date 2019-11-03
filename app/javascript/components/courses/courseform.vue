@@ -4,7 +4,7 @@
             <div class='col-xl'>
                 <div class="card">
                     <div class="card-header">
-                        New Course
+                        Course
                     </div>
                     <div class="card-body">
                         <form>
