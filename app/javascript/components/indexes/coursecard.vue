@@ -13,10 +13,12 @@
                 <li class="list-group-item">Course Active: {{ course.active }}</li>
             </ul>
             <div class="card-body">
-                <a v-bind:href="'/courses/'+ course.id" class="card-link">Go to course</a>
-                <a v-bind:href="'/courses/'+ course.id + '/edit/'" class="card-link">Edit Course</a>
-                <button v-if="course.active == false" @click="activateCourse(course.id)" type="button" class="btn btn-secondary pull-right">Activate Course</button>
-                <button v-else @click="activateCourse(course.id)" type="button" class="btn btn-secondary pull-right">Deactivate Course</button>
+                <div class="btn-group d-flex justify-content-center">
+                    <a v-bind:href="'/courses/'+ course.id"><button type="button" class="btn btn-secondary">View Course</button></a>
+                    <a v-bind:href="'/courses/'+ course.id + '/edit/'"><button type="button" class="btn btn-secondary">Edit Course</button></a>
+                    <button v-if="course.active == false" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Activate</button>
+                    <button v-if="course.active == true" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Deactivate</button>
+                </div>
             </div>
         </div>
 </template>

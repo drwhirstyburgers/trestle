@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-header" style='background-color: #3b3a39; color: whitesmoke;'>
-    Course
+    Checkpoint
   </div>
   <div class="card-body">
     <form>
-      <%= form_with(model: checkpoint, local: true) do |form| %>
+      <%= form_with(model: checkpoint, local: true, remote: true) do |form| %>
         <% if checkpoint.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>

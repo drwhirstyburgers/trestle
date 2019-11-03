@@ -15,4 +15,5 @@
 </nav>
 </div>
 <courseindex :c="<%= @courses.to_json %>" />
+<%= tag.div id:"courseIndex", data: { cs: @courses.to_json } %>
 
