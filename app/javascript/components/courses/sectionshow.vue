@@ -33,18 +33,43 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div v-for="checkpoint in checkpoints" v-bind:checkpoint="checpoint" v-bind:key="checkpoint.key" class="col-sm-4">
+                <checkpointcard :check="checkpoint" />
+            </div>
+        </div>
     </div>
 </div>
 </template>
 
 <script>
+import checkpointcard from '../checkpoints/checkpointcard'
+
 export default {
     data () {
         return {
-            sec: this.section
+            sec: this.section,
+            checkpoints: []
         }
     },
-    props: ['section']
+    props: ['section'],
+    components: { checkpointcard },
+    mounted() {
+        this.getCheckpoints()
+    },
+    methods: {
+        getCheckpoints(){
+            $.ajax({
+                method: 'GET',
+                url: '/get_checkpoints',
+                data: { id: this.section.id },
+                success: (data) => {
+                    this.checkpoints = data
+                    console.log(data)
+                }
+            })
+        }
+    }
 }
 </script>
 

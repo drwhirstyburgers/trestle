@@ -14,8 +14,8 @@
             </ul>
             <div class="card-body">
                 <div class="btn-group d-flex justify-content-center">
-                    <a v-bind:href="'/courses/'+ course.id"><button type="button" class="btn btn-secondary">View Course</button></a>
-                    <a v-bind:href="'/courses/'+ course.id + '/edit/'"><button type="button" class="btn btn-secondary">Edit Course</button></a>
+                    <a v-bind:href="'/courses/'+ course.id" type="button" class="btn btn-secondary">View Course</a>
+                    <a v-bind:href="'/courses/'+ course.id + '/edit/'" class="btn btn-secondary">Edit Course</a>
                     <button v-if="course.active == false" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Activate</button>
                     <button v-if="course.active == true" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Deactivate</button>
                 </div>
