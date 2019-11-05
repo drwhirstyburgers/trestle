@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         setSectionOnEdit(){
-            if (this.section){
+            if (this.section != "new"){
                 this.title = this.section.name
                 this.description = this.section.description
                 this.orderNumber = this.section.order_number

@@ -28,6 +28,7 @@ import courseform from '../components/courses/courseform'
 import courseoverview from '../components/courses/courseoverview'
 import sectionform from '../components/courses/sectionform'
 import courseindex from '../components/indexes/courseindex'
+import { inflateRaw } from 'zlib'
 
 
 Vue.use(TurbolinksAdapter)
@@ -49,18 +50,18 @@ document.addEventListener('turbolinks:load', () => {
 })
 
 document.addEventListener('turbolinks:load', () => {
-  var sf = document.getElementById('sectionForm')
-  if (sf != null){
+  var sectionForm = document.getElementById('sectionForm')
+  if (sectionForm != null){
     const app = new Vue({
-      el: sf,
+      el: sectionForm,
       data: () => {
         return {
-          c: JSON.parse(sf.dataset.courses),
-          s: JSON.parse(sf.dataset.section)
+          courses: JSON.parse(sectionForm.dataset.ac),
+          theSection: JSON.parse(sectionForm.dataset.section)
         }
       },
-      template: '<sectionform :courses="c" :section="s" />',
-      components: { sectionform }
+      template: '<sectionform :courses="courses" :section="theSection" />',
+      components: { sectionform },
     })
   }
 })

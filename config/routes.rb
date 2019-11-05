@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :checkpoints
   get '/get_checkpoints', to: 'checkpoints#get_section_checkpoints'
 
-  resources :section
+  resources :sections
 
   resources :courses
   post '/activate', to: 'courses#toggle_activate_course'

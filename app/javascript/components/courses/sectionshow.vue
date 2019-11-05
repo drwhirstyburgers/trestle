@@ -2,7 +2,7 @@
 <div class='col-xl'>
     <div class="card">
         <div class="card-header" style="background-color: #3b3a39;">
-            Section Name: {{sec.name}}
+            {{sec.name}}
             <div class="dropdown pull-right">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Section Menu
