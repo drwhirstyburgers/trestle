@@ -1,1 +1,1 @@
-<sectionform :courses="<%= @course.to_json %>" :section="<%= @section.to_json %>"/>
+<%= tag.div id:"sectionForm", data: { ac: @courses.to_json, section: @section.to_json } %>

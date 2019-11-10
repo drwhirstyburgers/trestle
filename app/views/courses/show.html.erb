@@ -1,1 +1,1 @@
-<courseoverview :course="<%= @course.to_json %>" :sections="<%= @course.sections.to_json %>" />
+<%= tag.div id:"courseOverview", data: { c: @course.to_json, s: @course.sections.order(:order_number).to_json } %>
