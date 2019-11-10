@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @checkpoint.section_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @checkpoint.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @checkpoint.description %>
+</p>
+
+<p>
+  <strong>Order number:</strong>
+  <%= @checkpoint.order_number %>
+</p>
+
+<p>
+  <strong>Time to complete:</strong>
+  <%= @checkpoint.time_to_complete %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @checkpoint.content %>
+</p>
+
+<%= link_to 'Edit', edit_checkpoint_path(@checkpoint) %> |
+<%= link_to 'Back', checkpoints_path %>

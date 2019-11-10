@@ -1,0 +1,47 @@
+<%= form_with(model: checkpoint, local: true) do |form| %>
+  <% if checkpoint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>
+
+      <ul>
+        <% checkpoint.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :section_id %>
+    <%= form.collection_select :section_id, Section.order(:name), :id, :name, include_blank: true, input_html: { class: "dropdown" } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_number %>
+    <%= form.number_field :order_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_to_complete %>
+    <%= form.number_field :time_to_complete %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

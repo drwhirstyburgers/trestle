@@ -13,5 +13,6 @@
 #
 
 class Section < ApplicationRecord
+  has_many :checkpoints, dependent: :destroy
   belongs_to :course
 end
