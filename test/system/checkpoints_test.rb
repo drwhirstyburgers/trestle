@@ -15,6 +15,7 @@ class CheckpointsTest < ApplicationSystemTestCase
     click_on "New Checkpoint"
 
     fill_in "Description", with: @checkpoint.description
+    fill_in "Order number", with: @checkpoint.order_number
     fill_in "Section", with: @checkpoint.section_id
     fill_in "Time to complete", with: @checkpoint.time_to_complete
     fill_in "Title", with: @checkpoint.title
@@ -29,6 +30,7 @@ class CheckpointsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Description", with: @checkpoint.description
+    fill_in "Order number", with: @checkpoint.order_number
     fill_in "Section", with: @checkpoint.section_id
     fill_in "Time to complete", with: @checkpoint.time_to_complete
     fill_in "Title", with: @checkpoint.title

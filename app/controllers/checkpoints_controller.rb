@@ -15,24 +15,21 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints/new
   def new
     @checkpoint = Checkpoint.new
-    @sections = Section.all
   end
 
   # GET /checkpoints/1/edit
   def edit
-    @sections = Section.all
   end
 
   # POST /checkpoints
   # POST /checkpoints.json
   def create
+    console.log("create")
     @checkpoint = Checkpoint.new(checkpoint_params)
-    @section = Section.find(checkpoint_params[:section_id])
-    @course = @section.course
 
     respond_to do |format|
-      if @checkpoint.save
-        format.html { redirect_to @course, notice: 'Checkpoint was successfully created.' }
+      if @checkpoint.save!
+        format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
         format.json { render :show, status: :created, location: @checkpoint }
       else
         format.html { render :new }
@@ -65,16 +62,6 @@ class CheckpointsController < ApplicationController
     end
   end
 
-  def get_section_checkpoints
-    checkpoints = Checkpoint.where(section_id: params[:id])
-
-    if checkpoints.present?
-      render json: checkpoints.to_json, status: :ok
-    else
-      render json: "Unable to find checkpoints".to_json, status: :unprocessable_entity
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_checkpoint
@@ -83,6 +70,6 @@ class CheckpointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checkpoint_params
-      params.require(:checkpoint).permit(:title, :section_id, :description, :time_to_complete, :content)
+      params.require(:checkpoint).permit(:section_id, :order_number, :description, :time_to_complete, :title, :content)
     end
 end
