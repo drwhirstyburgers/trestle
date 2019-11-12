@@ -2,11 +2,12 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-8">
-                    <a v-bind:href="'/checkpoints/' + checkpoint.id">
-                        <h5 class="card-title">{{ checkpoint.order_number }}: {{ checkpoint.title }}</h5>
-                        <p class="card-text">{{ checkpoint.description }}</p>
-                    </a>
+                <div class="col-md-8" v-on:click="changerShowRest">
+                    <h5 class="card-title">{{ checkpoint.order_number }}: {{ checkpoint.title }}</h5>
+                    <p v-if="showRest" class="card-text">
+                        Description: {{ checkpoint.description }}<br />
+                        Time to complete: {{ checkpoint.time_to_complete }}%
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <div class="dropdown float-right">
@@ -25,20 +26,29 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
-            checkpoint: this.check
+            checkpoint: this.check,
+            showRest: false
         }
     },
     props: ['check'],
     methods: {
+        changerShowRest(){
+            if(this.showRest == false){
+                this.showRest = true
+            } else {
+                this.showRest = false
+            }
+        }
     }
 }
 </script>
 
 <style scoped>
-a {
+.card {
     color: black;
 }
 .card{
