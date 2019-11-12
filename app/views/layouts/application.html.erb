@@ -40,6 +40,12 @@
             </li>
           </ul>
         </header>
+        <nav class="breadcrumb">
+          <% breadcrumb_trail do |crumb| %>
+            <%= link_to crumb.name, crumb.url, class: "breadcrumb-item" %>
+          <% end %>
+        </nav>
+          
         <div class='app-body'>
           <div class="sidebar">
             <nav class="sidebar-nav">

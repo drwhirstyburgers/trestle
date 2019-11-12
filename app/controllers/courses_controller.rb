@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  breadcrumb 'All Courses', :courses_path
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -10,6 +11,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    breadcrumb @course.title, course_path(@course)
   end
 
   # GET /courses/new
