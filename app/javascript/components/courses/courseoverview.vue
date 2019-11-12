@@ -76,4 +76,7 @@ export default {
     background-color: #3b3a39;
     color: whitesmoke;
 }
+.card {
+    height: 90%;
+}
 </style>

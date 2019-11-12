@@ -26,6 +26,7 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
+                            <h5 class="card-title">Information</h5>
                             Order number: {{ sec.order_number }}<br />
                             Time to complete: {{ sec.time_to_complete }}%<br />
                         </div>
@@ -77,5 +78,8 @@ export default {
 .card-header {
     background-color: #3b3a39;
     color: whitesmoke;
+}
+.card {
+    height: 90%;
 }
 </style>

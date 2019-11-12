@@ -58,5 +58,6 @@ export default {
 .card:hover {
     background-color: lightgray;
     text-decoration: none;
+    cursor: pointer;
 }
 </style>

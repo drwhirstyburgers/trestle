@@ -29,12 +29,19 @@ body {
     margin-top: 0px !important;
     height: 100%;
     background-color: azure;
+    color: black;
+}
+
+nav.breadcrumb {
+    margin-bottom: 0px;
+    color: black;
 }
 
 main {
     height: 100%;
+    color: black;
 }
-
-.nav-link {
-    text-decoration: none;
+a:hover {
+    text-decoration: none !important;
+    cursor: pointer;
 }
