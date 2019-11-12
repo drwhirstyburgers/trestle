@@ -61,6 +61,11 @@ class CheckpointsController < ApplicationController
     end
   end
 
+  def get_section_checkpoints
+    checkpoints = Section.find(params[:section_id]).checkpoints
+    render json: checkpoints.to_json, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_checkpoint

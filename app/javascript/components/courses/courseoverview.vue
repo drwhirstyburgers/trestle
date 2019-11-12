@@ -36,12 +36,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-for="section in allSections" v-bind:section="section" v-bind:key="section.key" class='row'>
+                            <sectionshow :section="section" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div v-for="section in allSections" v-bind:section="section" v-bind:key="section.key" class='row'>
-            <sectionshow :section="section" />
         </div>
 </div>
 </template>
