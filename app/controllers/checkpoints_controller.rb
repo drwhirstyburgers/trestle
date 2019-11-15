@@ -12,10 +12,11 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints/1
   # GET /checkpoints/1.json
   def show
-    course = @checkpoint.section.course
-    breadcrumb course.title, course_path(course)
-    breadcrumb @checkpoint.section.name, course_path(course)
+    @course = @checkpoint.section.course
+    breadcrumb @course.title, course_path(@course)
+    breadcrumb @checkpoint.section.name, course_path(@course)
     breadcrumb @checkpoint.title, checkpoint_path(@checkpoint)
+    @next_checkpoint = @checkpoint.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
   end
 
   # GET /checkpoints/new

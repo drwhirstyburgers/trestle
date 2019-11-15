@@ -1,17 +1,11 @@
 <div class="col-lg-10" id="middle">
     <div class="row" id="button-row">
         <div class="col-md-6">
+            <%= link_to course_path(@course) do %><< <%= @course.title %><% end %>
         </div>
         <div class="col-md-6">
-            <div class="dropdown float-right">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <div class="float-right">
+                <%= link_to "Next Checkpoint >>", checkpoint_path(@next_checkpoint) %>
             </div>
         </div>
     </div>
@@ -20,5 +14,10 @@
         <p class="lead"><%= checkpoint.section.name %></p>
         <hr class="my-4">
         <p><%= checkpoint.description %></p>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <%= checkpoint.content %>
+        </div>
     </div>
 </div>
