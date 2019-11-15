@@ -18,7 +18,7 @@
           <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a href='#'>Trestle Admin</a>
+          <a href='/'>Trestle Admin</a>
           <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -29,8 +29,8 @@
             <li class="nav-item px-3">
               <%= link_to 'Courses', courses_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'Log out', destroy_user_session_path %>
+            <li class="nav-item px-3">
+              <%= link_to 'Log out', destroy_user_session_path, class: 'nav-link' %>
             </li>
           </ul>
         
@@ -40,6 +40,12 @@
             </li>
           </ul>
         </header>
+        <nav class="breadcrumb">
+          <% breadcrumb_trail do |crumb| %>
+            <%= link_to crumb.name, crumb.url, class: "breadcrumb-item" %>
+          <% end %>
+        </nav>
+          
         <div class='app-body'>
           <div class="sidebar">
             <nav class="sidebar-nav">

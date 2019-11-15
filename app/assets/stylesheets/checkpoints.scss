@@ -1,11 +1,6 @@
 // Place all the styles related to the Checkpoints controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.container-fluid {
-    margin-top: 40px;
-}
-
 .card-header {
     background-color: #3b3a39;
     color: whitesmoke;
@@ -16,9 +11,25 @@ select {
     height: 25px;
 }
 
-.container-fluid {
-    background-color: rgb(236, 234, 231);
-    display: block;
+.card {
+    margin-top: 40px;
+}
+
+.col-lg-1 {
+    background-color: rgb(223, 231, 229);
+}
+#middle {
+    border-left: 3px solid black;
+}
+
+#show-row {
     height: 100%;
 }
 
+.jumbotron {
+    margin-top: 10px;
+}
+
+#button-row {
+    margin-top: 20px;
+}

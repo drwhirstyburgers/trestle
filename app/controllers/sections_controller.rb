@@ -1,4 +1,5 @@
 class SectionsController < ApplicationController
+  breadcrumb 'Courses', :courses_path
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
   # GET /sections
@@ -14,12 +15,15 @@ class SectionsController < ApplicationController
 
   # GET /sections/new
   def new
+    breadcrumb "New Section", new_section_path
     @section = Section.new
     @courses = Course.all
   end
 
   # GET /sections/1/edit
   def edit
+    breadcrumb @section.course.title, course_path(@section.course)
+    breadcrumb @section.name + " / Edit", edit_section_path(@section)
     @courses = Course.all
   end
 
