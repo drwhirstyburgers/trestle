@@ -11,15 +11,13 @@ select {
     height: 25px;
 }
 
-.card {
+#show-form-card {
     margin-top: 40px;
 }
 
-.col-lg-1 {
-    background-color: #e4e7ea;
-}
 #middle {
     border-left: 3px solid black;
+    box-shadow: 5px 10px #888888;
 }
 
 #show-row {
@@ -34,7 +32,9 @@ select {
     margin-top: 20px;
 }
 
-img {
+#show-card img {
     width: 800px;
-    height: 800px;
+    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
