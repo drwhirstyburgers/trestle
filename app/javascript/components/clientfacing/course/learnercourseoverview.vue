@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="container-fluid content-row" id="cf-lco">
         <div class="row">
             <div class="col-lg-2">
@@ -27,17 +28,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-2">
-            </div>
-            <usersectionshow v-for="section in sections" v-bind:section="section" v-bind:key="section.key" />
-            <div class="col-lg-2">
-            </div>
         </div>
     </div>
+    <div class="container-fluid content-row">
+        <usersectionshow v-for="section in sections" v-bind:section="section" v-bind:key="section.key" />
+    </div>
+</div>
 </template>
 
 <script>

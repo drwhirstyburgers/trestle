@@ -1,7 +1,7 @@
 class CheckpointsController < ApplicationController
 
   breadcrumb 'Courses', :courses_path
-  before_action :set_checkpoint, only: [:show, :edit, :update, :destroy]
+  before_action :set_checkpoint, only: [:edit, :update, :destroy]
 
   # GET /checkpoints
   # GET /checkpoints.json
@@ -12,11 +12,12 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints/1
   # GET /checkpoints/1.json
   def show
+    @checkpoint = Checkpoint.includes(section: :course).find(params[:id])
     @course = @checkpoint.section.course
     breadcrumb @course.title, course_path(@course)
     breadcrumb @checkpoint.section.name, course_path(@course)
     breadcrumb @checkpoint.title, checkpoint_path(@checkpoint)
-    @next_checkpoint = @checkpoint.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
+    @next_checkpoint = @course.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
   end
 
   # GET /checkpoints/new
