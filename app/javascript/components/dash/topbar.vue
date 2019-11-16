@@ -27,6 +27,9 @@
             </li>
             </ul>
         </div>
+        <span class="navbar-text">
+            <a href="/users/edit">{{ user.first_name }} {{ user.last_name }}</a>
+        </span>
     </nav>
 </template>
 
@@ -34,10 +37,11 @@
 export default {
     data(){
         return {
-            courses: this.user_courses
+            courses: this.user_courses,
+            user: this.current_user
         }
     },
-    props: ['user_courses'],
+    props: ['user_courses', 'current_user'],
     methods: {
         signOut(){
             $.ajax({
