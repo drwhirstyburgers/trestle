@@ -19,7 +19,7 @@
                                     <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55%</div>
                                 </div>
                                 <p class="card-text" id="ct"><small class="text-muted">Where you are</small></p>
-                                <div class="progress" id="pb">
+                                <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">45%</div>
                                 </div>
                             </div>
@@ -30,10 +30,19 @@
             <div class="col-lg-2">
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <usersectionshow v-for="section in sections" v-bind:section="section" v-bind:key="section.key" />
+            <div class="col-lg-2">
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import usersectionshow from '../sections/usersectionshow'
+
 export default {
     data() {
         return {
@@ -42,7 +51,8 @@ export default {
             user: this.learner
         }
     },
-    props: ['lcourse', 'lsections', 'learner']
+    props: ['lcourse', 'lsections', 'learner'],
+    components: { usersectionshow }
 }
 </script>
 
@@ -75,5 +85,8 @@ export default {
 #info-row {
     padding-top: 6px;
     padding-bottom: 6px;
+}
+#pb {
+    margin-bottom: 10px;
 }
 </style>

@@ -10,7 +10,7 @@
                     <p class="card-text" id="indexcardtext">
                         {{ course.description }} <br />
                     </p>
-                    <h6>Accreditation: {{ course.accreditation }} || Duration: {{ course.duration }} months || Price: ${{ course.price }}</h6>
+                    <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
                     <button type="button" class="btn btn-outline-success float-right">Enroll</button>
                 </div>
             </div>
