@@ -19,14 +19,23 @@
     <div class="row" id="l-course-row">
       <div class="col-lg-2">
       </div>
-      <div class="col-lg-8 bottom-align-text">
+      <div class="col-lg-8">
           <h1 class="display-4">Courses</h1>
           <p class="lead">Our current selection of courses here at Trestle</p>
       </div>
       <div class="col-lg-2">
       </div>
     </div>
-
-    <%= tag.div id:"scourseIndex", data: { cs: @courses.to_json } %>
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-8">
+        <% @courses.each do |course| %>
+          <%= tag.div id:"scourseIndex", data: { acs: course.to_json } %>
+        <% end %>
+      </div>
+      <div class="col-lg-2">
+      </div>
+    </div>
   <% end %>
 </div>
