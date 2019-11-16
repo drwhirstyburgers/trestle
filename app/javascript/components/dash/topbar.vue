@@ -1,6 +1,8 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="bar">
-        <a class="navbar-brand" href="/">Trestle</a>
+        <a class="navbar-brand" href="/">
+            <img src="https://i.ibb.co/Pg8LK5P/Trestle-logo1.jpg" alt="Trestle-logo1" border="0" width="30" height="30" class="d-inline-block align-top"/>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
