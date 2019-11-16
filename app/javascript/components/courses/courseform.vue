@@ -70,13 +70,15 @@ export default {
     },
     methods: {
         setCourseData(){
-            this.title = this.course.title
-            this.description = this.course.description
-            this.price = this.course.price
-            this.duration = this.course.duration
-            this.accreditation = this.course.accreditation
-            this.active = this.course.active
-            this.editing = true
+            if(this.course != "new"){
+                this.title = this.course.title
+                this.description = this.course.description
+                this.price = this.course.price
+                this.duration = this.course.duration
+                this.accreditation = this.course.accreditation
+                this.active = this.course.active
+                this.editing = true
+            }
         },
         submitCourse() {
             const title = this.title
