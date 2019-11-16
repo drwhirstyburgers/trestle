@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/activate', to: 'courses#toggle_activate_course'
   
   devise_for :users
+  delete '/sign_out_user', to: 'dash#sign_out'
 
   resources :landing_pages
 

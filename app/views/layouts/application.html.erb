@@ -71,6 +71,9 @@
             </nav>
         </div>
       <% end %>
+      <% if user_signed_in? && current_user.student? %>
+          <%= tag.div id: "topBar", data: { cs: @courses.to_json } %>
+      <% end %>
       <main class="main">
         <% if flash[:notice] %>
           <div class="alert alert-success">

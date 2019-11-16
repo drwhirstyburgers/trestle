@@ -35,7 +35,7 @@
             </div>
             <h5 class="card-title">Checkpoints</h5>
             <div class="row">
-                <div v-if="checkpoints.length > 0" v-for="checkpoint in checkpoints" v-bind:course="checkpoint" v-bind:key="checkpoint.key" class="col-md-4">
+                <div v-if="checkpoints.length > 0" v-for="checkpoint in checkpoints" v-bind:checkpoint="checkpoint" v-bind:key="checkpoint.key" class="col-md-4">
                     <checkpointcard :check="checkpoint" />
                 </div>
             </div>
