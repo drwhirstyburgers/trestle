@@ -50,10 +50,16 @@ main {
     padding-right: 0px;
     margin: 0px 0px 0px 0px;
 }
-a:hover {
-    text-decoration: none !important;
+a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  a:hover {
     cursor: pointer;
+    text-decoration: none !important;
 }
+
 .main .container-fluid {
     padding-top: 0px !important;
     margin: 0px 0px 0px 0px;

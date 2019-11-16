@@ -17,7 +17,7 @@ class CheckpointsController < ApplicationController
     breadcrumb @course.title, course_path(@course)
     breadcrumb @checkpoint.section.name, course_path(@course)
     breadcrumb @checkpoint.title, checkpoint_path(@checkpoint)
-    @next_checkpoint = @course.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
+    @next_checkpoint = @checkpoint.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
   end
 
   # GET /checkpoints/new

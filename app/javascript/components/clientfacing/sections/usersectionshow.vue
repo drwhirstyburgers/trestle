@@ -15,13 +15,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-2">
+        <div class="row">
+            <checkcard v-for="checkpoint in checkpoints" v-bind:checkpoint="checkpoint" v-bind:key="checkpoint.key" class="col-md-4" />
+        </div>
     </div>
 </div>
 </template>
 
 <script>
+import checkcard from '../checkpoints/checkcard'
+
 export default {
     data() {
         return {
@@ -30,6 +33,7 @@ export default {
         }
     },
     props: ['section'],
+    components: { checkcard },
     mounted(){
         this.getSectionCheckpoints()
     },

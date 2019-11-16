@@ -31,10 +31,10 @@ import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faUserSecret)
+library.add(faCheckSquare)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
