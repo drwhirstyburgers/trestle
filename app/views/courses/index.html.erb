@@ -15,7 +15,7 @@
     </div>
   </nav>
   <%= tag.div id:"courseIndex", data: { cs: @courses.to_json } %>
-  <% elsif (user_signed_in? && current_user.guest?) || (user_signed_in? && current_user.guest?) %>
+  <% elsif (user_signed_in? && current_user.student?) || (user_signed_in? && current_user.guest?) %>
     <div class="row" id="l-course-row">
       <div class="col-lg-2">
       </div>
