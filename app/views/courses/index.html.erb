@@ -1,18 +1,21 @@
- <div class="container-fluid">
-<nav class="navbar navbar-dark bg-dark">
-  <span class="navbar-text" style="color: whitesmoke;">
-    Course Index
-  </span>
-  <div class="btn-group dropleft">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Menu
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="/">Home</a>
-      <a class="dropdown-item" href="/courses/new">New Course</a>
+<div class="container-fluid">
+  <% if user_signed_in? && current_user.admin? %>
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-text" style="color: whitesmoke;">
+      Course Index
+    </span>
+    <div class="btn-group dropleft">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Menu
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/">Home</a>
+        <a class="dropdown-item" href="/courses/new">New Course</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <%= tag.div id:"courseIndex", data: { cs: @courses.to_json } %>
+  <% elsif (user_signed_in? && current_user.guest?) || (user_signed_in? && current_user.guest?) %>
+
+  <% end %>
 </div>
-<courseindex :c="<%= @courses.to_json %>" />
-<%= tag.div id:"courseIndex", data: { cs: @courses.to_json } %>
