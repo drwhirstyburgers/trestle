@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
         <div class='row'>
-            <div class='col-xl'>
+            <div class='col-xl' id="cform">
                 <div class="card">
                     <div class="card-header">
                         New Course
@@ -124,5 +124,9 @@ export default {
 .card-header {
     background-color: #3b3a39;
     color: whitesmoke;
+}
+#cform {
+    margin-right: 5%;
+    margin-left: 5%;
 }
 </style>

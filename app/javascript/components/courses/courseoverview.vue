@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
         <div class='row'>
-            <div class='col-xl'>
+            <div class='col-xl' id="course-over-card">
                 <div class="card">
                     <div class="card-header">
                         {{newCourse.title}}
@@ -91,5 +91,9 @@ export default {
 }
 .card {
     height: 90%;
+}
+#course-over-card {
+    margin-right: 5%;
+    margin-left: 5%;
 }
 </style>
