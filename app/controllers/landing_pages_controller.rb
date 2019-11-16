@@ -9,6 +9,8 @@ class LandingPagesController < ApplicationController
       redirect_to course_path(@course)
     elsif user_signed_in? && current_user.admin?
       redirect_to dash_path
+    elsif user_signed_in? && current_user.guest?
+      redirect_to courses_path
     end
   end
 
