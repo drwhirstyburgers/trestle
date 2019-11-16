@@ -55,6 +55,5 @@ export default {
 
 <style scoped>
 #bar {
-    background-color: black !important;
 }
 </style>
