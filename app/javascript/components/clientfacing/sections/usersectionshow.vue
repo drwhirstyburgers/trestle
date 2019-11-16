@@ -8,7 +8,7 @@
                 <h1 class="display-4">{{ sect.order_number }}. {{ sect.name }}</h1>
                 <p class="lead">{{ sect.description }}</p>
             </div>
-            <div class="col-md-3" id="infobox">
+            <div class="col-md-3 justify-content-center" id="infobox">
                 <h1 class="display-4">Checkpoints complete: 3/{{ checkpoints.length }}</h1>
                 <div class="progress" id="pb">
                     <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
@@ -76,8 +76,5 @@ export default {
 }
 .card-text {
     color: white;
-}
-#pb {
-    margin-bottom: 20px;
 }
 </style>
