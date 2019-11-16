@@ -28,6 +28,7 @@ import sectionform from '../components/courses/sectionform'
 import courseindex from '../components/courses/courseindex'
 import topbar from '../components/dash/topbar'
 import usercourseindex from '../components/clientfacing/course/usercourseindex'
+import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
@@ -133,6 +134,24 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<usercourseindex :tcourse="courses" />',
       components: { usercourseindex }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var lco = document.getElementById('learnerCourseOverview')
+  if (lco != null){
+    const app = new Vue({
+      el: lco,
+      data: () => {
+        return {
+          course: JSON.parse(lco.dataset.c),
+          sections: JSON.parse(lco.dataset.s),
+          user: JSON.parse(lco.dataset.u)
+        }
+      },
+      template: '<learnercourseoverview :lcourse="course" :lsections="sections" :learner="user" />',
+      components: { learnercourseoverview }
     })
   }
 })
