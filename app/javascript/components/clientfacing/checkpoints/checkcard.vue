@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-10">
-                        <h5 class="card-title">{{ check.title }}</h5>
+                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}</h5>
                         <p class="card-text">{{ check.description }}</p>
                     </div>
                     <div class="col-md-2">
