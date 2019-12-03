@@ -6,12 +6,18 @@
             </div>
             <div class="col-md-9">
                 <div class="card-body">
-                    <h4 class="card-title">{{ course.title }}</h4>
-                    <p class="card-text" id="indexcardtext">
-                        {{ course.description }} <br />
-                    </p>
-                    <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
-                    <button type="button" class="btn btn-outline-success float-right">Enroll</button>
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">{{ course.title }}</h4>
+                            <p class="card-text" id="indexcardtext">
+                                {{ course.description }} <br />
+                            </p>
+                            <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-success float-right">Enroll</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,5 +41,8 @@ export default {
 }
 #indexcardtext {
     font-size: 15px
+}
+img {
+    height: 100%;
 }
 </style>
