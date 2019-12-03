@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :choices
+  resources :questions
+  resources :quizzes
   resources :checkpoints
   resources :sections
   get '/get_checkpoints', to: 'checkpoints#get_section_checkpoints'
