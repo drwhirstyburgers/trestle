@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  require 'new_course_logic'
+  include NewCourseLogic
   breadcrumb 'All Courses', :courses_path
   before_action :set_course, only: [:edit, :update, :destroy]
 
@@ -76,6 +78,16 @@ class CoursesController < ApplicationController
     
     if course.save!
       render json: course.to_json, status: :ok
+    end
+  end
+
+  def create_user_course
+    course = Course.find(params[:course_id])
+    if create_new_user_course(params[:course_id], current_user)
+      # add flash notices
+      redirect_to course
+    else
+      redirect_to courses_path
     end
   end
 

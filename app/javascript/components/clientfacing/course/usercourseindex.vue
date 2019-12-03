@@ -15,7 +15,7 @@
                             <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-outline-success float-right">Enroll</button>
+                            <button v-on:click="addCourse(course.id)" type="button" class="btn btn-outline-success float-right">Enroll</button>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,23 @@ export default {
             course: this.tcourse
         }
     },
-    props: ['tcourse']
+    props: ['tcourse'],
+    methods: {
+        addCourse(id){
+            var id = { course_id: id }
+            $.ajax({
+                type: "POST",
+                url: '/add_course',
+                data: id,
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    console.log(data)
+                }
+            })
+        }
+    }
 }
 </script>
 

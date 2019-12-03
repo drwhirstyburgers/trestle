@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :courses
   post '/activate', to: 'courses#toggle_activate_course'
+  post '/add_course', to: 'courses#create_user_course'
   
   devise_for :users
   delete '/sign_out_user', to: 'dash#sign_out'
