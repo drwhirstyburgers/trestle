@@ -15,4 +15,7 @@
 class Checkpoint < ApplicationRecord
   belongs_to :section
   has_rich_text :content
+
+  has_many :user_checkpoints
+  has_many :users, through: :user_checkpoints
 end

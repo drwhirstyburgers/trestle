@@ -36,5 +36,8 @@ class User < ApplicationRecord
   has_many :user_sections
   has_many :sections, through: :user_sections
 
+  has_many :user_checkpoints
+  has_many :checkpoints, through: :user_checkpoints
+
   enum role: [:guest, :student, :admin]
 end
