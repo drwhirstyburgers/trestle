@@ -1,5 +1,5 @@
 <% if user_signed_in? && current_user.admin? %>
     <%= tag.div id:"courseOverview", data: { c: @course.to_json, s: @course.sections.order(:order_number).to_json } %>
-<% elsif user_signed_in? && current_user.student? %>
+<% elsif (user_signed_in? && current_user.student?) || (user_signed_in? && current_user.guest?) %>
     <%= tag.div id:"learnerCourseOverview", data: { c: @course.to_json, s: @course.sections.order(:order_number).to_json, u: current_user.to_json } %>
 <% end %>
