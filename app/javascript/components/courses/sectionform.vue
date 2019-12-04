@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class='row'>
         <div class='col-xl'>
-            <div class="card">
+            <div class="card section form">
                 <div class="card-header">
                     Section
                 </div>
@@ -109,6 +109,10 @@ export default {
 </script>
 
 <style scoped>
+.card.section.form {
+    margin-left: 30px;
+    margin-right: 30px;
+}
 .container-fluid {
     margin-top: 40px;
 }

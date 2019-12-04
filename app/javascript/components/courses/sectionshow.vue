@@ -9,6 +9,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <a href='/checkpoints/new'><button class="dropdown-item" type="button">New Section Checkpoint</button></a>
+                    <a href='/quizzes/new'><button class="dropdown-item" type="button">New Section Quiz</button></a>
                     <a v-bind:href="'/sections/'+ sec.id +'/edit/'"><button class="dropdown-item" type="button">Edit Section</button></a>
                 </div>
             </div>
