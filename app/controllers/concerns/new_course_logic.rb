@@ -8,6 +8,7 @@ module NewCourseLogic
                 user.checkpoints << c
             end
         end
+        user.role = 1
         user.save!
     end
 end
