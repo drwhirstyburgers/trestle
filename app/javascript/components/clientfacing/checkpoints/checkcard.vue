@@ -1,6 +1,18 @@
 <template>
     <div class="card">
         <a v-if="check.type == 'checkpoint'" v-bind:href="'/checkpoints/' + checkpoint.id">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}</h5>
+                        <p class="card-text">{{ check.description }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <font-awesome-icon v-if="checkpoint.order_number != 4" :icon="['fas', 'check-square']" size="lg"/>
+                    </div>
+                </div>
+            </div>
+        </a>
         <a v-if="check.type == 'quiz'" v-bind:href="'/quizzes/' + checkpoint.id">
             <div class="card-body">
                 <div class="row">
