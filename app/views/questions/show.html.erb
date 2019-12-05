@@ -20,5 +20,15 @@
   <%= @question.video_url %>
 </p>
 
+<p>
+  <strong>correct choice:</strong>
+  <%= @question.correct_choice %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @question.image %>
+</p>
+
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
