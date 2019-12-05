@@ -73,7 +73,7 @@ class CheckpointsController < ApplicationController
   end
 
   def get_section_checkpoints
-    checkpoints = aggregate_checkpoints_and_quizzes(params[:section_id])
+    checkpoints = aggregate_checkpoints_and_quizzes(params[:section_id], current_user)
     render json: checkpoints.sort_by { |c| c[:order_number] }.to_json, status: :ok
   end
 

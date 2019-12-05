@@ -1,11 +1,20 @@
 module CourseOverviewLogic
-    def aggregate_checkpoints_and_quizzes(section_id)
+
+    def aggregate_checkpoints_and_quizzes(section_id, user)
         return_arr = []
         section = Section.includes(:checkpoints, :quizzes).find(section_id)
         checkpoints = section.checkpoints
         quizzes = section.quizzes
         checkpoints.each do |c|
+            user_checkpoint = user.user_checkpoints.find { |uc| uc.checkpoint_id == c.id }
             temp = {}
+            if user_checkpoint.present?
+                if user_checkpoint.complete == true
+                    temp[:complete] = true
+                else
+                    temp[:complete] = false
+                end
+            end
             temp[:type] = "checkpoint"
             temp[:id] = c.id
             temp[:title] = c.title
@@ -24,4 +33,5 @@ module CourseOverviewLogic
         end
         return return_arr
     end
+    
 end
