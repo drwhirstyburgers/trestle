@@ -35,9 +35,10 @@ import choiceform from '../components/quizzes/choiceform'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCheckSquare)
+library.add(faCheckSquare, faTimes)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
