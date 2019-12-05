@@ -15,15 +15,33 @@
                         </select>
                         <hr>
                         <div v-if="choices.length > 0" class="card">
-                            <div v-for="choice in choices" v-bind:choice="choice" v-bind:key="choice.key" class="card-body">
-                                <h5 class="card-title">
-                                    {{ choice.order_number }}. {{ choice.option }} || 
-                                    <font-awesome-icon v-if="choice.correct_choice == true" :icon="['fas', 'check-square']" :size="md" />
-                                    <font-awesome-icon v-else :icon="['fa', 'times']" size="md"/>
-                                    
-                                </h5>
+                            <div class="card-body">
+                                <div v-for="choice in choices" v-bind:choice="choice" v-bind:key="choice.key">
+                                    <h5 class="card-title" v-on:click="isEditing = true">
+                                        {{ choice.order_number }}. {{ choice.option }} || 
+                                        <font-awesome-icon v-if="choice.correct_choice == true" :icon="['fas', 'check-square']" :size="md" />
+                                        <font-awesome-icon v-else :icon="['fa', 'times']" size="md"/>
+                                    </h5>
+                                    <form v-if="isEditing">
+                                        <div class="form-group">
+                                            <label for="choice">Choice</label>
+                                            <input v-model="choice.option" type="text" class="form-control" placeholder="Title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="title">Order number</label>
+                                            <input v-model="choice.order_number" type="number" class="form-control" placeholder="Order number">
+                                        </div>
+                                        <div v-if="!choiceMade" class="form-check">
+                                            <input v-model="choice.correct_choice" class="form-check-input" type="checkbox" value="">
+                                            <label class="form-check-label">
+                                                Correct choice?
+                                            </label>
+                                        </div>
+                                        <button v-on:click="editChoice(choice)" type="button" class="btn btn-outline-success">Save</button>
+                                    </form>
+                                </div>
+                                <button v-on:click="submitChoices" type="button" class="btn btn-outline-success pull-right">Submit Choices</button>
                             </div>
-                            <button v-on:click="submitChoices" type="button" class="btn btn-outline-success pull-right">Save</button>
                         </div>
                         <div class="form-group">
                             <label for="choice">Choice</label>
@@ -58,7 +76,8 @@ export default {
             option: '',
             order_number: 0,
             correct_choice: false,
-            choiceMade: false
+            choiceMade: false,
+            isEditing: false
         }
     },
     props: ['quests'],
@@ -81,6 +100,12 @@ export default {
                 this.order_number = 0
                 this.correct_choice = false
             }
+        },
+        editChoice(choice){
+            if(choice.correct_choice == true){
+                this.choiceMade = true
+            }
+            this.isEditing = false
         },
         submitChoices(){
             console.log('clicked')
