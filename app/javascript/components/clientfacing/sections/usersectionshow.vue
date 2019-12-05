@@ -5,7 +5,7 @@
         <div class="col-lg-8" id="ti-box">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-9" id="titlebox">
+                    <div class="col-md-9 justify-content-center" id="titlebox">
                         <h1 class="display-4">{{ sect.order_number }}. {{ sect.name }}</h1>
                         <p class="lead">{{ sect.description }}</p>
                     </div>
