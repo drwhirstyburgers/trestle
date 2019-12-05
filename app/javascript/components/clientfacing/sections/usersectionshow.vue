@@ -10,7 +10,7 @@
                         <p class="lead">{{ sect.description }}</p>
                     </div>
                     <div class="col-md-3 justify-content-center" id="infobox">
-                        <h1 class="display-4">Checkpoints complete: 3/{{ checkpoints.length }}</h1>
+                        <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
                         </div>
@@ -31,7 +31,8 @@ export default {
     data() {
         return {
             sect: this.section,
-            checkpoints: []
+            checkpoints: [],
+            numberOfCompleted: 0
         }
     },
     props: ['section'],
@@ -47,9 +48,13 @@ export default {
                 data: { section_id: this.section.id },
                 success: (data) => {
                     this.checkpoints = data
+                    this.numberOfCompleted = this.getCompletedNumber(this.checkpoints)
                 }
             })
         },
+        getCompletedNumber(checkpoints){
+            return checkpoints.filter((c) => c.complete).length
+        }
     }
 }
 </script>

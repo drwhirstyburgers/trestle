@@ -3,7 +3,8 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8" v-on:click="changerShowRest">
-                    <h5 class="card-title">{{ checkpoint.order_number }}. {{ checkpoint.title }}</h5>
+                    <h5 v-if="checkpoint.type == 'checkpoint'" class="card-title">{{ checkpoint.order_number }}. {{ checkpoint.title }}</h5>
+                    <h5 v-if="checkpoint.type == 'quiz'" class="card-title">{{ checkpoint.order_number }}. Quiz - {{ checkpoint.title }}</h5>
                     <p v-if="showRest" class="card-text">
                         Description:<br />{{ checkpoint.description }}<br /><br />
                         Time to complete: {{ checkpoint.time_to_complete }}%

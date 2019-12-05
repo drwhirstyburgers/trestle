@@ -166,9 +166,10 @@ document.addEventListener('turbolinks:load', () => {
       el: element,
       data: () => {
         return {
+          quest: JSON.parse(element.dataset.qu)
         }
       },
-      template: '<choiceform />',
+      template: '<choiceform :quests="quest"/>',
       components: { choiceform }
     })
   }

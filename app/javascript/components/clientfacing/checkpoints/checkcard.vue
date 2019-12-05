@@ -8,7 +8,7 @@
                         <p class="card-text">{{ check.description }}</p>
                     </div>
                     <div class="col-md-2">
-                        <font-awesome-icon v-if="checkpoint.order_number != 4" :icon="['fas', 'check-square']" size="lg"/>
+                        <font-awesome-icon v-if="checkpoint.complete == true" :icon="['fas', 'check-square']" size="lg"/>
                     </div>
                 </div>
             </div>
@@ -17,11 +17,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-10">
-                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}</h5>
+                        <h5 class="card-title">Quiz: {{ check.title }}</h5>
                         <p class="card-text">{{ check.description }}</p>
                     </div>
                     <div class="col-md-2">
-                        <font-awesome-icon v-if="checkpoint.order_number != 4" :icon="['fas', 'check-square']" size="lg"/>
+                        <font-awesome-icon v-if="checkpoint.complete == true" :icon="['fas', 'check-square']" size="lg"/>
                     </div>
                 </div>
             </div>

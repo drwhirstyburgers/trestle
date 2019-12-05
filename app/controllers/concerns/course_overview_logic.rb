@@ -20,18 +20,21 @@ module CourseOverviewLogic
             temp[:title] = c.title
             temp[:order_number] = c.order_number
             temp[:description] = c.description
+            temp[:time_to_complete] = c.time_to_complete
             return_arr << temp
         end
         quizzes.each do |q|
             temp = {}
+            temp[:completed] = false
             temp[:type] = "quiz"
             temp[:id] = q.id
             temp[:title] = q.title
             temp[:order_number] = q.order_number
             temp[:description] = q.description
+            temp[:time_to_complete] = q.time_to_complete
             return_arr << temp
         end
         return return_arr
     end
-    
+
 end
