@@ -15,8 +15,10 @@
                             Options
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" v-bind:href="'/checkpoints/' + checkpoint.id">Show</a>
-                            <a class="dropdown-item" v-bind:href="'/checkpoints/' + checkpoint.id + '/edit'">Edit</a>
+                            <a v-if="checkpoint.type == 'checkpoint'" class="dropdown-item" v-bind:href="'/checkpoints/' + checkpoint.id">Show</a>
+                            <a v-if="checkpoint.type == 'checkpoint'" class="dropdown-item" v-bind:href="'/checkpoints/' + checkpoint.id + '/edit'">Edit</a>
+                            <a v-if="checkpoint.type == 'quiz'" class="dropdown-item" v-bind:href="'/quizzes/' + checkpoint.id">Show</a>
+                            <a v-if="checkpoint.type == 'quiz'" class="dropdown-item" v-bind:href="'/quizzes/' + checkpoint.id + '/edit'">Edit</a>
                         </div>
                     </div>
                 </div>
