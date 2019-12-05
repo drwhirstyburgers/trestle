@@ -1,6 +1,7 @@
 <template>
     <div class="card">
-        <a v-bind:href="'/checkpoints/' + checkpoint.id">
+        <a v-if="check.type == 'checkpoint'" v-bind:href="'/checkpoints/' + checkpoint.id">
+        <a v-if="check.type == 'quiz'" v-bind:href="'/quizzes/' + checkpoint.id">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-10">
