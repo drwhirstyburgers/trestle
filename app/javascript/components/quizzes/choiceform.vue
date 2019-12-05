@@ -7,49 +7,48 @@
                     Choices
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form
                         <label for="course">Question</label>
                         <select @change="selectQuestion" class="form-control">
                             <option value="" selected disabled>Please Select</option>
                             <option v-for="question in questions" v-bind:question="question" v-bind:key="question.key" :value="JSON.stringify(question)" >{{ question.question }}</option>
                         </select>
+                    </form>
                         <hr>
                         <div v-if="choices.length > 0" class="card">
                             <div class="card-body">
-                                <div v-for="choice in choices" v-bind:choice="choice" v-bind:key="choice.key">
-                                    <h5 class="card-title" v-on:click="isEditing = true">
+                                <div v-for="(choice, index) in choices" v-bind:choice="choice" v-bind:key="choice.key">
+                                    <h5 class="card-title" v-on:click="updateEditing(index)">
                                         {{ choice.order_number }}. {{ choice.option }} || 
-                                        <font-awesome-icon v-if="choice.correct_choice == true" :icon="['fas', 'check-square']" :size="md" />
-                                        <font-awesome-icon v-else :icon="['fa', 'times']" size="md"/>
+                                        <font-awesome-icon v-if="choice.correct_choice == true" :icon="['fas', 'check-square']" />
+                                        <font-awesome-icon v-else :icon="['fa', 'times']" />
                                     </h5>
-                                    <form v-if="isEditing">
+                                    <font-awesome-icon v-if="isEditing.editing == true && index == isEditing.index" v-on:click="editChoice(choice)" :icon="['fas', 'check-square']" size='lg' class="done float-right" />
+                                    <form v-if="isEditing.editing == true && index == isEditing.index">
                                         <div class="form-group">
-                                            <label for="choice">Choice</label>
+                                            <label for="choice">Choice </label>
                                             <input v-model="choice.option" type="text" class="form-control" placeholder="Title">
                                         </div>
                                         <div class="form-group">
                                             <label for="title">Order number</label>
                                             <input v-model="choice.order_number" type="number" class="form-control" placeholder="Order number">
                                         </div>
-                                        <div v-if="!choiceMade" class="form-check">
+                                        <div class="form-check">
                                             <input v-model="choice.correct_choice" class="form-check-input" type="checkbox" value="">
                                             <label class="form-check-label">
                                                 Correct choice?
                                             </label>
                                         </div>
-                                        <button v-on:click="editChoice(choice)" type="button" class="btn btn-outline-success">Save</button>
+                                        <br>
                                     </form>
                                 </div>
                                 <button v-on:click="submitChoices" type="button" class="btn btn-outline-success pull-right">Submit Choices</button>
                             </div>
                         </div>
-                        <div class="form-group">
+                    <form>
+                        <div v-on:submit="addChoice"class="form-group">
                             <label for="choice">Choice</label>
                             <input v-model="option" type="text" class="form-control" placeholder="Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Order number</label>
-                            <input v-model="order_number" type="number" class="form-control" placeholder="Order number">
                         </div>
                         <div v-if="!choiceMade" class="form-check">
                             <input v-model="correct_choice" class="form-check-input" type="checkbox" value="">
@@ -77,7 +76,7 @@ export default {
             order_number: 0,
             correct_choice: false,
             choiceMade: false,
-            isEditing: false
+            isEditing: { editing: false, index: -1 }
         }
     },
     props: ['quests'],
@@ -88,7 +87,7 @@ export default {
         addChoice(){
             var choice = {
                 option: this.option,
-                order_number: this.order_number,
+                order_number: this.choices.length + 1,
                 correct_choice: this.correct_choice
             }
             if(choice.correct_choice == true){
@@ -105,7 +104,13 @@ export default {
             if(choice.correct_choice == true){
                 this.choiceMade = true
             }
-            this.isEditing = false
+            this.isEditing.editing = false
+            this.isEditing.index = -1
+            this.choices.sort((a,b) => Number(a.order_number) - Number(b.order_number))
+        },
+        updateEditing(index) {
+            this.isEditing.editing = true
+            this.isEditing.index = index
         },
         submitChoices(){
             console.log('clicked')
@@ -125,5 +130,11 @@ export default {
 .card-header {
     background-color: #3b3a39;
     color: whitesmoke;
+}
+h5:hover {
+    cursor: pointer;
+}
+.done:hover{
+    cursor: pointer;
 }
 </style>
