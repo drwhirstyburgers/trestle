@@ -1,5 +1,6 @@
 class CheckpointsController < ApplicationController
-
+  require 'course_overview_logic'
+  include CourseOverviewLogic
   breadcrumb 'Courses', :courses_path
   before_action :set_checkpoint, only: [:edit, :update, :destroy]
 
@@ -72,8 +73,8 @@ class CheckpointsController < ApplicationController
   end
 
   def get_section_checkpoints
-    checkpoints = Section.find(params[:section_id]).checkpoints
-    render json: checkpoints.order(:order_number).to_json, status: :ok
+    checkpoints = aggregate_checkpoints_and_quizzes(params[:section_id])
+    render json: checkpoints.sort_by { |c| c[:order_number] }.to_json, status: :ok
   end
 
   private

@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('perfect-scrollbar')
+require("trix")
+require("@rails/actiontext")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -29,6 +31,7 @@ import courseindex from '../components/courses/courseindex'
 import topbar from '../components/dash/topbar'
 import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
+import choiceform from '../components/quizzes/choiceform'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -155,5 +158,18 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 })
-require("trix")
-require("@rails/actiontext")
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('choiceForm')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+        }
+      },
+      template: '<choiceform />',
+      components: { choiceform }
+    })
+  }
+})
