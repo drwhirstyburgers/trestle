@@ -1,4 +1,6 @@
 class ChoicesController < ApplicationController
+  require 'quiz_logic'
+  include QuizLogic
   before_action :set_choice, only: [:show, :edit, :update, :destroy]
 
   # GET /choices
@@ -35,6 +37,15 @@ class ChoicesController < ApplicationController
         format.html { render :new }
         format.json { render json: @choice.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def submit_choices
+    question = Question.find(params[:question_id])
+    if sort_and_save_question_choices(question, params[:choices])
+      redirect_to question
+    else
+      render :new
     end
   end
 

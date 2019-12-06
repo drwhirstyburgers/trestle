@@ -113,7 +113,20 @@ export default {
             this.isEditing.index = index
         },
         submitChoices(){
-            console.log('clicked')
+            if(this.choices.length != 0 && this.question != {} && this.question != null && this.question != undefined){
+                var allChoices = JSON.stringify(this.choices)
+                $.ajax({
+                    type: "POST",
+                    url: '/submit_choices',
+                    data: { question_id: this.question.id, choices: allChoices },
+                    error: (err) => {
+                        console.log(err)
+                    },
+                    success: (data) => {
+                        console.log(data)
+                    }
+                })
+            }
         }
     }
 }
