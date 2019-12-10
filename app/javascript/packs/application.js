@@ -32,6 +32,7 @@ import topbar from '../components/dash/topbar'
 import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
 import choiceform from '../components/quizzes/choiceform'
+import quizzesshow from '../components/quizzes/quizzesshow'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -172,6 +173,22 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<choiceform :quests="quest"/>',
       components: { choiceform }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('quizzesShow')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          compQuiz: JSON.parse(element.dataset.quiz)
+        }
+      },
+      template: '<quizzesshow :comp_quiz="compQuiz"/>',
+      components: { quizzesshow }
     })
   }
 })

@@ -1,4 +1,6 @@
 class QuizzesController < ApplicationController
+  require 'quiz_logic'
+  include QuizLogic 
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
@@ -10,6 +12,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
+    @complete_quiz = serve_complete_quiz_sorted(@quiz)
   end
 
   # GET /quizzes/new

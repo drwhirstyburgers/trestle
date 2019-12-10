@@ -27,7 +27,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @question.image %>
+  <%= image_tag @question.image if @question.image.present? %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

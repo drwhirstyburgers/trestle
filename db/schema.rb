@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_184542) do
   create_table "user_checkpoints", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "checkpoint_id", null: false
-    t.boolean "complete"
+    t.boolean "complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["checkpoint_id"], name: "index_user_checkpoints_on_checkpoint_id"
