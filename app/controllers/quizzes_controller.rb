@@ -13,6 +13,8 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     @complete_quiz = serve_complete_quiz_sorted(@quiz)
+    @section = @quiz.section
+    @course = @quiz.section.course
   end
 
   # GET /quizzes/new

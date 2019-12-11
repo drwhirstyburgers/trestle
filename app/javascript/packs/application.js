@@ -184,10 +184,12 @@ document.addEventListener('turbolinks:load', () => {
       el: element,
       data: () => {
         return {
-          compQuiz: JSON.parse(element.dataset.quiz)
+          compQuiz: JSON.parse(element.dataset.quiz),
+          section: JSON.parse(element.dataset.sect),
+          course: JSON.parse(element.dataset.cour)
         }
       },
-      template: '<quizzesshow :comp_quiz="compQuiz"/>',
+      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course"/>',
       components: { quizzesshow }
     })
   }
