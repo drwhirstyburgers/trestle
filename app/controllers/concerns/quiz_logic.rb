@@ -19,22 +19,22 @@ module QuizLogic
         quiz.questions.each do |q|
             choices = []
             temp = {}
-            temp[:question] = {}
-            temp[:question][:number] = q.order_number
-            temp[:question][:question] = q.question
-            temp[:question][:correct_choice] = q.correct_choice
-            temp[:question][:video] = q.video_url
-            temp[:question][:image] = url_for(q.image) if q.image
+            temp[:number] = q.order_number
+            temp[:question] = q.question
+            temp[:correct_choice] = q.correct_choice
+            temp[:video] = q.video_url
+            temp[:image] = url_for(q.image) if q.image
             q.choices.each do |c|
                 choice = {}
                 choice[:choice_number] = c.number
                 choice[:choice] = c.choice
                 choices << choice
             end
-            temp[:question][:choices] = choices
+            temp[:choices] = choices
             questions << temp
         end
         comp_quiz[:questions] = questions
+        return comp_quiz
     end
 
 end
