@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require('perfect-scrollbar')
+require("trix")
+require("@rails/actiontext")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -29,12 +31,16 @@ import courseindex from '../components/courses/courseindex'
 import topbar from '../components/dash/topbar'
 import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
+import choiceform from '../components/quizzes/choiceform'
+import quizzesshow from '../components/quizzes/quizzesshow'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCheckSquare)
+library.add(faCheckSquare, faTimes, faEdit)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
@@ -155,5 +161,39 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 })
-require("trix")
-require("@rails/actiontext")
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('choiceForm')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          quest: JSON.parse(element.dataset.qu)
+        }
+      },
+      template: '<choiceform :quests="quest"/>',
+      components: { choiceform }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('quizzesShow')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          compQuiz: JSON.parse(element.dataset.quiz),
+          section: JSON.parse(element.dataset.sect),
+          course: JSON.parse(element.dataset.cour),
+          u: JSON.parse(element.dataset.cu),
+          next: JSON.parse(element.dataset.nc)
+        }
+      },
+      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u" :checkpoint="next" />',
+      components: { quizzesshow }
+    })
+  }
+})

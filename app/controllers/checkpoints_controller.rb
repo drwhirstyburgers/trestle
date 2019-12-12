@@ -1,5 +1,6 @@
 class CheckpointsController < ApplicationController
-
+  require 'course_overview_logic'
+  include CourseOverviewLogic
   breadcrumb 'Courses', :courses_path
   before_action :set_checkpoint, only: [:edit, :update, :destroy]
 
@@ -17,8 +18,29 @@ class CheckpointsController < ApplicationController
     breadcrumb @course.title, course_path(@course)
     breadcrumb @checkpoint.section.name, course_path(@course)
     breadcrumb @checkpoint.title, checkpoint_path(@checkpoint)
-    @next_checkpoint = @checkpoint.section.checkpoints.select { |c| c.order_number == @checkpoint.order_number + 1 }.first
   end
+
+  def next_checkpoint
+    if params[:checkpoint].present?
+      checkpoint = Checkpoint.find(params[:checkpoint])
+    else
+      checkpoint = Quiz.find(params[:quiz])
+    end
+    checkpoints = aggregate_checkpoints_and_quizzes(checkpoint.section.id, current_user)
+    course = checkpoint.section.course
+    next_number = checkpoint.order_number + 1
+    succeeding = checkpoints.select { |c| c[:order_number] == next_number }.first
+    if succeeding.blank?
+      redirect_to course
+    elsif succeeding[:type] == 'quiz'
+      quiz = Quiz.find(succeeding[:id])
+      redirect_to quiz
+    else
+      next_checkpoint = Checkpoint.find(succeeding[:id])
+      redirect_to checkpoints_path(next_checkpoint)
+    end
+  end
+
 
   # GET /checkpoints/new
   def new
@@ -72,8 +94,8 @@ class CheckpointsController < ApplicationController
   end
 
   def get_section_checkpoints
-    checkpoints = Section.find(params[:section_id]).checkpoints
-    render json: checkpoints.order(:order_number).to_json, status: :ok
+    checkpoints = aggregate_checkpoints_and_quizzes(params[:section_id], current_user)
+    render json: checkpoints.sort_by { |c| c[:order_number] }.to_json, status: :ok
   end
 
   private

@@ -1,0 +1,49 @@
+<div class="card" id="show-form-card">
+  <div class="card-header" style='background-color: #3b3a39; color: whitesmoke;'>
+    Quiz
+  </div>
+  <div class="card-body">
+    <%= form_with(model: quiz, local: true) do |form| %>
+      <% if quiz.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+
+          <ul>
+            <% quiz.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :section_id %>
+        <%= form.collection_select :section_id, Section.order(:name), :id, :name, include_blank: true, input_html: { id: "drop" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :order_number %>
+        <%= form.number_field :order_number, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :time_to_complete %>
+        <%= form.number_field :time_to_complete, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.button :submit, class: "btn btn-outline-success pull-right"%>
+      </div>
+    <% end %>
+  </div>
+</div>

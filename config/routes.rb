@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :choices
+  post '/submit_choices', to: 'choices#submit_choices'
+  post '/update_choice', to: 'choices#change_choice'
+  resources :questions
+  resources :quizzes
   resources :checkpoints
   resources :sections
   get '/get_checkpoints', to: 'checkpoints#get_section_checkpoints'
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/dash', to: 'dash#dash'
+  get '/next_checkpoint', to: 'checkpoints#next_checkpoint'
 
   root to: 'landing_pages#index'
 end

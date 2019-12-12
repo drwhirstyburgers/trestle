@@ -7,7 +7,7 @@
             <div class="col-md-9">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-9">
                             <h4 class="card-title">{{ course.title }}</h4>
                             <p class="card-text" id="indexcardtext">
                                 {{ course.description }} <br />
