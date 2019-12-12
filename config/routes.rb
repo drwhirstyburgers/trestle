@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :choices
   post '/submit_choices', to: 'choices#submit_choices'
+  post '/update_choice', to: 'choices#change_choice'
   resources :questions
   resources :quizzes
   resources :checkpoints

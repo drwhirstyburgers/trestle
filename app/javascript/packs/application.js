@@ -37,9 +37,10 @@ import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCheckSquare, faTimes)
+library.add(faCheckSquare, faTimes, faEdit)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
@@ -186,10 +187,11 @@ document.addEventListener('turbolinks:load', () => {
         return {
           compQuiz: JSON.parse(element.dataset.quiz),
           section: JSON.parse(element.dataset.sect),
-          course: JSON.parse(element.dataset.cour)
+          course: JSON.parse(element.dataset.cour),
+          u: JSON.parse(element.dataset.cu)
         }
       },
-      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course"/>',
+      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u"/>',
       components: { quizzesshow }
     })
   }

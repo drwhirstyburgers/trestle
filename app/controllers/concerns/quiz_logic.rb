@@ -24,10 +24,12 @@ module QuizLogic
             temp[:correct_choice] = q.correct_choice
             temp[:video] = q.video_url
             temp[:image] = url_for(q.image) if q.image
+            temp[:id] = q.id
             q.choices.each do |c|
                 choice = {}
                 choice[:choice_number] = c.number
                 choice[:choice] = c.choice
+                choice[:id] = c.id
                 choices << choice
             end
             temp[:choices] = choices

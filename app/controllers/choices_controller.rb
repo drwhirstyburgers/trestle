@@ -73,6 +73,16 @@ class ChoicesController < ApplicationController
     end
   end
 
+  def change_choice
+    choice = Choice.find(params[:id])
+    choice.choice = params[:choice]
+    if choice.save!
+      render json: "good".to_json, status: :ok
+    else
+      render json: "no good".to_json, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_choice
