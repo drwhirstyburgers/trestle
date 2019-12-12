@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_163721) do
+ActiveRecord::Schema.define(version: 2019_12_03_184542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2019_12_03_163721) do
     t.index ["section_id"], name: "index_checkpoints_on_section_id"
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.string "choice"
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -73,6 +82,28 @@ ActiveRecord::Schema.define(version: 2019_12_03_163721) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.bigint "quiz_id", null: false
+    t.string "question"
+    t.integer "order_number"
+    t.string "video_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "correct_choice"
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.bigint "section_id", null: false
+    t.string "title"
+    t.integer "order_number"
+    t.integer "time_to_complete"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_quizzes_on_section_id"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.bigint "course_id", null: false
     t.string "name"
@@ -87,7 +118,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_163721) do
   create_table "user_checkpoints", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "checkpoint_id", null: false
-    t.boolean "complete"
+    t.boolean "complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["checkpoint_id"], name: "index_user_checkpoints_on_checkpoint_id"
@@ -141,6 +172,9 @@ ActiveRecord::Schema.define(version: 2019_12_03_163721) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "checkpoints", "sections"
+  add_foreign_key "choices", "questions"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "sections"
   add_foreign_key "sections", "courses"
   add_foreign_key "user_checkpoints", "checkpoints"
   add_foreign_key "user_checkpoints", "users"
