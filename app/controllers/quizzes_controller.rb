@@ -86,7 +86,11 @@ class QuizzesController < ApplicationController
       next_number = quiz.order_number + 1
       next_checkpoint = checkpoints.find { |c| c[:order_number] == next_number }
       if next_checkpoint.present?
-        next_checkpoint = {is_a: next_checkpoint[:type], id: next_checkpoint[:id] }
+        if next_checkpoint[:type] == 'quiz'
+          next_checkpoint = {is_a: 'qu', id: next_checkpoint[:id] }
+        else
+          next_checkpoint = {is_a: 'ch', id: next_checkpoint[:id] }
+        end
       else
         next_checkpoint = 'last'
       end
