@@ -4,8 +4,12 @@
         </div>
         <div class="col-lg-10" id="middle">
             <div class="row" id="button-row">
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <a v-bind:href="'/courses/' + course.id"><< {{course.title}}</a>
+                </div>
+                <div v-if="checkpoint != 'last'" class="col-sm-6">
+                    <a v-if="checkpoint.is_a = 'checkpoint'" v-bind:href="'/checkpoints/' + checkpoint.id" class="float-right">Next Checkpoint >></a>
+                    <a v-else v-bind:href="checkpoint.id" class="float-right">Next Checkpoint >></a>
                 </div>
             </div>
             <div class="jumbotron">
@@ -63,7 +67,7 @@ export default {
             isEditing: -1
         }
     },
-    props: ['comp_quiz', 'course', 'section', 'user'],
+    props: ['comp_quiz', 'course', 'section', 'user', 'checkpoint'],
     methods: {
         addSelection(choice, question){
             if(this.checkSelections(question.number)){
@@ -110,6 +114,17 @@ export default {
                     } else {
                         this.isEditing = index
                     }
+                }
+            })
+        },
+        nextCheckpoint($event){
+            $event.preventDefault()
+            $.ajax({
+                type: "GET",
+                url: '/next_checkpoint',
+                data: { checkpoint: null, section: this.section.id, quiz: this.quiz.id },
+                error: (err) => {
+                    console.log(err)
                 }
             })
         }

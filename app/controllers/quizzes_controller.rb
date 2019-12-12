@@ -1,6 +1,8 @@
 class QuizzesController < ApplicationController
   require 'quiz_logic'
-  include QuizLogic 
+  include QuizLogic
+  require 'course_overview_logic'
+  include CourseOverviewLogic
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
@@ -15,6 +17,8 @@ class QuizzesController < ApplicationController
     @complete_quiz = serve_complete_quiz_sorted(@quiz)
     @section = @quiz.section
     @course = @quiz.section.course
+    @next_checkpoint = get_next_checkpoint(@quiz)
+    puts @next_checkpoint.to_json
   end
 
   # GET /quizzes/new
@@ -75,5 +79,17 @@ class QuizzesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
       params.require(:quiz).permit(:section_id, :title, :order_number, :time_to_complete, :description)
+    end
+
+    def get_next_checkpoint(quiz)
+      checkpoints = aggregate_checkpoints_and_quizzes(quiz.section.id, current_user)
+      next_number = quiz.order_number + 1
+      next_checkpoint = checkpoints.find { |c| c[:order_number] == next_number }
+      if next_checkpoint.present?
+        next_checkpoint = {is_a: next_checkpoint[:type], id: next_checkpoint[:id] }
+      else
+        next_checkpoint = 'last'
+      end
+      return next_checkpoint
     end
 end

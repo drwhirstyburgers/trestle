@@ -5,11 +5,7 @@
         </div>
         <div class="col-md-6">
             <div class="float-right">
-                <% if @next_checkpoint.present? %>
-                    <%= link_to "Next Checkpoint >>", checkpoint_path(@next_checkpoint) %>
-                <% else %>
-                    Last Checkpoint of section
-                <% end %>
+                <%= link_to "Next Checkpoint >>", next_checkpoint_path(checkpoint: @checkpoint) %>
             </div>
         </div>
     </div>

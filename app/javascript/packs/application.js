@@ -188,10 +188,11 @@ document.addEventListener('turbolinks:load', () => {
           compQuiz: JSON.parse(element.dataset.quiz),
           section: JSON.parse(element.dataset.sect),
           course: JSON.parse(element.dataset.cour),
-          u: JSON.parse(element.dataset.cu)
+          u: JSON.parse(element.dataset.cu),
+          next: JSON.parse(element.dataset.nc)
         }
       },
-      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u"/>',
+      template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u" :checkpoint="next" />',
       components: { quizzesshow }
     })
   }

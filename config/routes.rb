@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/dash', to: 'dash#dash'
+  get '/next_checkpoint', to: 'checkpoints#next_checkpoint'
 
   root to: 'landing_pages#index'
 end
