@@ -23,7 +23,7 @@ module QuizLogic
             temp[:question] = q.question
             temp[:correct_choice] = q.correct_choice
             temp[:video] = q.video_url
-            temp[:image] = url_for(q.image) if q.image
+            temp[:image] = url_for(q.image) if q.image.present?
             temp[:id] = q.id
             q.choices.each do |c|
                 choice = {}

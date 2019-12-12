@@ -14,13 +14,18 @@
                 <hr class="my-4">
                 <p>{{ quiz.description }}</p>
                 <a v-if="user.role == 'admin'" v-bind:href="quiz.id + '/edit'" class="btn btn-primary">Edit Quiz</a>
+                <a v-if="user.role == 'admin'" href="/questions/new" class="btn btn-primary">New Question</a>
             </div>
             <div v-for="question in questions" v-bind:question="question" v-bind:key="question.key" class="card" id="show-card">
                 <div class="card-body">
                     <h5 class="card-title">{{ question.number }}. {{ question.question }}</h5>
                     <a v-if="user.role == 'admin'" v-bind:href="'/questions/' + question.id + '/edit'" class="btn btn-primary">Edit Question</a>
                     <div class="quiz-card">
-                        <img v-if="question.image != '' || question.image != null" v-bind:src="question.image">
+                        <img v-if="question.image" v-bind:src="question.image">
+                        <div v-if="question.video">
+                            <iframe v-bind:src="'https://www.youtube.com/embed/' + question.video"
+                            width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="(choice, index) in question.choices" v-bind:choice="choice" v-bind:key="choice.key" class="list-group-item">
@@ -37,7 +42,7 @@
                                 </div>
                                 <input v-model="choice.choice" type="text" class="form-control">
                             </div>
-                            <font-awesome-icon v-on:click="editing(choice, index)" v-if="user.role == 'admin' && isEditing == index || isEditing == -1" :icon="['fa', 'edit']" class="float-right" />
+                            <font-awesome-icon v-on:click="editing(choice, index)" v-if="(user.role == 'admin' && isEditing == index) || (user.role == 'admin' && isEditing == -1)" :icon="['fa', 'edit']" class="float-right" />
                         </li>
                     </ul>
                 </div>

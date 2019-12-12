@@ -42,8 +42,9 @@ class ChoicesController < ApplicationController
 
   def submit_choices
     question = Question.find(params[:question_id])
+    quiz = question.quiz
     if sort_and_save_question_choices(question, params[:choices])
-      redirect_to question
+      redirect_to quiz
     else
       render :new
     end
