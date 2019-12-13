@@ -51,6 +51,7 @@
                     </ul>
                 </div>
             </div>
+            <button v-on:click="submitQuiz" type="button" id="submit-button" class="btn btn-outline-success float-right">Submit</button>
         </div>
         <div class="col-lg-1">
         </div>
@@ -64,7 +65,8 @@ export default {
             quiz: this.comp_quiz.quiz,
             questions: this.comp_quiz.questions,
             selections: [],
-            isEditing: -1
+            isEditing: -1,
+            score: {}
         }
     },
     props: ['comp_quiz', 'course', 'section', 'user', 'checkpoint'],
@@ -79,7 +81,8 @@ export default {
             } else {
                 let newSelection = {
                     selection: choice.choice_number,
-                    question: question.number
+                    question: question.number,
+                    question_id: question.id
                 }
                 this.selections.push(newSelection)
             }
@@ -127,6 +130,33 @@ export default {
                     console.log(err)
                 }
             })
+        },
+        submitQuiz(){
+            if(this.selections.length != this.questions.length) {
+                var r = confirm("Are you sure? Not all questions have been answered.")
+                if(r == true){
+                    this.quizSubmitAjax()
+                }
+            } else {
+                this.quizSubmitAjax()
+            }
+        },
+        quizSubmitAjax(){
+            const payload = {
+                quiz: this.quiz.id,
+                answers: JSON.stringify(this.selections)
+            }
+            $.ajax({
+                type: "POST",
+                url: '/quiz_submission',
+                data: payload,
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.score = data
+                }
+            })
         }
     }
 }
@@ -141,5 +171,8 @@ img {
 }
 .list-group-item {
     font-size: 15px;
+}
+#submit-button {
+    margin-bottom: 30px;
 }
 </style>

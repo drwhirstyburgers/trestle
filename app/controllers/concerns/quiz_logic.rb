@@ -39,4 +39,37 @@ module QuizLogic
         return comp_quiz
     end
 
+    def score_quiz(quiz, selections, user)
+        quiz = quiz
+        user_questions = []
+        user_quiz = UserQuiz.new(quiz: quiz, user: user)
+        question_ids = selections.map { |s| s[:question_id] }
+        questions = Question.find(question_ids)
+        selections.each do |s|
+            question = questions.find { |q| q.id == s[:question_id] }
+            user_question = UserQuestion.new(question: question, user: user, quiz_id: quiz.id, choice: s[:selection], correct_choice: question.correct_choice)
+            user_questions << user_question
+            user_question.save!
+        end
+        user_quiz.score = get_total_score(user_questions, user_quiz, quiz)
+        user_quiz.save!
+        return_hash = {
+            user_quiz: user_quiz,
+            user_questions: user_questions
+        }
+        return return_hash
+    end
+
+    def get_total_score(user_questions, user_quiz, quiz)
+        score = 0
+        total_questions = quiz.questions.count
+        user_questions.each do |uq|
+            if uq.choice == uq.correct_choice
+                score += 1
+            end
+        end
+        score = (score.to_f / total_questions.to_f) * 100
+        return score.round.to_i
+    end
+
 end
