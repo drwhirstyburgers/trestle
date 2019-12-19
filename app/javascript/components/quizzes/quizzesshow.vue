@@ -14,7 +14,7 @@
             </div>
             <div class="jumbotron">
                 <h1 class="display-4">{{ quiz.title }}</h1>
-                <p class="lead">{{ section.name }}</p>
+                <p class="lead">{{ section.name }}</p><p v-if="score != null" class="lead">Score: {{ score }}%</p>
                 <hr class="my-4">
                 <p>{{ quiz.description }}</p>
                 <a v-if="user.role == 'admin'" v-bind:href="quiz.id + '/edit'" class="btn btn-primary">Edit Quiz</a>
@@ -33,12 +33,17 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="(choice, index) in question.choices" v-bind:choice="choice" v-bind:key="choice.key" class="list-group-item">
-                            <div v-if="isEditing != index" class="form-check">
+                            <div v-if="isEditing != index && !submitted" class="form-check">
                                 <input v-on:click="addSelection(choice, question)" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                                 <label class="form-check-label" for="exampleRadios1">
                                     {{ choice.choice_number }}. {{ choice.choice }}
                                 </label>
                                 <font-awesome-icon v-if="question.correct_choice == choice.choice_number && user.role == 'admin'" :icon="['fas', 'check-square']" />
+                            </div>
+                            <div v-if="submitted">
+                                {{ choice.choice_number }}. {{ choice.choice }}
+                                <font-awesome-icon v-if="choice.correct != null && choice.correct == true" :icon="['fas', 'check-square']" class="float-right" />
+                                <font-awesome-icon v-else-if="choice.correct != null && choice.correct == false" :icon="['fa', 'times']" class="float-right" />
                             </div>
                             <div v-if="isEditing == index" class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -64,12 +69,19 @@ export default {
         return {
             quiz: this.comp_quiz.quiz,
             questions: this.comp_quiz.questions,
+            userQuiz: [],
             selections: [],
             isEditing: -1,
-            score: {}
+            score: null,
+            submitted: false,
+            userQuestions: [],
+            userAnswers: []
         }
     },
     props: ['comp_quiz', 'course', 'section', 'user', 'checkpoint'],
+    created(){
+        // this.checkQuizDone()
+    },
     methods: {
         addSelection(choice, question){
             if(this.checkSelections(question.number)){
@@ -141,6 +153,19 @@ export default {
                 this.quizSubmitAjax()
             }
         },
+        checkQuizDone(){
+            $.ajax({
+                type: "GET",
+                url: '/check_user_quiz',
+                data: { user_id: this.user.id },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.userQuiz = data
+                }
+            })
+        },
         quizSubmitAjax(){
             const payload = {
                 quiz: this.quiz.id,
@@ -154,8 +179,24 @@ export default {
                     console.log(err)
                 },
                 success: (data) => {
-                    this.score = data
+                    this.score = data.user_quiz.score
+                    this.userQuestions = data.user_questions
+                    this.submitted = true
                 }
+            })
+        },
+        updateCorrect(){
+            this.questions.forEach(q => {
+                let uq = this.userQuestions.filter(x => x.question_id == q.id)
+                q.choices.forEach(x => {
+                    if(x.choice_number == uq.choice){
+                        if(uq.choice == uq.correct_choice){
+                            x.correct = true
+                        } else {
+                            x.correct = false
+                        }
+                    }
+                })
             })
         }
     }
@@ -167,7 +208,7 @@ export default {
     text-align: center;
 }
 img {
-    width: 500px;
+    max-width: 600px;
 }
 .list-group-item {
     font-size: 15px;

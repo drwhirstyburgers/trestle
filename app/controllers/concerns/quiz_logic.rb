@@ -30,6 +30,7 @@ module QuizLogic
                 choice[:choice_number] = c.number
                 choice[:choice] = c.choice
                 choice[:id] = c.id
+                choice[:correct] = nil
                 choices << choice
             end
             temp[:choices] = choices
