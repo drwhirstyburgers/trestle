@@ -9,26 +9,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'home']" size="lg" /> Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" v-on:click="signOut"><font-awesome-icon :icon="['fas', 'sign-out-alt']" size="lg" /> Log Out</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <font-awesome-icon :icon="['fas', 'book']" size="lg" /> Courses
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="dropdown-item" v-bind:href='"/courses/" + course.id'>{{ course.title }}</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/courses">Enroll in a new course</a>
-                </div>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'home']" size="lg" /> Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <font-awesome-icon :icon="['fas', 'book']" size="lg" /> My Courses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="dropdown-item" v-bind:href='"/courses/" + course.id'>{{ course.title }}</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses"><font-awesome-icon :icon="['fas', 'cannabis']" size="lg" /> Course Catalogue</a>
+                </li>
             </ul>
         </div>
         <span class="navbar-text">
-            <a href="/users/edit"><font-awesome-icon :icon="['fas', 'user-edit']" size="lg" /> {{ user.first_name }} {{ user.last_name }}</a>
+            <a href="/users/edit"><font-awesome-icon :icon="['fas', 'user-edit']" size="md" /> {{ user.first_name }} {{ user.last_name }}</a>&nbsp;&nbsp;
+            <a v-on:click="signOut"><font-awesome-icon :icon="['fas', 'sign-out-alt']" size="lg" /> Log Out</a>
         </span>
     </nav>
 </template>
