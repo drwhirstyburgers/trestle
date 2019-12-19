@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'home']" size="lg" /> Home<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/courses"><font-awesome-icon :icon="['fas', 'cannabis']" size="lg" /> Course Catalogue</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <font-awesome-icon :icon="['fas', 'book']" size="lg" /> My Courses
@@ -19,9 +22,6 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="dropdown-item" v-bind:href='"/courses/" + course.id'>{{ course.title }}</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/courses"><font-awesome-icon :icon="['fas', 'cannabis']" size="lg" /> Course Catalogue</a>
                 </li>
             </ul>
         </div>
