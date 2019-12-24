@@ -70,6 +70,14 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def submit_quiz
+    puts params[:answers]
+    quiz = Quiz.find(params[:quiz])
+    selections = eval(params[:answers])
+    results = score_quiz(quiz, selections, current_user)
+    render json: results.to_json, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_184542) do
+ActiveRecord::Schema.define(version: 2019_12_13_015726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,29 @@ ActiveRecord::Schema.define(version: 2019_12_03_184542) do
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
+  create_table "user_questions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "quiz_id", null: false
+    t.bigint "question_id", null: false
+    t.integer "choice"
+    t.integer "correct_choice"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_user_questions_on_question_id"
+    t.index ["quiz_id"], name: "index_user_questions_on_quiz_id"
+    t.index ["user_id"], name: "index_user_questions_on_user_id"
+  end
+
+  create_table "user_quizzes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "quiz_id", null: false
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_user_quizzes_on_quiz_id"
+    t.index ["user_id"], name: "index_user_quizzes_on_user_id"
+  end
+
   create_table "user_sections", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "section_id", null: false
@@ -180,6 +203,11 @@ ActiveRecord::Schema.define(version: 2019_12_03_184542) do
   add_foreign_key "user_checkpoints", "users"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
+  add_foreign_key "user_questions", "questions"
+  add_foreign_key "user_questions", "quizzes"
+  add_foreign_key "user_questions", "users"
+  add_foreign_key "user_quizzes", "quizzes"
+  add_foreign_key "user_quizzes", "users"
   add_foreign_key "user_sections", "sections"
   add_foreign_key "user_sections", "users"
 end

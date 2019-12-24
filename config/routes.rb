@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/update_choice', to: 'choices#change_choice'
   resources :questions
   resources :quizzes
+  post '/quiz_submission', to: 'quizzes#submit_quiz'
   resources :checkpoints
   resources :sections
   get '/get_checkpoints', to: 'checkpoints#get_section_checkpoints'
