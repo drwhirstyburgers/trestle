@@ -54,10 +54,7 @@ module QuizLogic
         end
         user_quiz.score = get_total_score(user_questions, user_quiz, quiz)
         user_quiz.save!
-        return_hash = {
-            user_quiz: user_quiz,
-            user_questions: user_questions
-        }
+        return_hash = format_user_quiz(user_questions, user_quiz)
         return return_hash
     end
 
@@ -71,6 +68,42 @@ module QuizLogic
         end
         score = (score.to_f / total_questions.to_f) * 100
         return score.round.to_i
+    end
+
+    def format_user_quiz(user_questions, user_quiz)
+        comp_quiz = {}
+        questions = []
+        quiz = Quiz.includes(:questions).find(user_quiz.quiz_id.to_i)
+        comp_quiz[:quiz] = quiz
+        comp_quiz[:user_quiz] = user_quiz
+        quiz.questions.each do |q|
+            @user_question = user_questions.find { |qu| qu.question_id == q.id }
+            choices = []
+            temp = {}
+            temp[:number] = q.order_number
+            temp[:question] = q.question
+            temp[:correct_choice] = q.correct_choice
+            temp[:video] = q.video_url
+            temp[:image] = url_for(q.image) if q.image.present?
+            temp[:id] = q.id
+            q.choices.each do |c|
+                choice = {}
+                if @user_question.choice == c.number
+                    choice[:selection] = true
+                else
+                    choice[:selection] = false
+                end
+                choice[:choice_number] = c.number
+                choice[:choice] = c.choice
+                choice[:id] = c.id
+                choice[:correct] = nil
+                choices << choice
+            end
+            temp[:choices] = choices
+            questions << temp
+        end
+        comp_quiz[:questions] = questions
+        return comp_quiz
     end
 
 end
