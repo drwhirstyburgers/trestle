@@ -1,5 +1,5 @@
 <template>
-    <div class="row" id="top">
+    <div class="row">
         <div class="col-lg-1">
         </div>
         <div class="col-lg-10" id="middle">
@@ -12,7 +12,7 @@
                     <a v-else v-bind:href="checkpoint.id" class="float-right">Next Checkpoint >></a>
                 </div>
             </div>
-            <div class="jumbotron">
+            <div class="jumbotron" id="top">
                 <h1 class="display-4">{{ quiz.title }}</h1>
                 <p class="lead">{{ section.name }}</p><p v-if="score != null && submitted == true" class="lead">Score: {{ score }}%</p>
                 <hr class="my-4">

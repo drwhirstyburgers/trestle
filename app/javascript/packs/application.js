@@ -43,11 +43,13 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueScrollTo from 'vue-scrollto'
 
 library.add(faCheckSquare, faTimes, faEdit, faHome, faSignOutAlt, faBook, faUserEdit)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
+Vue.use(VueScrollTo)
 
 document.addEventListener('turbolinks:load', () => {
   var cf = document.getElementById('courseForm')
