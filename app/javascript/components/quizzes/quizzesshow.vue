@@ -133,7 +133,7 @@ export default {
     },
     props: ['comp_quiz', 'course', 'section', 'user', 'checkpoint'],
     created(){
-        // this.checkQuizDone()
+        this.checkQuizDone()
     },
     methods: {
         addSelection(choice, question){
@@ -207,7 +207,7 @@ export default {
             $.ajax({
                 type: "GET",
                 url: '/check_user_quiz',
-                data: { user_id: this.user.id },
+                data: { user_id: this.user.id, quiz_id: this.quiz.id },
                 error: (err) => {
                     console.log(err)
                 },

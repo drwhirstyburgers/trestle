@@ -78,6 +78,15 @@ class QuizzesController < ApplicationController
     render json: results.to_json, status: :ok
   end
 
+  def check_quiz
+    user = User.find(params[:user_id])
+    user_quiz = UserQuiz.where(user_id: user.id, quiz_id: params[:quiz_id]).last
+    quiz = Quiz.includes(:questions).find(params[:quiz_id])
+    questions = quiz.questions
+    user_questions = UserQuestions.where(question: questions, user: user)
+    user_questions.map! { |q| q if q.created_at == user_questions.map(&:created_at).max }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
