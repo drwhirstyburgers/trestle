@@ -212,7 +212,9 @@ export default {
                     console.log(err)
                 },
                 success: (data) => {
-                    this.userQuiz = data
+                    this.score = data.user_quiz.score
+                    this.userQuestions = data.questions
+                    this.submitted = true
                 }
             })
         },
