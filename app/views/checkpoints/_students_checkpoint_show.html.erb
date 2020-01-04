@@ -15,9 +15,5 @@
         <hr class="my-4">
         <p><%= checkpoint.description %></p>
     </div>
-    <div class="card" id="show-card">
-        <div class="card-body">
-            <%= checkpoint.content %>
-        </div>
-    </div>
+    <%= tag.div id: "checkpointContent", data: { con: checkpoint.content.to_json } %>
 </div>

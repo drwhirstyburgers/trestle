@@ -33,6 +33,7 @@ import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
 import choiceform from '../components/quizzes/choiceform'
 import quizzesshow from '../components/quizzes/quizzesshow'
+import checkpointcontent from '../components/checkpoints/checkpointcontent'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -201,6 +202,22 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u" :checkpoint="next" />',
       components: { quizzesshow }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('checkpointContent')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          content: JSON.parse(element.dataset.con)
+        }
+      },
+      template: '<checkpointcontent :content="content" />',
+      components: { checkpointcontent }
     })
   }
 })
