@@ -10,6 +10,7 @@ require("channels")
 require('perfect-scrollbar')
 require("trix")
 require("@rails/actiontext")
+require("assets/videoswitching")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
