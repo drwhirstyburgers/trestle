@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem "aws-sdk-s3", require: false
 gem 'figaro'
+gem 'rack-cors'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
