@@ -13,6 +13,7 @@
 #
 
 class Checkpoint < ApplicationRecord
+  include ActionText::Attachable
   belongs_to :section
   has_rich_text :content
 
