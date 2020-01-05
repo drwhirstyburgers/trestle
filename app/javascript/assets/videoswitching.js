@@ -3,6 +3,7 @@ function onReady(){
         var parent = document.querySelector('.trix-content');
         var child = parent.children
         var arr = [...child]
+        let count = 0
     
         arr.forEach(el => {
             if(el.innerText.includes('iframe')){
@@ -14,16 +15,16 @@ function onReady(){
                 newIframe = iframe.filter(x => x != null || x != undefined).join()
                 var wrapper = document.createElement('div');
                 wrapper.innerHTML = newIframe
-                wrapper.setAttribute("id", "videoDiv")
+                wrapper.id = count
                 var toReplace = iframe.filter(x => x != null || x != undefined)
                 toReplace.push('*')
                 toReplace.splice(0, 0, '*')
                 toReplace = toReplace.join('')
                 el.innerText = el.innerText.replace(toReplace, '')
                 el.appendChild(wrapper)
-                var video = document.getElementById("videoDiv")
-                video.style.margin = "0 auto"
-                video.style.width = "50%"
+                var video = document.getElementById(count)
+                video.style.textAlign = "center"
+                count ++
             }
         })
     }

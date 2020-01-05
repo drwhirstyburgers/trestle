@@ -14,6 +14,9 @@
         <p class="lead"><%= checkpoint.section.name %></p>
         <hr class="my-4">
         <p><%= checkpoint.description %></p>
+        <% if current_user.admin? %>
+            <%= link_to "Edit", edit_checkpoint_path(checkpoint), class: "btn btn-primary btn-lg" %>
+        <% end %>
     </div>
     <div class="card" id="show-card">
         <div class="card-body">
