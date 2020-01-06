@@ -13,7 +13,7 @@
                                         <th><%= f.search_field :first_name_or_last_name_cont, class: "form-control", placeholder: "Name" %></th>
                                         <th><%= f.search_field :email_cont, class: "form-control", placeholder: "Email" %></th>
                                         <th><%= f.search_field :courses_title_start, class: "form-control", placeholder: "Course" %></th>
-                                        <th><%= f.submit class: "btn btn-primary" %></th>
+                                        <th><%= f.submit class: "btn btn-primary float-right" %></th>
                                     <% end %>
                                 </tr>
                             </thead>
@@ -32,7 +32,7 @@
                                             Not enrolled in any courses
                                         <% end %>
                                     </td>
-                                    <td><%= time_ago_in_words(user.created_at) %></td>
+                                    <td>Joined <%= time_ago_in_words(user.created_at) %> ago</td>
                                     <td><%= link_to 'Show', user_path(user), class: 'btn btn-primary btn-sm' %></td>
                                 </tr>
                                 <% end %>
