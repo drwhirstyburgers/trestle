@@ -1,33 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Sections</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Course</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Time to complete</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @sections.each do |section| %>
-      <tr>
-        <td><%= section.course_id %></td>
-        <td><%= section.name %></td>
-        <td><%= section.description %></td>
-        <td><%= section.time_to_complete %></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Section', new_section_path %>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sections</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <%= search_form_for @q do |f| %>
+                                        <th><%= f.search_field :id_eq, class: "form-control", placeholder: "ID" %></th>
+                                        <th><%= f.search_field :order_number_eq, class: "form-control", placeholder: "Order Number" %></th>
+                                        <th><%= f.search_field :name_cont, class: "form-control", placeholder: "Title" %></th>
+                                        <th><%= f.search_field :description_cont, class: "form-control", placeholder: "Description" %></th>
+                                        <th><%= f.search_field :course_title_start, class: "form-control", placeholder: "Section" %></th>
+                                        <th><%= f.submit class: "btn btn-primary float-right" %></th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @sections.each do |sec| %>
+                                <tr>
+                                    <td><%= sec.id %></td>
+                                    <td><%= sec.order_number %></td>
+                                    <td><%= sec.name %></td>
+                                    <td><small><%= sec.description %></small></td>
+                                    <td>Course: <%= link_to sec.course.title, course_path(sec.course) %></td>
+                                    <td><%= link_to 'Show', course_path(sec.course), class: 'btn btn-primary btn-sm' %> <%= link_to 'Edit', edit_section_path(sec), class: 'btn btn-primary btn-sm' %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= will_paginate @section %>
+    </div>
+</div>

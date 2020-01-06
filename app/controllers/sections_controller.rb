@@ -5,7 +5,8 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @q = Section.ransack(params[:q])
+    @sections = @q.result.includes(:course).paginate(page: params[:page])
   end
 
   # GET /sections/1
