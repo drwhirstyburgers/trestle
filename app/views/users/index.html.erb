@@ -1,4 +1,47 @@
-<h1>Users</h1>
-<% @users.each do |u| %>
-    <%= u.first_name %> <%= u.last_name %>
-<% end %>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Users</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <%= search_form_for @q do |f| %>
+                                        <th><%= f.search_field :id_cont, class: "form-control", placeholder: "ID" %></th>
+                                        <th><%= f.search_field :first_name_or_last_name_cont, class: "form-control", placeholder: "Name" %></th>
+                                        <th><%= f.search_field :email_cont, class: "form-control", placeholder: "Email" %></th>
+                                        <th><%= f.search_field :courses_title_start, class: "form-control", placeholder: "Course" %></th>
+                                        <th><%= f.submit class: "btn btn-primary" %></th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @users.each do |user| %>
+                                <tr>
+                                    <td><%= user.id %></td>
+                                    <td><%= user.first_name %> <%= user.last_name %> || <%= user.role %></td>
+                                    <td><%= user.email %></td>
+                                    <td>
+                                        <% if user.courses.count > 0 %>
+                                            <% user.courses.each do |uc| %>
+                                                <%= link_to uc.title, course_path(uc) %>
+                                            <% end %>
+                                        <% else %>
+                                            Not enrolled in any courses
+                                        <% end %>
+                                    </td>
+                                    <td><%= time_ago_in_words(user.created_at) %></td>
+                                    <td><%= link_to 'Show', user_path(user), class: 'btn btn-primary btn-sm' %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= will_paginate @users %>
+    </div>
+</div>
