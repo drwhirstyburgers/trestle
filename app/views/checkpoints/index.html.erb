@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Checkpoints</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Section</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Order number</th>
-      <th>Time to complete</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @checkpoints.each do |checkpoint| %>
-      <tr>
-        <td><%= checkpoint.section_id %></td>
-        <td><%= checkpoint.title %></td>
-        <td><%= checkpoint.description %></td>
-        <td><%= checkpoint.order_number %></td>
-        <td><%= checkpoint.time_to_complete %></td>
-        <td><%= link_to 'Show', checkpoint %></td>
-        <td><%= link_to 'Edit', edit_checkpoint_path(checkpoint) %></td>
-        <td><%= link_to 'Destroy', checkpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Checkpoint', new_checkpoint_path %>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Checkpoints</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <%= search_form_for @q do |f| %>
+                                        <th><%= f.search_field :id_cont, class: "form-control", placeholder: "ID" %></th>
+                                        <th><%= f.search_field :order_number_eq, class: "form-control", placeholder: "Order Number" %></th>
+                                        <th><%= f.search_field :title_cont, class: "form-control", placeholder: "Title" %></th>
+                                        <th><%= f.search_field :description_cont, class: "form-control", placeholder: "Description" %></th>
+                                        <th><%= f.search_field :section_name_start, class: "form-control", placeholder: "Section" %></th>
+                                        <th><%= f.submit class: "btn btn-primary" %></th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @checkpoints.each do |check| %>
+                                <tr>
+                                    <td><%= check.id %></td>
+                                    <td><%= check.order_number %></td>
+                                    <td><%= check.title %></td>
+                                    <td><small><%= check.description %></small></td>
+                                    <td>Course: <%= check.section.course.title %><br> Section: <%= check.section.name %></td>
+                                    <td><%= link_to 'Show', checkpoint_path(check), class: 'btn btn-primary btn-sm' %> <%= link_to 'Edit', edit_checkpoint_path(check), class: 'btn btn-primary btn-sm' %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= will_paginate @users %>
+    </div>
+</div>

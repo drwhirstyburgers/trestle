@@ -7,7 +7,8 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints
   # GET /checkpoints.json
   def index
-    @checkpoints = Checkpoint.all
+    @q = Checkpoint.ransack(params[:q])
+    @checkpoints = @q.result.includes(:section).paginate(page: params[:page])
   end
 
   # GET /checkpoints/1
