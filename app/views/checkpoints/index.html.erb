@@ -9,7 +9,7 @@
                             <thead>
                                 <tr class="filters">
                                     <%= search_form_for @q do |f| %>
-                                        <th><%= f.search_field :id_cont, class: "form-control", placeholder: "ID" %></th>
+                                        <th><%= f.search_field :id_eq, class: "form-control", placeholder: "ID" %></th>
                                         <th><%= f.search_field :order_number_eq, class: "form-control", placeholder: "Order Number" %></th>
                                         <th><%= f.search_field :title_cont, class: "form-control", placeholder: "Title" %></th>
                                         <th><%= f.search_field :description_cont, class: "form-control", placeholder: "Description" %></th>
