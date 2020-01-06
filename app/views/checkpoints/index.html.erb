@@ -25,7 +25,7 @@
                                     <td><%= check.order_number %></td>
                                     <td><%= check.title %></td>
                                     <td><small><%= check.description %></small></td>
-                                    <td>Course: <%= check.section.course.title %><br> Section: <%= check.section.name %></td>
+                                    <td>Course: <%= link_to check.section.course.title, course_path(check.section.course) %><br> Section: <%= link_to check.section.name, course_path(check.section.course) %></td>
                                     <td><%= link_to 'Show', checkpoint_path(check), class: 'btn btn-primary btn-sm' %> <%= link_to 'Edit', edit_checkpoint_path(check), class: 'btn btn-primary btn-sm' %></td>
                                 </tr>
                                 <% end %>
