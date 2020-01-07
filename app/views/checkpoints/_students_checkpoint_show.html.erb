@@ -13,10 +13,17 @@
         <h1 class="display-4"><%= checkpoint.title %></h1>
         <p class="lead"><%= checkpoint.section.name %></p>
         <hr class="my-4">
-        <p><%= checkpoint.description %></p>
-        <% if current_user.admin? %>
-            <%= link_to "Edit", edit_checkpoint_path(checkpoint), class: "btn btn-primary btn-lg" %>
-        <% end %>
+        <div class="row">
+            <div class="col">
+                <p><%= checkpoint.description %></p>
+            </div>
+            <div class="col">
+                <% if current_user.admin? %>
+                    <%= link_to "Edit", edit_checkpoint_path(checkpoint), class: "btn btn-primary pull-right" %>
+                <% end %>
+                <%= tag.div id: "completeButton", data: { cu: current_user.to_json, c: @checkpoint.to_json } %>
+            </div>
+        </div>
     </div>
     <div class="card" id="show-card">
         <div class="card-body">

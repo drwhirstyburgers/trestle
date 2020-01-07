@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :checkpoints
   resources :sections
   get '/get_checkpoints', to: 'checkpoints#get_section_checkpoints'
+  post '/mark_checkpoint_complete', to: 'checkpoints#mark_checkpoint_complete'
+  get '/check_if_complete', to: 'checkpoints#check_if_complete'
 
   resources :courses
   post '/activate', to: 'courses#toggle_activate_course'

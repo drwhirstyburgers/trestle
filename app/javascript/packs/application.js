@@ -34,6 +34,7 @@ import usercourseindex from '../components/clientfacing/course/usercourseindex'
 import learnercourseoverview from '../components/clientfacing/course/learnercourseoverview'
 import choiceform from '../components/quizzes/choiceform'
 import quizzesshow from '../components/quizzes/quizzesshow'
+import completebutton from '../components/checkpoints/completebutton'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -44,10 +45,11 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faCannabis } from '@fortawesome/free-solid-svg-icons'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCheckDouble } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueScrollTo from 'vue-scrollto'
 
-library.add(faCheckSquare, faTimes, faEdit, faHome, faSignOutAlt, faBook, faUserEdit, faCannabis)
+library.add(faCheckSquare, faTimes, faEdit, faHome, faSignOutAlt, faBook, faUserEdit, faCannabis, faCheckDouble)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
@@ -202,6 +204,23 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<quizzesshow :comp_quiz="compQuiz" :section="section" :course="course" :user="u" :checkpoint="next" />',
       components: { quizzesshow }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('completeButton')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          u: JSON.parse(element.dataset.cu),
+          check: JSON.parse(element.dataset.c)
+        }
+      },
+      template: '<completebutton :user="u" :checkpoint="check" />',
+      components: { completebutton }
     })
   }
 })

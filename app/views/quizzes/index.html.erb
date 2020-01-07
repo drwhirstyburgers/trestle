@@ -28,7 +28,7 @@
                                     <td><small><%= quiz.description %></small></td>
                                     <td>
                                         <% quiz.questions.order(:order_number).each do |q| %>
-                                            <small><%= q.order_number %>. <%= link_to q.question, question_path(q) %></small>
+                                            <small><%= q.order_number %>. <%= link_to q.question, edit_question_path(q) %></small>
                                         <% end %>
                                     </td>
                                     <td>Course: <%= link_to quiz.section.course.title, course_path(quiz.section.course) %> <br> Section: <%= link_to quiz.section.name, course_path(quiz.section.course) %></td>

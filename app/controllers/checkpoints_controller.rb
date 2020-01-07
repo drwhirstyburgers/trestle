@@ -99,6 +99,24 @@ class CheckpointsController < ApplicationController
     render json: checkpoints.sort_by { |c| c[:order_number] }.to_json, status: :ok
   end
 
+  def mark_checkpoint_complete
+    user_checkpoint = UserCheckpoint.find_by(user_id: params[:user_id], checkpoint_id: params[:checkpoint_id])
+    user_checkpoint.complete = true
+    if user_checkpoint.save!
+      render json: "okay".to_json, status: :ok
+    end
+  end
+
+  def check_if_complete
+    user_checkpoint = UserCheckpoint.find_by(user_id: params[:user_id], checkpoint_id: params[:checkpoint_id])
+    if user_checkpoint.complete == true
+      render json: true.to_json, status: :ok
+    else
+      render json: false.to_json, status: :ok
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_checkpoint
