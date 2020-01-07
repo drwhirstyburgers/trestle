@@ -31,8 +31,8 @@
                                             <small><%= q.order_number %>. <%= link_to q.question, question_path(q) %></small>
                                         <% end %>
                                     </td>
-                                    <td>Course: <%= link_to quiz.section.course.title, course_path(quiz.section.course) %> Section: <%= link_to quiz.section.name, course_path(quiz.section.course) %></td>
-                                    <td><%= link_to 'Show', quiz_path(quiz), class: 'btn btn-primary btn-sm' %> <%= link_to 'Edit', edit_quiz_path(quiz), class: 'btn btn-primary btn-sm' %></td>
+                                    <td>Course: <%= link_to quiz.section.course.title, course_path(quiz.section.course) %> <br> Section: <%= link_to quiz.section.name, course_path(quiz.section.course) %></td>
+                                    <td><%= link_to 'Show', quiz_path(quiz), class: 'btn btn-primary btn-sm' %> <br> <%= link_to 'Edit', edit_quiz_path(quiz), class: 'btn btn-primary btn-sm' %></td>
                                 </tr>
                                 <% end %>
                             </tbody>
