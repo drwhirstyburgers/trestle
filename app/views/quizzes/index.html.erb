@@ -1,35 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Quizzes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Section</th>
-      <th>Title</th>
-      <th>Order number</th>
-      <th>Time to complete</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @quizzes.each do |quiz| %>
-      <tr>
-        <td><%= quiz.section_id %></td>
-        <td><%= quiz.title %></td>
-        <td><%= quiz.order_number %></td>
-        <td><%= quiz.time_to_complete %></td>
-        <td><%= quiz.description %></td>
-        <td><%= link_to 'Show', quiz %></td>
-        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Quiz', new_quiz_path %>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Quizzes</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <%= search_form_for @q do |f| %>
+                                        <th><%= f.search_field :id_eq, class: "form-control", placeholder: "ID" %></th>
+                                        <th><%= f.search_field :order_number_eq, class: "form-control", placeholder: "Order Number" %></th>
+                                        <th><%= f.search_field :title_cont, class: "form-control", placeholder: "Title" %></th>
+                                        <th><%= f.search_field :description_cont, class: "form-control", placeholder: "Description" %></th>
+                                        <th><%= f.search_field :questions_question_cont, class: "form-control", placeholder: "Questions" %></th>
+                                        <th><%= f.search_field :section_name_start, class: "form-control", placeholder: "Section" %></th>
+                                        <th><%= f.submit class: "btn btn-primary float-right" %></th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @quizzes.each do |quiz| %>
+                                <tr>
+                                    <td><%= quiz.id %></td>
+                                    <td><%= quiz.order_number %></td>
+                                    <td><%= quiz.title %></td>
+                                    <td><small><%= quiz.description %></small></td>
+                                    <td>
+                                        <% quiz.questions.order(:order_number).each do |q| %>
+                                            <small><%= q.order_number %>. <%= link_to q.question, question_path(q) %></small>
+                                        <% end %>
+                                    </td>
+                                    <td>Course: <%= link_to quiz.section.course.title, course_path(quiz.section.course) %> Section: <%= link_to quiz.section.name, course_path(quiz.section.course) %></td>
+                                    <td><%= link_to 'Show', quiz_path(quiz), class: 'btn btn-primary btn-sm' %> <%= link_to 'Edit', edit_quiz_path(quiz), class: 'btn btn-primary btn-sm' %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= will_paginate @quizzes %>
+    </div>
+</div>

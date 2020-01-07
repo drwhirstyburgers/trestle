@@ -8,7 +8,8 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @q = Quiz.ransack(params[:q])
+    @quizzes = @q.result.includes(:questions, :section).paginate(page: params[:page])
   end
 
   # GET /quizzes/1
