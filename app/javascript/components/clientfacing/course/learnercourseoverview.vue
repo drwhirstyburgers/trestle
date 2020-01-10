@@ -17,11 +17,15 @@
                                 <p class="card-subtitle mb-2 text-muted">Accreditation: {{course.accreditation}} | Duration: {{ course.duration }} months</p>
                                 <p class="card-text" id="ct"><small class="text-muted">Where you should be</small></p>
                                 <div class="progress" id="pb">
-                                    <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55%</div>
+                                    <div class="progress-bar" role="progressbar" v-bind:style="{ width: progress.wysb + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        {{ progress.wysb }}%
+                                    </div>
                                 </div>
                                 <p class="card-text" id="ct"><small class="text-muted">Where you are</small></p>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">45%</div>
+                                    <div class="progress-bar" role="progressbar" v-bind:style="{ width: progress.wya + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        {{ progress.wya }}%
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,11 +48,30 @@ export default {
         return {
             course: this.lcourse,
             sections: this.lsections,
-            user: this.learner
+            user: this.learner,
+            progress: null
         }
     },
     props: ['lcourse', 'lsections', 'learner'],
-    components: { usersectionshow }
+    components: { usersectionshow },
+    mounted(){
+        this.getCourseProgress()
+    },
+    methods: {
+        getCourseProgress(){
+            $.ajax({
+                type: "GET",
+                url: '/get_course_progress',
+                data: { id: this.course.id },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.progress = data
+                }
+            })
+        }
+    }
 }
 </script>
 

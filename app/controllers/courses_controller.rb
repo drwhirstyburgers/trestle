@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   require 'new_course_logic'
   include NewCourseLogic
+  require 'progress_logic'
+  include ProgressLogic
   breadcrumb 'All Courses', :courses_path
   before_action :set_course, only: [:edit, :update, :destroy]
 
@@ -89,6 +91,11 @@ class CoursesController < ApplicationController
     else
       redirect_to courses_path
     end
+  end
+
+  def get_course_progress
+    payload = return_course_progress(params[:id], current_user)
+    render json: payload.to_json, status: :ok
   end
 
   private

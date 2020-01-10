@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/mark_checkpoint_complete', to: 'checkpoints#mark_checkpoint_complete'
   get '/check_if_complete', to: 'checkpoints#check_if_complete'
   get '/get_section_progress', to: 'sections#get_section_progress'
+  get '/get_course_progress', to: 'courses#get_course_progress'
 
   resources :courses
   post '/activate', to: 'courses#toggle_activate_course'
