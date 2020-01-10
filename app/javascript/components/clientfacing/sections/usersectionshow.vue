@@ -12,8 +12,8 @@
                     <div class="col-md-3 justify-content-center" id="infobox">
                         <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" v-bind:style="{width: progress}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                {{ progress }}
+                            <div class="progress-bar" role="progressbar" v-bind:style="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                {{ progress }}%
                             </div>
                         </div>
                     </div>
