@@ -69,7 +69,11 @@ module ProgressLogic
         total = 0.00
         sections_progress.each do |s|
             section = sections.find { |x| s[:section_id] == x.id }
-            total += (s[:percent_complete].to_s.split('').delete_if { |x| x == '.' }.insert(0, ".").join('').to_f * section.time_to_complete.to_f)
+            unless s[:percent_complete] >= 100
+                total += (s[:percent_complete].to_s.split('').delete_if { |x| x == '.' }.insert(0, ".").join('').to_f * section.time_to_complete.to_f)
+            else
+                total += section.time_to_complete
+            end
         end
         return total
     end
