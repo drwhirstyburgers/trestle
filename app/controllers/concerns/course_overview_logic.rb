@@ -10,9 +10,9 @@ module CourseOverviewLogic
             temp = {}
             if user_checkpoint.present?
                 if user_checkpoint.complete == true
-                    temp[:complete] = true
+                    temp[:completed] = true
                 else
-                    temp[:complete] = false
+                    temp[:completed] = false
                 end
             end
             temp[:type] = "checkpoint"
@@ -25,7 +25,14 @@ module CourseOverviewLogic
         end
         quizzes.each do |q|
             temp = {}
-            temp[:completed] = false
+            uq = UserQuiz.where(user_id: user.id, quiz: q.id).last
+            if uq.present?
+                temp[:completed] = true
+                temp[:score] = uq.score
+            else
+                temp[:completed] = false
+                temp[:score] = nil
+            end
             temp[:type] = "quiz"
             temp[:id] = q.id
             temp[:title] = q.title

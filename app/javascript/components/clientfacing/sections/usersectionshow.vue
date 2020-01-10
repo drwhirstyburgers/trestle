@@ -53,7 +53,7 @@ export default {
             })
         },
         getCompletedNumber(checkpoints){
-            return checkpoints.filter((c) => c.complete).length
+            return checkpoints.filter((c) => c.completed).length
         }
     }
 }
