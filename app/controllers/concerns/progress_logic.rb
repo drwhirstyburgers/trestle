@@ -41,7 +41,9 @@ module ProgressLogic
         user_checkpoints = user.user_checkpoints
         section.checkpoints.each do |c|
             uc = user_checkpoints.find { |x| x.checkpoint_id == c.id }
-            sum += uc.complete == true ? c.time_to_complete : 0
+            if uc.present?
+                sum += uc.complete == true ? c.time_to_complete : 0
+            end
         end
         section.quizzes.each do |q|
             uq = UserQuiz.find_by(user: user, quiz: q)
