@@ -11,7 +11,7 @@ module ProgressLogic
             temp[:percent_complete] = get_section_percent(s, user)
             sections_progress << temp
         end
-        return_hash[:wya] = calculate_where_you_are(sections_progress, course.sections)
+        return_hash[:wya] = calculate_where_you_are(sections_progress, course.sections).round
         return return_hash
     end
 
