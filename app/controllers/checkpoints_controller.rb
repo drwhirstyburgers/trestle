@@ -101,6 +101,9 @@ class CheckpointsController < ApplicationController
 
   def mark_checkpoint_complete
     user_checkpoint = UserCheckpoint.find_by(user_id: params[:user_id], checkpoint_id: params[:checkpoint_id])
+    if user_checkpoint.blank?
+      user_checkpoint = UserCheckpoint.new(user_id: params[:user_id], checkpoint_id: params[:checkpoint_id])
+    end
     user_checkpoint.complete = true
     if user_checkpoint.save!
       render json: "okay".to_json, status: :ok
