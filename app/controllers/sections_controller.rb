@@ -1,4 +1,7 @@
 class SectionsController < ApplicationController
+  require 'progress_logic'
+  include ProgressLogic
+
   breadcrumb 'Courses', :courses_path
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
@@ -68,6 +71,11 @@ class SectionsController < ApplicationController
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def get_section_progress
+    section = Section.find(params[:section_id])
+    render json: get_section_percent(section, current_user).to_json, status: :ok
   end
 
   private

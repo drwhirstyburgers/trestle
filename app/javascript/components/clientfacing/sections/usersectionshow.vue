@@ -12,7 +12,9 @@
                     <div class="col-md-3 justify-content-center" id="infobox">
                         <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+                            <div class="progress-bar" role="progressbar" v-bind:style="{width: progress}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                {{ progress }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,13 +34,15 @@ export default {
         return {
             sect: this.section,
             checkpoints: [],
-            numberOfCompleted: 0
+            numberOfCompleted: 0,
+            progress: null
         }
     },
     props: ['section'],
     components: { checkcard },
     mounted(){
         this.getSectionCheckpoints()
+        this.getSectionProgress()
     },
     methods: {
         getSectionCheckpoints(){
@@ -49,6 +53,19 @@ export default {
                 success: (data) => {
                     this.checkpoints = data
                     this.numberOfCompleted = this.getCompletedNumber(this.checkpoints)
+                }
+            })
+        },
+        getSectionProgress(){
+            $.ajax({
+                type: 'GET',
+                url: '/get_section_progress',
+                data: { section_id: this.sect.id },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.progress = data
                 }
             })
         },
