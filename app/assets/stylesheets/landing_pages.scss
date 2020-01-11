@@ -20,12 +20,12 @@
 
 #welcome-container {
     background-image: url("https://i.imgur.com/F43cFIU.jpg");
-    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     font-family: 'Quicksand', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .navbar-brand {
@@ -41,11 +41,12 @@
 #title {
     color:rgb(219, 209, 207);
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 18vh !important;
+    font-size: 18vh;
 }
 
 #title-row {
     margin-top: 10%;
+    max-width: 90%;
 }
 
 .col-centered {
@@ -58,4 +59,16 @@
 .landing {
     color:rgb(219, 209, 207);
     font-family: 'Noto Sans KR', sans-serif;
+}
+
+@media only screen and (max-width: 767px) {
+    #welcome-container {
+      /* The file size of this background image is 93% smaller
+         to improve page load speed on mobile internet connections */
+      background-image: url("https://i.imgur.com/F43cFIU.jpg");
+      background-attachment: fixed;
+    }
+    #title {
+        font-size: 50px;
+    }
 }
