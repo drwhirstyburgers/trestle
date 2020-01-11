@@ -1,3 +1,61 @@
 // Place all the styles related to the landing_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar.transparent.navbar-inverse .navbar-inner {
+    border-width: 0px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+body {
+    background-image: url("https://i.imgur.com/F43cFIU.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-brand {
+    color:rgb(219, 209, 207);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.navbar-text a{
+    color:rgb(219, 209, 207);
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1{
+    color:rgb(219, 209, 207);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 150px !important;
+    margin-top: 25%;
+}
+
+#title-row {
+    margin-top: 10%;
+}
+
+.col-centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+h5 {
+    color:rgb(219, 209, 207);
+    font-family: 'Noto Sans KR', sans-serif;
+}

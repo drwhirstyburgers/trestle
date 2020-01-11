@@ -53,6 +53,4 @@ export default {
 </script>
 
 <style scoped>
-#bar {
-}
 </style>
