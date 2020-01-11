@@ -17,6 +17,10 @@
  @import '@coreui/coreui/dist/css/coreui.min';
  @import "font-awesome";
 
+.navbar {
+    position: relative;
+}
+
 html {
     height: 100%;
 }
@@ -63,6 +67,7 @@ a {
 .main .container-fluid {
     padding-top: 0px !important;
     margin: 0px 0px 0px 0px;
+    position: relative;
 }
 
 
