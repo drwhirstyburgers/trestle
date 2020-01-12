@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="bar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="bar">
         <a class="navbar-brand" href="/">
             Trestle
         </a>
