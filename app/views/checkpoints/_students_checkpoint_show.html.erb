@@ -1,9 +1,9 @@
 <div class="col-lg-10" id="middle">
     <div class="row" id="button-row">
-        <div class="col-md-6">
+        <div class="col">
             <%= link_to course_path(@course) do %><< <%= @course.title %><% end %>
         </div>
-        <div class="col-md-6">
+        <div class="col">
             <div class="float-right">
                 <%= link_to "Next Checkpoint >>", next_checkpoint_path(checkpoint: @checkpoint) %>
             </div>
