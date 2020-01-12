@@ -5,6 +5,6 @@ function loadScripts(){
 }
 
 document.addEventListener("turbolinks:load", () => {
-    console.log("HELLO")
-    loadScripts();
+    //console.log("HELLO")
+    //loadScripts();
 });
