@@ -83,6 +83,7 @@ export default {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
+
 .main .container-fluid {
     padding: 0 !important;
     margin: 0px 0px 0px 0px;
