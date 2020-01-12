@@ -65,6 +65,7 @@
       /* The file size of this background image is 93% smaller
          to improve page load speed on mobile internet connections */
       background-image: url("https://i.imgur.com/F43cFIU.jpg");
+      min-height: 100vh;
     }
     #title {
         font-size: 50px;
