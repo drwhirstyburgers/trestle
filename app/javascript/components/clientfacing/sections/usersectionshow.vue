@@ -85,7 +85,7 @@ export default {
     margin-top: 30px;
 }
 .display-4 {
-    font-size:1.5rem;
+    font-size:2rem;
     font-weight: 300;
     line-height: 1.2;
     color: white;
