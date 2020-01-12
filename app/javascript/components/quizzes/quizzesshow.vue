@@ -35,7 +35,7 @@
                         <ul class="list-group list-group-flush">
                             <li v-for="(choice, index) in question.choices" v-bind:choice="choice" v-bind:key="choice.key" class="list-group-item">
                                 <div v-if="isEditing != index && !submitted" class="form-check">
-                                    <input v-on:click="addSelection(choice, question)" class="form-check-input" type="radio">
+                                    <input v-on:click="addSelection(choice, question)" name="name" class="form-check-input" type="radio">
                                     <label class="form-check-label" for="exampleRadios1">
                                         {{ choice.choice_number }}. {{ choice.choice }}
                                     </label>
