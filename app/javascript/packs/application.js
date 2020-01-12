@@ -22,6 +22,7 @@ require("assets/videoswitching")
 import '../stylesheets/application'
 import 'bootstrap'
 import '@coreui/coreui'
+import 'material-design-lite'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
