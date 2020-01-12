@@ -89,10 +89,11 @@ export default {
 }
 
 .display-4 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 300;
     line-height: 1.2;
-    padding-top: 45px;
+    padding-top: 50px;
+    margin-bottom: 5px !important;
 }
 
 #course-card {

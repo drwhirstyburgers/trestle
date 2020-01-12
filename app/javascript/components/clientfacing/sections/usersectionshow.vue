@@ -5,7 +5,7 @@
         <div class="col-lg-8" id="ti-box">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-9 justify-content-center" id="titlebox">
+                    <div class="col-md-9 align-bottom" id="titlebox">
                         <h1 class="display-4">{{ sect.order_number }}. {{ sect.name }}</h1>
                         <p class="lead">{{ sect.description }}</p>
                     </div>
@@ -78,6 +78,7 @@ export default {
 
 <style scoped>
 #titlebox{
+    padding-top: 2%;
     background-color: #343a40 !important;
     color: white;
 }
@@ -89,6 +90,7 @@ export default {
     font-weight: 300;
     line-height: 1.2;
     color: white;
+    margin-bottom: 5px !important;
 }
 .lead {
     font-size: 1rem;
