@@ -13,26 +13,6 @@ require("@rails/actiontext")
 require("assets/videoswitching")
 require("assets/loadscripts")
 
-// some code to help with the viewport resizing issue on mobile
-
-function sizeBackground() {
-  background.style.height = screen.height;
-}
-
-document.addEventListener('turbolinks:load', () => {
-  var background = document.getElementById('welcome-container');
-  if(background){
-    if ((/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera)) {
-      background.style.top = 'auto';
-      background.style.bottom = 0;
-    
-      window.onresize = sizeBackground;
-      sizeBackground();
-    }
-  }
-});
-
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
