@@ -1,4 +1,4 @@
-<nav class="navbar transparent navbar-inverse" id="bar">
+<nav class="navbar transparent navbar-inverse sticky-top" id="bar">
     <a class="navbar-brand" href="/">
         Trestle
     </a>
@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-    <span class="navbar-text float-right" data-turbolinks="false">
+    <span class="navbar-text" data-turbolinks="false">
         <%= link_to '<i class="fa fa-user-plus fa-lg"></i> Sign Up'.html_safe, new_user_registration_path, data: { turbolinks: false} %>&nbsp;&nbsp;
         <%= link_to '<i class="fa fa-sign-in fa-lg"></i> Sign In'.html_safe, new_user_session_path, data: { turbolinks: false} %>
     </span>
