@@ -87,6 +87,7 @@ export default {
 .main .container-fluid {
     padding: 0 !important;
     margin: 0px 0px 0px 0px;
+    overflow-x: hidden;
 }
 
 .display-4 {
@@ -109,5 +110,13 @@ export default {
 }
 #pb {
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .display-4 {
+      /* The file size of this background image is 93% smaller
+         to improve page load speed on mobile internet connections */
+      font-size: 3rem;
+    }
 }
 </style>
