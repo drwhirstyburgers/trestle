@@ -4,6 +4,7 @@ function loadScripts(){
     document.getElementsByTagName("head")[0].appendChild(tag);
 }
 
-document.addEventListener('turbolinks:before-render', () => {
+document.addEventListener("turbolinks:load", () => {
+    console.log("HELLO")
     loadScripts();
 });
