@@ -12,6 +12,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 <a href='/sections/new'><button class="dropdown-item" type="button">New Course Section</button></a>
                                 <a v-bind:href="'/courses/'+ newCourse.id +'/edit/'"><button class="dropdown-item" type="button">Edit course</button></a>
+                                <a href='/previews/new'><button class="dropdown-item" type="button">New Course Preview</button></a>
                                 <button v-if="newCourse.active == false" @click="activateCourse(course.id)" type="button" class="dropdown-item">Activate</button>
                                 <button v-if="newCourse.active == true" @click="activateCourse(course.id)" type="button" class="dropdown-item">Deactivate</button>
                             </div>

@@ -17,5 +17,5 @@ class Course < ApplicationRecord
     has_many :sections, dependent: :destroy
     has_many :user_courses
     has_many :users, through: :user_courses
-    has_one :preview
+    has_one :previews, dependent: destroy
 end
