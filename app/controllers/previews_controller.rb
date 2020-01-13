@@ -10,6 +10,8 @@ class PreviewsController < ApplicationController
   # GET /previews/1
   # GET /previews/1.json
   def show
+    @course = @preview.course
+    @sections = @course.sections
   end
 
   # GET /previews/new

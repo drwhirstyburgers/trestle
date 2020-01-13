@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid content-row" id="cf-lcop">
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-8 align-bottom">
+        <h1 class="display-3 preview"><%= @course.title %></h1>
+        <h4 class="lead lpreview"><%= @preview.blurb %></h4>
+        <h4 class="lead lpreview"><%= @course.users.count %> already enrolled!</h4>
+        <%= @preview.pitch %>
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+  <div class="container">
+    <%= @preview.pitch %>
+  <div>
+</div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @preview.course_id %>
-</p>
-
-<p>
-  <strong>Blurb:</strong>
-  <%= @preview.blurb %>
-</p>
-
-<%= link_to 'Edit', edit_preview_path(@preview) %> |
-<%= link_to 'Back', previews_path %>
