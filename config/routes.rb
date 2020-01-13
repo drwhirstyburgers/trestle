@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :previews
   resources :choices
   post '/submit_choices', to: 'choices#submit_choices'
   post '/update_choice', to: 'choices#change_choice'

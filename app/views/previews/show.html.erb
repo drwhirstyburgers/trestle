@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @preview.course_id %>
+</p>
+
+<p>
+  <strong>Blurb:</strong>
+  <%= @preview.blurb %>
+</p>
+
+<%= link_to 'Edit', edit_preview_path(@preview) %> |
+<%= link_to 'Back', previews_path %>
