@@ -11,15 +11,53 @@
     </div>
   </div>
 </div>
+<br>
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-2">
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
       <%= @preview.pitch %>
     </div>
-    <div class="col-md-5">
-      <%= image_tag @preview.image.variant(resize_to_limit: [500, 500]) %>
+    <div class="col-md-4">
+      <br />
+      <div class="card">
+        <%= image_tag @preview.image.variant(resize_to_limit: [500, 500]), class: "card-img-top" %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p class="card-text">Price: $<%= @course.price %></p>
+              <p class="card-text">Accreditation: <%= @course.accreditation %></p>
+              <p class="card-text">Duration: <%= @course.duration %> months</p>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-outline-success float-right"><i class="fa fa-check-circle fa-1.5x"></i> </i>Enroll</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-md-8 text-center">
+      <hr>
+      <h2 class="display-4">There are <%= @sections.count %> sections in this course</h2>
+      <% @sections.each do |s| %>
+        <div class="row">
+          <div class="col-md-2">
+            <p style="margin-bottom:2px;margin-top:15px;">Section</p>
+            <h1 class="display-4" style="padding-top: 5px;margin:10px 0;"><%= s.order_number %></h1>
+          </div>
+          <div class="col-md-10 text-left">
+            <h3 class="display-6" style="margin-bottom:5px;"><%= s.name %></h2>
+            <hr>
+            <p><%= s.description %></p>
+          </div>
+      <% end %>
     </div>
     <div class="col-lg-2">
     </div>
