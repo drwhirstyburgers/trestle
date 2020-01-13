@@ -11,13 +11,17 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
+    <div class="col-lg-2">
+    </div>
     <div class="col-md-5">
       <%= @preview.pitch %>
     </div>
     <div class="col-md-5">
       <%= image_tag @preview.image.variant(resize_to_limit: [500, 500]) %>
+    </div>
+    <div class="col-lg-2">
     </div>
   </div>
 <div>
