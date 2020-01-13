@@ -6,13 +6,19 @@
         <h1 class="display-3 preview"><%= @course.title %></h1>
         <h4 class="lead lpreview"><%= @preview.blurb %></h4>
         <h4 class="lead lpreview"><%= @course.users.count %> already enrolled!</h4>
-        <%= @preview.pitch %>
     </div>
     <div class="col-lg-2">
     </div>
   </div>
-  <div class="container">
-    <%= @preview.pitch %>
-  <div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <%= @preview.pitch %>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag @preview.image.variant(resize_to_limit: [500, 500]) %>
+    </div>
+  </div>
+<div>
 

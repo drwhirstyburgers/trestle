@@ -71,6 +71,6 @@ class PreviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def preview_params
-      params.require(:preview).permit(:course_id, :blurb)
+      params.require(:preview).permit(:course_id, :blurb, :pitch, :image)
     end
 end
