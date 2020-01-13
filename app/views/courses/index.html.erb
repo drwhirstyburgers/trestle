@@ -31,7 +31,7 @@
       </div>
       <div class="col-lg-8">
         <% @courses.each do |course| %>
-          <%= tag.div id:"scourseIndex", data: { acs: course.to_json } %>
+          <%= tag.div id:"scourseIndex", data: { acs: course.to_json, p: course.preview.to_json } %>
         <% end %>
       </div>
       <div class="col-lg-2">

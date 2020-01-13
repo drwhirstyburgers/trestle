@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_015726) do
+ActiveRecord::Schema.define(version: 2020_01_13_002305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 2019_12_13_015726) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "previews", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.string "blurb"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_previews_on_course_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.bigint "quiz_id", null: false
     t.string "question"
@@ -115,10 +123,18 @@ ActiveRecord::Schema.define(version: 2019_12_13_015726) do
     t.index ["course_id"], name: "index_sections_on_course_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.bigint "preview_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["preview_id"], name: "index_skills_on_preview_id"
+  end
+
   create_table "user_checkpoints", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "checkpoint_id", null: false
-    t.boolean "complete"
+    t.boolean "complete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["checkpoint_id"], name: "index_user_checkpoints_on_checkpoint_id"
@@ -196,9 +212,11 @@ ActiveRecord::Schema.define(version: 2019_12_13_015726) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "checkpoints", "sections"
   add_foreign_key "choices", "questions"
+  add_foreign_key "previews", "courses"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "sections"
   add_foreign_key "sections", "courses"
+  add_foreign_key "skills", "previews"
   add_foreign_key "user_checkpoints", "checkpoints"
   add_foreign_key "user_checkpoints", "users"
   add_foreign_key "user_courses", "courses"

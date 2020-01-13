@@ -7,16 +7,15 @@
             <div class="col-md-9">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h4 class="card-title">{{ course.title }}</h4>
-                            <p class="card-text" id="indexcardtext">
-                                {{ course.description }} <br />
-                            </p>
-                            <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
-                        </div>
-                        <div class="col">
-                            <button v-on:click="addCourse(course.id)" type="button" class="btn btn-outline-success float-right">Enroll</button>
-                        </div>
+                        <a v-bind:href='"/previews/" + preview.id'>
+                            <div class="col-md-12">
+                                <h4 class="card-title">{{ course.title }}</h4>
+                                <p class="card-text" id="indexcardtext">
+                                    {{ course.description }} <br />
+                                </p>
+                                <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -31,7 +30,7 @@ export default {
             course: this.tcourse
         }
     },
-    props: ['tcourse'],
+    props: ['tcourse', 'preview'],
     methods: {
         addCourse(id){
             var id = { course_id: id }

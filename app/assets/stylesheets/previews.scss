@@ -1,0 +1,51 @@
+// Place all the styles related to the previews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#cf-lcop {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,84,253,1) 100%);
+    color: white;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    min-height: 20vh;
+}
+
+.main .container-fluid {
+    padding: 0 !important;
+    margin: 0px 0px 0px 0px;
+    overflow-x: hidden;
+}
+
+.lpreview {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.preview {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#course-card {
+    color: black;
+}
+#ct {
+    margin-bottom: 2px;
+}
+#info-row {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#pb {
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    .display-4 {
+      /* The file size of this background image is 93% smaller
+         to improve page load speed on mobile internet connections */
+      font-size: 3rem;
+    }
+}
