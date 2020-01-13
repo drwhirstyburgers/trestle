@@ -107,6 +107,7 @@ export default {
 #info-row {
     padding-top: 6px;
     padding-bottom: 6px;
+    overflow: hidden;
 }
 #pb {
     margin-bottom: 10px;
