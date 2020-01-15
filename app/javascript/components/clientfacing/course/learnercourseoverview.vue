@@ -100,6 +100,7 @@ export default {
 
 #course-card {
     color: black;
+    height: auto;
 }
 #ct {
     margin-bottom: 2px;

@@ -4,16 +4,20 @@
         </div>
         <div class="col-lg-8" id="ti-box">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" id="row-contain">
                     <div class="col-md-9 align-bottom" id="titlebox">
-                        <h1 class="display-4">{{ sect.order_number }}. {{ sect.name }}</h1>
-                        <p class="lead">{{ sect.description }}</p>
+                        <div id="title-description">
+                            <h1 class="display-4">{{ sect.order_number }}. {{ sect.name }}</h1>
+                            <p class="lead">{{ sect.description }}</p>
+                        </div>
                     </div>
-                    <div class="col-md-3 justify-content-center" id="infobox">
-                        <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" v-bind:style="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                {{ progress }}%
+                    <div class="col-md-3" id="infobox">
+                        <div id="infoItems">
+                            <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" v-bind:style="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    {{ progress }}%
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -96,16 +100,22 @@ export default {
     font-size: 1rem;
     margin-bottom: 30px;
 }
-.progress {
-    margin-bottom: 20%;
+#title-description{
+    margin-left: 2%;
 }
 #infobox {
     background-color: darkgray;
 }
+#infoItems {
+    margin-right: 5%;
+}
+#row-contain {
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
 .card-text {
     color: white;
 }
-
 .row.section-show {
     margin-bottom: 30px;
 }
