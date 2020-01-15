@@ -103,6 +103,7 @@ export default {
     padding-right: 0px !important;
     padding-bottom: 0 !important;
     min-height: 20vh;
+    overflow: hidden;
 }
 
 .preview {
