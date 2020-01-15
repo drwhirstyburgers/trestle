@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
-    <AdminDash />
 <% elsif current_user.guest? %>
 <% elsif current_user.student? %>
+    <%= tag.div id: 'studentDash', data: { c: @courses.to_json, u: current_user.to_json, uc: @user_course.to_json } %>
 <% end %>

@@ -6,7 +6,7 @@ class LandingPagesController < ApplicationController
   def index
     @course = Course.first
     if user_signed_in? && current_user.student? && @course.present?
-      redirect_to course_path(@course)
+      redirect_to dash_path
     elsif user_signed_in? && current_user.admin?
       redirect_to dash_path
     elsif user_signed_in? && current_user.guest?
