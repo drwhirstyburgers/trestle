@@ -10,18 +10,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'home']" size="lg" /> Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'tachometer-alt']" size="lg" /> Dashboard<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/courses"><font-awesome-icon :icon="['fas', 'cannabis']" size="lg" /> Course Catalogue</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <font-awesome-icon :icon="['fas', 'book']" size="lg" /> My Courses
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a v-for="course in courses" v-bind:course="course" v-bind:key="course.key" class="dropdown-item" v-bind:href='"/courses/" + course.id'>{{ course.title }}</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" v-bind:href="'/courses/' + course.id"><font-awesome-icon :icon="['fas', 'book']" size="lg" /> {{course.title}}</a>
                 </li>
             </ul>
         </div>
@@ -36,7 +31,7 @@
 export default {
     data(){
         return {
-            courses: this.user_courses,
+            course: this.user_courses,
             user: this.current_user
         }
     },

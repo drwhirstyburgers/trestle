@@ -93,6 +93,15 @@ class CoursesController < ApplicationController
     end
   end
 
+  def activate_user_course
+    user_course = UserCourse.find(params[:id])
+    user_course.active_course = true
+    return_hash = { course: user_course.course, user_course: user_course }
+    if user_course.save!
+      redirect_to dash_path
+    end
+  end
+
   def get_course_progress
     payload = return_course_progress(params[:id], current_user)
     render json: payload.to_json, status: :ok

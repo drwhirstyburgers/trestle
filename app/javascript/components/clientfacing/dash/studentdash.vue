@@ -25,36 +25,18 @@
                                     <h2 class="mdl-card__title-text">Courses</h2>
                                 </div>
                                 <div class="mdl-card__supporting-text">
-                                    <div class="demo-list-action mdl-list">
+                                    <div v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" class="demo-list-action mdl-list">
                                         <div class="mdl-list__item">
                                             <span class="mdl-list__item-primary-content">
-                                            <i class="material-icons mdl-list__item-avatar">person</i>
-                                            <span>Bryan Cranston</span>
+                                                <i class="material-icons mdl-list__item-avatar">bookmark_border</i>
+                                                <span>{{ course.title }}</span>
                                             </span>
-                                            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                                        </div>
-                                        <div class="mdl-list__item">
-                                            <span class="mdl-list__item-primary-content">
-                                            <i class="material-icons mdl-list__item-avatar">person</i>
-                                            <span>Aaron Paul</span>
-                                            </span>
-                                            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                                        </div>
-                                        <div class="mdl-list__item">
-                                            <span class="mdl-list__item-primary-content">
-                                            <i class="material-icons mdl-list__item-avatar">person</i>
-                                            <span>Bob Odenkirk</span>
-                                            </span>
-                                            <span class="mdl-list__item-secondary-content">
-                                            <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-                                        </span>
+                                            <i v-on:click="makeActiveCourse(course)" class="material-icons" id="activeStar" v-bind:style="isItActive(course)">star</i>
+                                            <div class="mdl-tooltip" data-mdl-for="activeStar">
+                                                Make this your active course
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mdl-card__actions mdl-card--border">
-                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                    View Updates
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +55,10 @@
 export default {
     data() {
         return {
-
+            allCourses: this.courses,
+            allUserCourses: this.userCourses,
+            learner: this.user,
+            activeCourse: null
         }
     },
     props: ['courses', 'user', 'userCourses'],
@@ -81,7 +66,30 @@ export default {
 
     },
     methods: {
-
+        isItActive(course){
+            let userCourse = this.allUserCourses.filter(uc => uc.course_id == course.id)
+            if(userCourse[0].active_course == true){
+                return "color: 	#CCCC00"
+            }
+        },
+        makeActiveCourse(course){
+            console.log("hello")
+            var userCourse = this.allUserCourses.filter(uc => uc.course_id == course.id)
+            if(userCourse[0].active_course == false){
+                $.ajax({
+                    type: "POST",
+                    url: '/uc_active',
+                    data: { id: userCourse[0].id },
+                    error: (err) => {
+                        console.log(err)
+                    },
+                    success: (data) => {
+                        this.activeCourse = data.course
+                        this.allUserCourses = data.user_course
+                    }
+                })
+            }
+        }
     }
 }
 </script>
@@ -113,17 +121,23 @@ export default {
     min-height: 100%;
 }
 .demo-card-square > .mdl-card__title {
-  color: #fff;
-  background: 
-    linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,84,253,1) 100%) bottom right 15% no-repeat #46B6AC;
+    color: #fff;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,84,253,1) 100%) bottom right 15% no-repeat #46B6AC;
+}
+.mdl-card__title.mdl-card--expand {
+    max-height: 200px !important;
 }
 .demo-list-action {
-  width: auto;
+    width: auto;
 }
 .body-content{
     min-height: 80vh !important;
 }
 .row.content {
     min-height: 80vh !important;
+}
+#activeStar:hover {
+    cursor: pointer;
+    color: #CCCC00;
 }
 </style>
