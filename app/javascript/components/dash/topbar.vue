@@ -9,13 +9,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li v-if="course" class="nav-item">
                     <a class="nav-link" href="/"><font-awesome-icon :icon="['fas', 'tachometer-alt']" size="lg" /> Dashboard<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/courses"><font-awesome-icon :icon="['fas', 'cannabis']" size="lg" /> Course Catalogue</a>
                 </li>
-                <li class="nav-item">
+                <li v-if="course" class="nav-item">
                     <a class="nav-link" v-bind:href="'/courses/' + course.id"><font-awesome-icon :icon="['fas', 'book']" size="lg" /> {{course.title}}</a>
                 </li>
             </ul>

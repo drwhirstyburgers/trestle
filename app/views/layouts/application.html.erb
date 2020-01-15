@@ -79,9 +79,12 @@
             </nav>
         </div>
       <% end %>
-      <% if (user_signed_in? && current_user.student?) || (user_signed_in? && current_user.guest?) %>
+      <% if (user_signed_in? && current_user.student?) %>
           <% @active_course = current_user.user_courses.where(active_course: true).first %>
           <%= tag.div id: "topBar", data: { cs: @active_course.course, cu: current_user.to_json } %>
+      <% end %>
+      <% if (user_signed_in? && current_user.guest?) %>
+          <%= tag.div id: "topBar", data: { cs: false.to_json, cu: current_user.to_json } %>
       <% end %>
       <main class="main">
         <% if flash[:notice] %>
