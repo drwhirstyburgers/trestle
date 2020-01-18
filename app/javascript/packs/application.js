@@ -141,18 +141,20 @@ document.addEventListener('turbolinks:load', () => {
 })
 
 document.addEventListener('turbolinks:load', () => {
-  var sci = document.getElementById('scourseIndex')
+  var sci = document.querySelectorAll('#scourseIndex')
   if (sci != null){
-    const app = new Vue({
-      el: sci,
-      data: () => {
-        return {
-          courses: JSON.parse(sci.dataset.acs),
-          preview: JSON.parse(sci.dataset.p)
-        }
-      },
-      template: '<usercourseindex :tcourse="courses" :preview="preview" />',
-      components: { usercourseindex }
+    sci.forEach(c => {
+      const app = new Vue({
+        el: c,
+        data: () => {
+          return {
+            courses: JSON.parse(c.dataset.acs),
+            preview: JSON.parse(c.dataset.p)
+          }
+        },
+        template: '<usercourseindex :tcourse="courses" :preview="preview" />',
+        components: { usercourseindex }
+      })
     })
   }
 })
