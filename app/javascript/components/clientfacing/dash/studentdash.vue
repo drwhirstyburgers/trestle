@@ -13,39 +13,46 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid body-content">
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="row content">
-                        <div class="col-md-4 course-panel">
-                            <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                                <div class="mdl-card__title mdl-card--expand">
-                                    <h2 class="mdl-card__title-text">Courses</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" class="demo-list-action mdl-list">
-                                        <div class="mdl-list__item">
-                                            <span class="mdl-list__item-primary-content">
-                                                <i class="material-icons mdl-list__item-avatar">bookmark_border</i>
-                                                <span>{{ course.title }}</span>
-                                            </span>
-                                            <i v-on:click="makeActiveCourse(course)" class="material-icons" id="activeStar" v-bind:style="isItActive(course)">star</i>
-                                            <div class="mdl-tooltip" data-mdl-for="activeStar">
-                                                Make this your active course
-                                            </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="row content">
+                    <div class="col-md-3 course-panel">
+                        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Courses</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <div v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" class="demo-list-action mdl-list">
+                                    <div class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                            <i class="material-icons mdl-list__item-avatar">bookmark_border</i>
+                                            <span>{{ course.title }}</span>
+                                        </span>
+                                        <i v-on:click="makeActiveCourse(course)" class="material-icons" id="activeStar" v-bind:style="isItActive(course)">star</i>
+                                        <div class="mdl-tooltip" data-mdl-for="activeStar">
+                                            Make this your active course
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                    <div class="col-md-9">
+                        <div id="activeCourseTitle">
+                            <h3>{{ activeCourse.title }} - {{ whereYouAre }}%</h3>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                </div>
+            </div>
+            <div class="col-md-2">
             </div>
         </div>
     </div>
@@ -58,14 +65,23 @@ export default {
             allCourses: this.courses,
             allUserCourses: this.userCourses,
             learner: this.user,
-            activeCourse: null
+            activeCourse: null,
+            whereYouAre: 0
         }
     },
     props: ['courses', 'user', 'userCourses'],
     components: {
 
     },
+    mounted(){
+        this.setActiveCourse()
+        this.getWhereYouAre()
+    },
     methods: {
+        setActiveCourse(){
+            const active = this.allUserCourses.filter(c => c.active_course == true)[0]
+            this.activeCourse = this.allCourses.filter(c => c.id == active.course_id)[0]
+        },
         isItActive(course){
             let userCourse = this.allUserCourses.filter(uc => uc.course_id == course.id)
             if(userCourse[0].active_course == true){
@@ -89,6 +105,20 @@ export default {
                     }
                 })
             }
+        },
+        getWhereYouAre(){
+            var user_id = this.allUserCourses.filter(c => c.active_course == true)[0].user_id
+            $.ajax({
+                type: "GET",
+                url: '/where_you_are',
+                data: { user_id: user_id },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.whereYouAre = data
+                }
+            })
         }
     }
 }
@@ -140,5 +170,8 @@ export default {
 #activeStar:hover {
     cursor: pointer;
     color: #CCCC00;
+}
+#activeCourseTitle {
+    margin-left: 25px;
 }
 </style>
