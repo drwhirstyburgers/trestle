@@ -48,17 +48,15 @@
       <h2 class="display-4">There are <%= @sections.count %> sections in this course</h2>
       <% @sections.each do |s| %>
         <div class="row">
-          <div class="col-md-2" style="justify-content: center;">
+          <div class="col-md-2">
             <p style="margin-bottom:2px;margin-top:15px;">Section</p>
-            <h1 class="display-4" style="padding-top: 5px;margin:10px 0;"><%= s.order_number %></h1>
+            <h1 class="display-4 numbering"><%= s.order_number %></h1>
           </div>
           <div class="col-md-10 text-left">
             <div class="row">
               <div class="col">
                 <h3 class="display-6" style="margin-bottom:5px;"><%= s.name %></h2>
-              </div>
-              <div class="col">
-                <h3 class="display-6 float-right" style="margin-bottom:5px;"><%= s.checkpoints.count + s.quizzes.count %> Checkpoints</h2>
+                <small><p style="margin-bottom:5px;"><%= s.checkpoints.count + s.quizzes.count %> Checkpoints</p></small>
               </div>
             </div>
             <hr>
