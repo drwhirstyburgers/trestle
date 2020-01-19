@@ -9,7 +9,11 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    if current_user.student? || current_user.guest?
+      @courses = Course.where(active: true)
+    elsif current_user.admin?
+      @courses = Course.all
+    end
   end
 
   # GET /courses/1
