@@ -44,6 +44,13 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col">
+                                <ul class="nav nav-tabs">
+                                    <li v-for="section in sections" v-bind:section="section" v-bind:key="section.key" class="nav-item">
+                                        <a v-on:click="setActiveSection(section)" v-bind:class="'nav-link ' + ifActive(section)">{{ section.section.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,6 +71,7 @@ export default {
             activeCourse: {},
             whereYouAre: 0,
             sections: [],
+            activeSection: {}
         }
     },
     props: ['courses', 'user', 'userCourses'],
@@ -75,6 +83,14 @@ export default {
         this.getWhereYouAre()
     },
     methods: {
+        setActiveSection(section){
+            this.activeSection = section
+        },
+        ifActive(section) {
+            if(this.activeSection == section){
+                return 'active'
+            }
+        },
         setActiveCourse(){
             const active = this.allUserCourses.filter(c => c.active_course == true)[0]
             this.activeCourse = this.allCourses.filter(c => c.id == active.course_id)[0]
@@ -114,6 +130,7 @@ export default {
                 },
                 success: (data) => {
                     this.sections = data
+                    this.activeSection = data[0]
                 }
             })
         },
