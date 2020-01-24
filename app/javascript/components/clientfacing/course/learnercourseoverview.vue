@@ -100,7 +100,7 @@ export default {
 
 #course-card {
     color: black;
-    height: auto;
+    max-height: auto !important;
 }
 #ct {
     margin-bottom: 2px;
@@ -113,7 +113,9 @@ export default {
 #pb {
     margin-bottom: 10px;
 }
-
+h6.card-title {
+    margin-top: 0 !important;
+}
 @media only screen and (max-width: 767px) {
     .display-4 {
       /* The file size of this background image is 93% smaller
