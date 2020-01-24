@@ -39,7 +39,10 @@
                     <div class="col-lg-8">
                         <div class="row">
                             <div class="col">
-                                <h4>{{ activeCourse.title }} - {{ whereYouAre }}% Complete</h4>
+                                <h4>{{ activeCourse.title }}</h4>
+                                <div class="progress-bar" role="progressbar" v-bind:style="{ width: whereYouAre + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                    {{ whereYouAre }}%
+                                </div>
                                 <hr>
                             </div>
                         </div>
