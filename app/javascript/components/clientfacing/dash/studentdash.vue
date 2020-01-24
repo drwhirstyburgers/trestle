@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="container-fluid" id="cf-lcosd">
-            <div class="row header-row">
+        <div class="container-fluid">
+            <div class="row header-row" id="cf-lcosd">
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
@@ -13,40 +13,34 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
                 <div class="row content">
-                    <div class="col-md-3 course-panel">
-                        <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__title mdl-card--expand">
-                                <h2 class="mdl-card__title-text">Courses</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <div v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key" class="demo-list-action mdl-list">
-                                    <div class="mdl-list__item">
-                                        <span class="mdl-list__item-primary-content">
-                                            <i class="material-icons mdl-list__item-avatar">bookmark_border</i>
-                                            <span>{{ course.title }}</span>
-                                        </span>
-                                        <i v-on:click="makeActiveCourse(course)" class="material-icons" id="activeStar" v-bind:style="isItActive(course)">star</i>
+                    <div class="col-lg-3">
+                        <div class="card course-panel">
+                            <img src="https://i.imgur.com/6Bc2k5I.jpg" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Courses</h5>
+                                <ul class="list-group list-group-flush" v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key">
+                                    <li class="list-group-item">
+                                        {{ course.title }}
+                                        <i v-on:click="makeActiveCourse(course)" class="material-icons float-right" id="activeStar" v-bind:style="isItActive(course)">star</i>
                                         <div class="mdl-tooltip" data-mdl-for="activeStar">
                                             Make this your active course
                                         </div>
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <div id="activeCourseTitle">
-                            <h3>{{ activeCourse.title }} - {{ whereYouAre }}%</h3>
-                            <hr>
-                        </div>
+                    <div class="col-lg-8">
                         <div class="row">
-                            <div class="col-md-2">
-
+                            <div class="col">
+                                <h4>{{ activeCourse.title }} - {{ whereYouAre }}% Complete</h4>
+                                <hr>
                             </div>
                         </div>
                     </div>
@@ -141,31 +135,11 @@ export default {
     padding-bottom: 0 !important;
     margin-top: 10vh;
 }
-
-.align-bottom {
-    height: 100%;
+.content {
+    min-height: 80vh;
 }
-
-.demo-card-square.mdl-card {
-    margin-top: 5%;
-    width: 320px;
-    min-height: 100%;
-}
-.demo-card-square > .mdl-card__title {
-    color: #fff;
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,84,253,1) 100%) bottom right 15% no-repeat #46B6AC;
-}
-.mdl-card__title.mdl-card--expand {
-    max-height: 200px !important;
-}
-.demo-list-action {
-    width: auto;
-}
-.body-content{
-    min-height: 80vh !important;
-}
-.row.content {
-    min-height: 80vh !important;
+.course-panel {
+    min-height: 60%;
 }
 #activeStar:hover {
     cursor: pointer;
@@ -173,5 +147,6 @@ export default {
 }
 #activeCourseTitle {
     margin-left: 25px;
+    position: absolute;
 }
 </style>
