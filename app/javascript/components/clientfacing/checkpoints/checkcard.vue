@@ -3,12 +3,9 @@
         <a v-if="check.type == 'checkpoint'" v-bind:href="'/checkpoints/' + check.id">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-10">
-                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}</h5>
+                    <div class="col">
+                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}<font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
                         <p class="card-text">{{ check.description }}</p>
-                    </div>
-                    <div class="col-md-2">
-                        <font-awesome-icon v-if="check.completed == true" :icon="['fas', 'check-square']" size="lg"/>
                     </div>
                 </div>
             </div>
@@ -16,13 +13,10 @@
         <a v-if="check.type == 'quiz'" v-bind:href="'/quizzes/' + checkpoint.id">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-10">
-                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }} - Quiz</h5>
+                    <div class="col">
+                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }} - Quiz <font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
                         <p v-if="check.score" class="card-text">Score: {{ check.score }}%</p>
                         <p class="card-text">{{ check.description }}</p>
-                    </div>
-                    <div class="col-md-2">
-                        <font-awesome-icon v-if="check.completed == true" :icon="['fas', 'check-square']" size="lg"/>
                     </div>
                 </div>
             </div>
@@ -46,7 +40,14 @@ export default {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     text-decoration: none !important;
+    height: 175px;
+    overflow-y: scroll;
 }
+
+.card::-webkit-scrollbar {
+  display: none;
+}
+
 .card:hover {
     background-color: lightgray;
     text-decoration: none !important;
@@ -54,5 +55,8 @@ export default {
 }
 .card-body {
     color: black !important;
+}
+p {
+    font-size: 12px;
 }
 </style>
