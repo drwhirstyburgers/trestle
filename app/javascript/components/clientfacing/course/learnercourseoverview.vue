@@ -111,7 +111,7 @@ export default {
     overflow: hidden;
 }
 #pb {
-    margin-bottom: 10px;
+    margin-bottom: 3px !important;
 }
 h6.card-title {
     margin-top: 0 !important;
