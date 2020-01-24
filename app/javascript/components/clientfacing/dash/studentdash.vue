@@ -43,6 +43,8 @@
                                 <hr>
                             </div>
                         </div>
+                        <div class="row">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,8 +61,9 @@ export default {
             allCourses: this.courses,
             allUserCourses: this.userCourses,
             learner: this.user,
-            activeCourse: null,
-            whereYouAre: 0
+            activeCourse: {},
+            whereYouAre: 0,
+            sections: [],
         }
     },
     props: ['courses', 'user', 'userCourses'],
@@ -75,6 +78,7 @@ export default {
         setActiveCourse(){
             const active = this.allUserCourses.filter(c => c.active_course == true)[0]
             this.activeCourse = this.allCourses.filter(c => c.id == active.course_id)[0]
+            this.getSectionsAndCheckpoints()
         },
         isItActive(course){
             let userCourse = this.allUserCourses.filter(uc => uc.course_id == course.id)
@@ -99,6 +103,19 @@ export default {
                     }
                 })
             }
+        },
+        getSectionsAndCheckpoints(){
+            $.ajax({
+                type: 'GET',
+                url: '/sections_and_checkpoints',
+                data: { course_id: this.activeCourse.id },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.sections = data
+                }
+            })
         },
         getWhereYouAre(){
             var user_id = this.allUserCourses.filter(c => c.active_course == true)[0].user_id
