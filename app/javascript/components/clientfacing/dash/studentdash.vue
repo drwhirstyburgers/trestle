@@ -26,7 +26,7 @@
                                 <h5 class="card-title">Courses</h5>
                                 <ul class="list-group list-group-flush" v-for="course in allCourses" v-bind:course="course" v-bind:key="course.key">
                                     <li class="list-group-item">
-                                        {{ course.title }}
+                                        <a v-bind:href="'/courses/' + course.id">{{ course.title }}</a>
                                         <i v-on:click="makeActiveCourse(course)" class="material-icons float-right" id="activeStar" v-bind:style="isItActive(course)">star</i>
                                         <div class="mdl-tooltip" data-mdl-for="activeStar">
                                             Make this your active course
