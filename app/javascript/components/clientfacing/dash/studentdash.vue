@@ -2,22 +2,22 @@
     <div>
         <div class="container-fluid">
             <div class="row header-row" id="cf-lcosd">
-                <div class="col-md-2">
+                <div class="col-md-1">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="align-bottom">
                         <h1 class="display-3 preview">{{ user.first_name }} {{ user.last_name }}</h1>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                 </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="row content">
                     <div class="col-lg-3">
                         <div class="card course-panel">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
             </div>
         </div>
     </div>

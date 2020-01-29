@@ -1,8 +1,8 @@
 <template>
     <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-1">
         </div>
-        <div class="col-lg-8" id="ti-box">
+        <div class="col-lg-10" id="ti-box">
             <div class="container-fluid">
                 <div class="row" id="row-contain">
                     <div class="col-md-9 align-bottom" id="titlebox">
@@ -25,6 +25,7 @@
                 <div class="row">
                     <checkcard v-for="checkpoint in checkpoints" v-bind:checkpoint="checkpoint" v-bind:key="checkpoint.key" class="col-md-4" />
                 </div>
+                <br>
             </div>
         </div>
     </div>

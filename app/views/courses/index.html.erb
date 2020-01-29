@@ -17,24 +17,24 @@
   <%= tag.div id:"courseIndex", data: { cs: @courses.to_json } %>
   <% elsif (user_signed_in? && current_user.student?) || (user_signed_in? && current_user.guest?) %>
     <div class="row" id="l-course-row">
-      <div class="col-lg-2">
+      <div class="col-lg-1">
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-10">
           <h1 class="display-4">Courses</h1>
           <p class="lead">Our current selection of courses here at Trestle</p>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-1">
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-2">
+      <div class="col-lg-1">
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-10">
         <% @courses.each do |course| %>
           <%= tag.div id:"scourseIndex", data: { acs: course.to_json, p: course.preview.to_json } %>
         <% end %>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-1">
       </div>
     </div>
   <% end %>

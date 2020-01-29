@@ -2,9 +2,9 @@
 <div>
     <div class="container-fluid content-row" id="cf-lco">
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-1">
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-10">
                 <div class="row" id="info-row">
                     <div class="col-md-8">
                         <h1 class="display-4">{{ course.title }}</h1>

@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-10">
-                <apexchart width="100%" type="donut" :options="options" :series="series"></apexchart>
+                <apexchart width="80%" type="donut" :options="options" :series="series"></apexchart>
             </div>
             <div class="col-md-2">
                 <div v-if="completed" class="row">
@@ -13,7 +13,7 @@
                 </div>
                 <div v-else class="row">
                     <div class="col" style="text-align:center;">
-                        <a v-bind:href="'/checkpoints/' + nextCheckpoint.id">
+                        <a v-bind:href="setLinkForCheckOrQuiz()">
                             <h4 style="margin-bottom:0;"><font-awesome-icon :icon="['fa', 'arrow-right']" size="lg" /></h4>
                             <h5 style="margin-top:0;">Next</h5>
                         </a>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="col" style="text-align:center;">
                         <h4 style="margin-bottom:0;">{{percentDone()}}%</h4>
-                        <h5 style="margin-top:0;">Percent Done</h5>
+                        <h5 style="margin-top:0;">Percent Complete</h5>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,13 @@ export default {
                 let lastComp = this.activeSection.content.filter(c => c.completed == true).map(i => i.order_number)
                 let max = Math.max.apply(Math, lastComp)
                 this.nextCheckpoint = this.activeSection.content.find(x => x.order_number == max + 1)
-                console.log(this.nextCheckpoint)
+            }
+        },
+        setLinkForCheckOrQuiz(){
+            if(this.nextCheckpoint.type == "quiz"){
+                return `/quizzes/${this.nextCheckpoint.id}`
+            } else {
+                return `/checkpoints/${this.nextCheckpoint.id}`
             }
         }
     }
