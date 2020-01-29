@@ -55,6 +55,7 @@
                                 </ul>
                             </div>
                         </div>
+                        <progressgraphs v-if="onReady" :section="activeSection" />
                     </div>
                 </div>
             </div>
@@ -65,6 +66,8 @@
 </template>
 
 <script>
+import progressgraphs from './progressgraphs'
+
 export default {
     data() {
         return {
@@ -74,16 +77,20 @@ export default {
             activeCourse: {},
             whereYouAre: 0,
             sections: [],
-            activeSection: {}
+            activeSection: {},
+            onReady: false
         }
     },
     props: ['courses', 'user', 'userCourses'],
     components: {
-
+        progressgraphs
     },
     mounted(){
-        this.setActiveCourse()
         this.getWhereYouAre()
+        this.$nextTick(() => this.setActiveCourse());
+    },
+    updated(){
+        //this.$nextTick(() => this.setActiveCourse());
     },
     methods: {
         setActiveSection(section){
@@ -134,6 +141,7 @@ export default {
                 success: (data) => {
                     this.sections = data
                     this.activeSection = data[0]
+                    this.onReady = true
                 }
             })
         },

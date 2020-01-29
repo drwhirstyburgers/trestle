@@ -23,6 +23,7 @@ import '../stylesheets/application'
 import 'bootstrap'
 import '@coreui/coreui'
 import 'material-design-lite'
+import VueApexCharts from 'vue-apexcharts'
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import courseform from '../components/courses/courseform'
@@ -56,6 +57,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
 Vue.use(VueScrollTo)
+Vue.component('apexchart', VueApexCharts)
 
 document.addEventListener('turbolinks:load', () => {
   var cf = document.getElementById('courseForm')

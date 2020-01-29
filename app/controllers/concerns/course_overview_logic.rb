@@ -14,6 +14,8 @@ module CourseOverviewLogic
                 else
                     temp[:completed] = false
                 end
+            else
+                temp[:completed] = false
             end
             temp[:type] = "checkpoint"
             temp[:id] = c.id
