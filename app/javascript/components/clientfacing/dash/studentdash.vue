@@ -55,6 +55,7 @@
                                 </ul>
                             </div>
                         </div>
+                        <br>
                         <progressgraphs v-if="onReady" :section="activeSection" />
                     </div>
                 </div>
