@@ -1,42 +1,32 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-10">
-                <apexchart width="80%" type="donut" :options="options" :series="series"></apexchart>
+            <div class="col" style="text-align:center;">
+                <h4 style="margin-bottom:0;">{{calculateGradeAverage()}}%</h4>
+                <h5 style="margin-top:0;">Score</h5>
             </div>
-            <div class="col-md-2">
-                <div v-if="completed" class="row">
-                    <div class="col" style="text-align:center;">
-                        <h4 style="margin-bottom:0;"><font-awesome-icon :icon="['fas', 'check-double']" size="lg" /></h4>
-                        <h5 style="margin-top:0;">Done</h5>
-                    </div>
-                </div>
-                <div v-else class="row">
-                    <div class="col" style="text-align:center;">
-                        <a v-bind:href="setLinkForCheckOrQuiz()">
-                            <h4 style="margin-bottom:0;"><font-awesome-icon :icon="['fa', 'arrow-right']" size="lg" /></h4>
-                            <h5 style="margin-top:0;">Next</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="text-align:center;">
-                        <h4 style="margin-bottom:0;">{{calculateGradeAverage()}}%</h4>
-                        <h5 style="margin-top:0;">Score</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="text-align:center;">
-                        <h4 style="margin-bottom:0;">{{checkpointsCompleted()}}</h4>
-                        <h5 style="margin-top:0;">Checkpoints Complete</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col" style="text-align:center;">
-                        <h4 style="margin-bottom:0;">{{percentDone()}}%</h4>
-                        <h5 style="margin-top:0;">Percent Complete</h5>
-                    </div>
-                </div>
+            <div class="col" style="text-align:center;">
+                <h4 style="margin-bottom:0;">{{checkpointsCompleted()}}</h4>
+                <h5 style="margin-top:0;">Checkpoints Complete</h5>
+            </div>
+            <div class="col" style="text-align:center;">
+                <h4 style="margin-bottom:0;">{{percentDone()}}%</h4>
+                <h5 style="margin-top:0;">Percent Complete</h5>
+            </div>
+            <div v-if="completed" class="col" style="text-align:center;">
+                <h4 style="margin-bottom:0;"><font-awesome-icon :icon="['fas', 'check-double']" size="lg" /></h4>
+                <h5 style="margin-top:0;">Done</h5>
+            </div>
+            <div v-else class="col" style="text-align:center;">
+                <a v-bind:href="setLinkForCheckOrQuiz()">
+                    <h4 id="nextIcon" style="margin-bottom:0;"><font-awesome-icon :icon="['fa', 'arrow-right']" size="lg" /></h4>
+                    <h5 style="margin-top:0;">Next Checkpoint</h5>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <apexchart width="75%" type="bar" :options="options" :series="series" class="d-flex justify-content-center"></apexchart>
             </div>
         </div>
     </div>
@@ -47,9 +37,14 @@ export default {
     data() {
         return {
             activeSection: this.section,
-            series: [],
+            series: [{
+                name: "Section Progress",
+                data: []
+            }],
             options: {
-                labels: ["Completed Quizzes", "All Quizzes", "Completed Checkpoints", "All Checkpoints",]
+                xaxis: {
+                    categories: ["Completed Quizzes", "All Quizzes", "Completed Checkpoints", "All Checkpoints",]
+                }
             },
             completed: false,
             nextCheckpoint: {}
@@ -64,7 +59,10 @@ export default {
     watch: {
         section: function(){
             this.activeSection = this.section
-            this.series = []
+            this.series = [{
+                name: "Section Progress",
+                data: []
+            }]
             this.setSeries()
             this.checkIfDone()
             this.findNextCheckPoint();
@@ -78,7 +76,7 @@ export default {
             this.pushToSeries(this.activeSection.content.filter(q => q.type == "checkpoint").length)
         },
         pushToSeries(value){
-            this.series.push(value)
+            this.series[0].data.push(value)
         },
         calculateGradeAverage(){
             let total = this.activeSection.content.filter(q => q.completed == true && q.type == "quiz").length
@@ -119,3 +117,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+#nextIcon {
+    margin-bottom: 20px;
+}
+</style>
