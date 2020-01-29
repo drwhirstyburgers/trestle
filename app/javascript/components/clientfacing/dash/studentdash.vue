@@ -184,7 +184,7 @@ export default {
     min-height: 80vh;
 }
 .course-panel {
-    min-height: 60%;
+    min-height: 85%;
 }
 #activeStar:hover {
     cursor: pointer;
