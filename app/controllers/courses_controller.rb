@@ -97,6 +97,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  def admin_add_course
+    user = User.find(params[:user_id])
+    if create_new_user_course(params[:id], user)
+      render json: 'ok'.to_json, status: :ok
+    end
+  end
+
   def activate_user_course
     user_course = UserCourse.find(params[:id])
     user_course.active_course = true
@@ -111,6 +118,10 @@ class CoursesController < ApplicationController
     render json: payload.to_json, status: :ok
   end
 
+  def get_courses
+    render json: Course.where(active: true).to_json, status: :ok
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

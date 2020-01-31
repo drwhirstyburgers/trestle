@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post '/activate', to: 'courses#toggle_activate_course'
   post '/add_course', to: 'courses#create_user_course'
   post '/uc_active', to: 'courses#activate_user_course'
+  post '/admin_add_course', to: 'courses#admin_add_course'
+  get '/get_courses', to: 'courses#get_courses'
   
   devise_for :users
   delete '/sign_out_user', to: 'dash#sign_out'

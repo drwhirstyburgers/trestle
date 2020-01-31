@@ -20,6 +20,7 @@ require("assets/loadscripts")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import '../stylesheets/application'
+import 'sweetalert2/dist/sweetalert2.min.css';
 import 'bootstrap'
 import '@coreui/coreui'
 import 'material-design-lite'
@@ -38,6 +39,8 @@ import quizzesshow from '../components/quizzes/quizzesshow'
 import completebutton from '../components/checkpoints/completebutton'
 import studentdash from '../components/clientfacing/dash/studentdash'
 import usersshow from '../components/users/usersshow'
+import vSelect from 'vue-select'
+import VueSweetalert2 from 'vue-sweetalert2';
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -59,7 +62,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
 Vue.use(VueScrollTo)
+Vue.use(VueSweetalert2);
 Vue.component('apexchart', VueApexCharts)
+Vue.component('v-select', vSelect)
 
 document.addEventListener('turbolinks:load', () => {
   var cf = document.getElementById('courseForm')

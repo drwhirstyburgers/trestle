@@ -81,7 +81,11 @@ export default {
         calculateGradeAverage(){
             let total = this.activeSection.content.filter(q => q.completed == true && q.type == "quiz").length
             let sumOfScores = this.activeSection.content.filter(q => q.completed == true && q.type == "quiz").map(x => x.score).reduce((a,b) => a + b, 0)
-            return Math.round(sumOfScores / total)
+            if(isNaN(Math.round(sumOfScores / total))){
+                return 0
+            } else {
+                return Math.round(sumOfScores / total)
+            }
         },
         checkpointsCompleted(){
             let completed = this.activeSection.content.filter(c => c.completed == true).length
@@ -108,6 +112,9 @@ export default {
             }
         },
         setLinkForCheckOrQuiz(){
+            if(this.nextCheckpoint == undefined){
+                this.nextCheckpoint = this.activeSection.content.find(c => c.order_number == 1)
+            }
             if(this.nextCheckpoint.type == "quiz"){
                 return `/quizzes/${this.nextCheckpoint.id}`
             } else {

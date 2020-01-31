@@ -23,6 +23,8 @@
     "vue-apexcharts": "^1.5.2",
     "vue-loader": "^15.7.1",
     "vue-scrollto": "^2.17.1",
+    "vue-select": "^3.4.0",
+    "vue-sweetalert2": "^3.0.1",
     "vue-template-compiler": "^2.6.10",
     "vue-trix": "^1.1.7",
     "vue-turbolinks": "^2.0.4"
