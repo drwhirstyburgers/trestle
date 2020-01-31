@@ -15,7 +15,7 @@
 class Section < ApplicationRecord
   has_many :checkpoints, dependent: :destroy
   has_many :quizzes, dependent: :destroy
-  belongs_to :course
+  belongs_to :course, dependent: :destroy
 
   has_many :user_sections
   has_many :users, through: :user_sections
