@@ -106,6 +106,7 @@ class CoursesController < ApplicationController
 
   def activate_user_course
     user_course = UserCourse.find(params[:id])
+    user_course.user.deactivate_all_user_courses
     user_course.active_course = true
     return_hash = { course: user_course.course, user_course: user_course }
     if user_course.save!

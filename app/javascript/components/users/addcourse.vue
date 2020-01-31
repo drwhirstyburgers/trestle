@@ -1,9 +1,10 @@
 <template>
     <div class="row">
-        <div class="col">
+        <div class="col-lg-11">
             <v-select v-model="selectedCourse" :options="courses.map(c => `${c.id} - ${c.title}`)" placeholder="Add a course to a user"></v-select>
-            <br>
-            <button v-on:click="addCourse" type="button" class="btn btn-outline-success float-right">Add</button>
+        </div>
+        <div class="col-lg-1">
+            <button v-on:click="addCourse" type="button" class="btn btn-outline-success">Add</button>
         </div>
     </div>
 </template>

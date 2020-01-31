@@ -46,4 +46,13 @@ class User < ApplicationRecord
   has_many :questions, through: :user_questions
 
   enum role: [:guest, :student, :admin]
+
+  def deactivate_all_user_courses
+    if user_courses.count > 0
+      user_courses.each do |uc|
+        uc.active_course = false
+        uc.save!
+      end
+    end
+  end
 end

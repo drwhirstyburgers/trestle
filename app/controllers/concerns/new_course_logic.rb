@@ -10,6 +10,7 @@ module NewCourseLogic
         end
         user.role = 1
         user.save!
+        user.deactivate_all_user_courses
         uc = user.user_courses.find_by(course: course)
         uc.active_course = true
         uc.save!
