@@ -99,8 +99,13 @@ class CoursesController < ApplicationController
 
   def admin_add_course
     user = User.find(params[:user_id])
-    if create_new_user_course(params[:id], user)
-      render json: 'ok'.to_json, status: :ok
+    course = Course.find(params[:id])
+    unless user.courses.include?(course)
+      if create_new_user_course(params[:id], user)
+        render json: 'ok'.to_json, status: :ok
+      end
+    else
+      render json: 'bad'.to_json, status: :bad_request
     end
   end
 

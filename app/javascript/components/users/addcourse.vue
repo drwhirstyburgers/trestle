@@ -42,6 +42,13 @@ export default {
                 data: { id: course_id, user_id: this.user.id },
                 error: (err) => {
                     console.log(err)
+                    this.$swal({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        showConfirmButton: true,
+                        footer: 'The user is likely already enrolled in this course!'
+                    })
                 },
                 success: (data) => {
                     this.$swal({
