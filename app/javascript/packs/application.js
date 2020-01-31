@@ -37,6 +37,7 @@ import choiceform from '../components/quizzes/choiceform'
 import quizzesshow from '../components/quizzes/quizzesshow'
 import completebutton from '../components/checkpoints/completebutton'
 import studentdash from '../components/clientfacing/dash/studentdash'
+import usersshow from '../components/users/usersshow'
 import { inflateRaw } from 'zlib'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
@@ -247,6 +248,22 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<studentdash :user="user" :courses="courses" :userCourses="userCourses" />',
       components: { studentdash }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('usersShow')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          user: JSON.parse(element.dataset.u),
+        }
+      },
+      template: '<usersshow :user="user"  />',
+      components: { usersshow }
     })
   }
 })
