@@ -55,4 +55,11 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def make_admin
+    self.deactivate_all_user_courses
+    self.role = 'admin'
+    self.save!
+  end
+
 end

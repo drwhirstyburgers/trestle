@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col">
-            <addcourse :user='learner' />
+            <addcourse v-on:madeadmin="userAdmin" :user='learner' />
             <coursedata :user='learner' />
         </div>
     </div>
@@ -20,7 +20,12 @@ export default {
     props: ['user'],
     components: {
         addcourse,
-        coursedata
+        coursedata,
+    },
+    methods: {
+        userAdmin(){
+            this.learner.role = 'admin'
+        }
     }
 }
 </script>

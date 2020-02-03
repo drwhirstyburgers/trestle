@@ -1,15 +1,18 @@
 <template>
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-9">
             <v-select v-model="selectedCourse" :options="courses.map(c => `${c.id} - ${c.title}`)" placeholder="Add a course to a user"></v-select>
         </div>
-        <div class="col-lg-1">
-            <button v-on:click="addCourse" type="button" class="btn btn-outline-success">Add</button>
+        <div class="col-lg-3">
+            <button v-on:click="addCourse" type="button" class="btn btn-outline-success">Add Course</button>
+            <makeadmin v-on:useradmin="passToParent" :user="user" />
         </div>
     </div>
 </template>
 
 <script>
+import makeadmin from './makeadmin'
+
 export default {
     data(){
         return{
@@ -18,6 +21,9 @@ export default {
         }
     },
     props: ['user'],
+    components: {
+        makeadmin
+    },
     mounted(){
         this.getCourses()
     },
@@ -41,7 +47,6 @@ export default {
                 url: '/admin_add_course',
                 data: { id: course_id, user_id: this.user.id },
                 error: (err) => {
-                    console.log(err)
                     this.$swal({
                         icon: 'error',
                         title: 'Oops...',
@@ -75,6 +80,9 @@ export default {
                     }
                 })
             }
+        },
+        passToParent(){
+            this.$emit('madeadmin')
         }
     }
 }
