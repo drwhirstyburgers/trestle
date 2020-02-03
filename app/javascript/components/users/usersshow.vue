@@ -3,7 +3,7 @@
         <div class="col">
             <addcourse :user='learner' />
             <hr>
-            <coursedata :user='learner' />
+            <coursedata v-if="learner.role != 'admin'" :user='learner' />
         </div>
     </div>
 </template>

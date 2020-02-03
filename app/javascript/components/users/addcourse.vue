@@ -56,11 +56,7 @@ export default {
                     })
                 },
                 success: (data) => {
-                    this.$swal({
-                        icon: 'success',
-                        title: 'The course has been added',
-                        showConfirmButton: true,
-                    })
+                    console.log(data)
                 }
             })
         },

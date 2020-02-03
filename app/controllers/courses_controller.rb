@@ -102,7 +102,7 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     unless user.courses.include?(course) || user.admin?
       if create_new_user_course(params[:id], user)
-        render json: 'ok'.to_json, status: :ok
+        redirect_to user
       end
     else
       render json: 'bad'.to_json, status: :bad_request
