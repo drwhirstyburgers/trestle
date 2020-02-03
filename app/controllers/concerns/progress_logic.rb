@@ -53,7 +53,7 @@ module ProgressLogic
     end
 
     def calculate_where_you_should_be(user, course)
-        start_date = user.user_courses.first.created_at
+        start_date = user.user_courses.find_by(course_id: course.id).created_at
         end_date = start_date.to_date + course.duration.months
         total_days = (end_date.to_date - start_date.to_date).to_i
         days_since_start = (Date.today - start_date.to_date).to_i

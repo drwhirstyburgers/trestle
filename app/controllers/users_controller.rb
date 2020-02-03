@@ -18,11 +18,23 @@ class UsersController < ApplicationController
         end
     end
 
+    def get_course_data
+        user = User.find(params[:id])
+        payload = {}
+        payload[:courses] = user.courses
+        payload[:user_courses] = user.user_courses
+        render json: payload.to_json, status: :ok 
+    end
+
     def make_admin
         if current_user.admin?
             user = User.find(params[:id])
-            user.make_admin
-            render json: user.role.to_json, status: :ok
+            unless user.admin?
+                user.make_admin
+                render json: user.role.to_json, status: :ok
+            else
+                render status: :bad_request
+            end
         else
             redirect_to dash_path
         end

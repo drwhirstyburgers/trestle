@@ -26,11 +26,13 @@ Rails.application.routes.draw do
   post '/admin_add_course', to: 'courses#admin_add_course'
   get '/get_courses', to: 'courses#get_courses'
   get '/get_course_progress', to: 'courses#get_course_progress'
+  get '/get_course_progress_users', to: 'courses#users_show_course_progress'
   
   devise_for :users
   resources :users
   delete '/sign_out_user', to: 'dash#sign_out'
   post '/make_admin', to: 'users#make_admin'
+  get '/get_user_show_data', to: 'users#get_course_data'
 
   resources :landing_pages
 

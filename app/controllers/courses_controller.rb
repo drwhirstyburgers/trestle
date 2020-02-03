@@ -124,6 +124,11 @@ class CoursesController < ApplicationController
     render json: payload.to_json, status: :ok
   end
 
+  def users_show_course_progress
+    user = User.find(params[:user_id])
+    render json:  return_course_progress(params[:id], user), status: :ok
+  end
+
   def get_courses
     render json: Course.where(active: true).to_json, status: :ok
   end

@@ -1,7 +1,8 @@
 <template>
     <div class="row">
         <div class="col">
-            <addcourse v-on:madeadmin="userAdmin" :user='learner' />
+            <addcourse :user='learner' />
+            <hr>
             <coursedata :user='learner' />
         </div>
     </div>
@@ -21,11 +22,6 @@ export default {
     components: {
         addcourse,
         coursedata,
-    },
-    methods: {
-        userAdmin(){
-            this.learner.role = 'admin'
-        }
     }
 }
 </script>
