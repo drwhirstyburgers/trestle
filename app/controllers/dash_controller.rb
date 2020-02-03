@@ -22,12 +22,19 @@ class DashController < ApplicationController
     end
 
     def get_s_and_c
+        if params[:user_id].present?
+            user = User.find(params[:user_id])
+        end
         course = Course.includes(:sections).find(params[:course_id])
         return_arr = []
         course.sections.each do |s|
             section = {}
             section[:section] = s
-            section[:content] = aggregate_checkpoints_and_quizzes(s.id, current_user)
+            unless user.present?
+                section[:content] = aggregate_checkpoints_and_quizzes(s.id, current_user)
+            else
+                section[:content] = aggregate_checkpoints_and_quizzes(s.id, user)
+            end
             return_arr << section
         end
         render json: return_arr.to_json, status: :ok
