@@ -26,10 +26,21 @@ export default {
                     },
                     success: (data) => {
                         this.markedComplete = true
+                        this.$swal({
+                            icon: 'success',
+                            title: 'Completed',
+                            text: 'Congratulations on finishing the checkpoint!',
+                            showConfirmButton: true,
+                        })
                     }
                 })
             } else {
-                alert("admins cannot perform this operation")
+                this.$swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Admin cannot perform this operation',
+                    showConfirmButton: true,
+                })
             }
         },
         checkIfComplete(){
