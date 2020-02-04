@@ -1,9 +1,12 @@
 <template>
-    <div class="row">
-        <div class="col">
-            <addcourse :user='learner' />
-            <hr>
-            <coursedata v-if="learner.role != 'admin'" :user='learner' />
+    <div>
+        <h3 class="card-title">{{ learner.first_name }} {{ learner.last_name }} || {{ learner.role }}</h3>
+        <div class="row">
+            <div class="col">
+                <addcourse :user='learner' />
+                <hr>
+                <coursedata v-if="learner.role != 'admin'" :user='learner' />
+            </div>
         </div>
     </div>
 </template>

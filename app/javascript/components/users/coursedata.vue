@@ -120,3 +120,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.progress-bar {
+    color: black;
+}
+</style>
