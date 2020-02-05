@@ -28,5 +28,5 @@ function stripePayments(){
 }
 
 document.addEventListener("turbolinks:load", () => {
-    stripePayments()
+    //stripePayments()
 });
