@@ -12,6 +12,11 @@ class PreviewsController < ApplicationController
   def show
     @course = @preview.course
     @sections = @course.sections
+    @stripe_btn_data = {
+      key: "#{ Rails.configuration.stripe[:publishable_key] }",
+      description: "#{@course.title}",
+      amount: @course.price * 100
+    }
   end
 
   # GET /previews/new

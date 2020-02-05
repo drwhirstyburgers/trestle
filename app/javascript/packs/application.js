@@ -12,6 +12,7 @@ require("trix")
 require("@rails/actiontext")
 require("assets/videoswitching")
 require("assets/loadscripts")
+require("assets/payments")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -39,6 +40,7 @@ import quizzesshow from '../components/quizzes/quizzesshow'
 import completebutton from '../components/checkpoints/completebutton'
 import studentdash from '../components/clientfacing/dash/studentdash'
 import usersshow from '../components/users/usersshow'
+import checkout from '../components/clientfacing/payments/checkout'
 import vSelect from 'vue-select'
 import VueSweetalert2 from 'vue-sweetalert2';
 import { inflateRaw } from 'zlib'
@@ -269,6 +271,24 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<usersshow :user="user"  />',
       components: { usersshow }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('checkout')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {
+          user: JSON.parse(element.dataset.u),
+          pk: JSON.parse(element.dataset.pk),
+          course: JSON.parse(element.dataset.c)
+        }
+      },
+      template: '<checkout :user="user" :course="course" :pk="pk"  />',
+      components: { checkout }
     })
   }
 })

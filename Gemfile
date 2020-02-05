@@ -24,11 +24,11 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem "aws-sdk-s3", require: false
-gem 'figaro'
 gem 'rack-cors'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'will_paginate', '~> 3.1.0'
 gem "font-awesome-rails"
+gem 'stripe'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -50,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
+  gem 'dotenv-rails'
 end
 
 group :test do
