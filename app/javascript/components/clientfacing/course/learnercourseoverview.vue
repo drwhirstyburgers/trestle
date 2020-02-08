@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="container-fluid content-row">
-        <div class="row" id="cf-lco">
+        <div class="row drop-shadow" id="cf-lco">
             <div class="col-lg-1">
             </div>
             <div class="col-lg-10">
@@ -73,6 +73,11 @@ export default {
                 }
             })
         }
+    },
+    isMobile(){
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            return true
+        }
     }
 }
 </script>
@@ -91,7 +96,10 @@ export default {
     margin: 0px 0px 0px 0px;
     overflow-x: hidden;
 }
-
+.drop-shadow{
+    box-shadow: 2px 2px 2px 2px #888888;
+    z-index:999;
+}
 #course-card {
     color: black;
     max-height: auto !important;
