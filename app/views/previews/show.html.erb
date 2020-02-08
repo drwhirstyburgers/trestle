@@ -1,22 +1,22 @@
-<div class="container-fluid content-row" id="cf-lcop">
-  <div class="row">
-    <div class="col-lg-2">
+<div class="container-fluid content-row">
+  <div class="row" id="cf-lcop">
+    <div class="col-lg-1">
     </div>
-    <div class="col-lg-8 align-bottom">
-        <h1 class="display-3 preview"><%= @course.title %></h1>
+    <div class="col-lg-10">
+      <div class="preview">
+        <h1 class="display-3 lpreview"><%= @course.title %></h1>
         <h4 class="lead lpreview"><%= @preview.blurb %></h4>
-        <h4 class="lead lpreview"><%= @course.users.count %> already enrolled!</h4>
+      </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
     </div>
   </div>
 </div>
 <br>
-<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <%= @preview.pitch %>
     </div>
     <div class="col-md-4">
@@ -29,6 +29,7 @@
               <p class="card-text">Price: $<%= @course.price %></p>
               <p class="card-text">Accreditation: <%= @course.accreditation %></p>
               <p class="card-text">Duration: <%= @course.duration %> months</p>
+              <p class="card-text"><%= @course.users.count %> already enrolled!</p>
             </div>
             <div class="col">
                 <% if current_user.courses.exclude?(@preview.course) %>
@@ -45,13 +46,13 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
     </div>
-    <div class="col-md-8 text-center">
+    <div class="col-md-10 text-center">
       <hr>
       <h2 class="display-4">There are <%= @sections.count %> sections in this course</h2>
       <% @sections.each do |s| %>
@@ -73,8 +74,9 @@
           <br>
           <hr>
       <% end %>
+      <br>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
     </div>
   </div>
 <div>
