@@ -181,6 +181,7 @@ export default {
     padding-bottom: 0 !important;
     margin-top: 10vh;
 }
+
 .content {
     min-height: 80vh;
 }

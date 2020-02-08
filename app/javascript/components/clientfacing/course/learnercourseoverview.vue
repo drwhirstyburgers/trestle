@@ -1,14 +1,16 @@
 <template>
 <div>
-    <div class="container-fluid content-row" id="cf-lco">
-        <div class="row">
+    <div class="container-fluid content-row">
+        <div class="row" id="cf-lco">
             <div class="col-lg-1">
             </div>
             <div class="col-lg-10">
                 <div class="row" id="info-row">
                     <div class="col-md-8">
-                        <h1 class="display-4">{{ course.title }}</h1>
-                        <p class="lead">{{ course.description }}</p>
+                        <div class="align-bottom">
+                            <h1 class="display-4 preview">{{ course.title }}</h1>
+                            <p class="lead">{{ course.description }}</p>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card h-100" id="course-card">
@@ -88,14 +90,6 @@ export default {
     padding: 0 !important;
     margin: 0px 0px 0px 0px;
     overflow-x: hidden;
-}
-
-.display-4 {
-    font-size: 4.5rem;
-    font-weight: 300;
-    line-height: 1.2;
-    padding-top: 50px;
-    margin-bottom: 5px !important;
 }
 
 #course-card {
