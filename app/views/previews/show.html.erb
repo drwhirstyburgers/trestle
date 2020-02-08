@@ -38,8 +38,6 @@
                     <h5>Enroll Now!</h5>
                     <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
                   <% end %>
-                <% else %>
-                  <h5>You are already enrolled!</h5>
                 <% end %>
             </div>
           </div>

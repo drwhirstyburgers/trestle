@@ -14,7 +14,7 @@
                     <div class="col-md-3 drop-shadow" id="infobox">
                         <div class="card section">
                             <div class="card-body">
-                                <h1 class="display-4">Checkpoints complete: {{ numberOfCompleted }}/{{ checkpoints.length }}</h1>
+                                <h1 class="display-4">{{ numberOfCompleted }}/{{ checkpoints.length }} checkpoints complete</h1>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" v-bind:style="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                         {{ progress }}%
