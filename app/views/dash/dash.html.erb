@@ -1,4 +1,5 @@
 <% if current_user.admin? %>
+    <%= tag.div id: 'adminDash' %>
 <% elsif current_user.guest? %>
 <% elsif current_user.student? %>
     <%= tag.div id: 'studentDash', data: { c: @courses.to_json, u: current_user.to_json, uc: @user_courses.to_json } %>

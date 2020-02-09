@@ -39,6 +39,7 @@ import choiceform from '../components/quizzes/choiceform'
 import quizzesshow from '../components/quizzes/quizzesshow'
 import completebutton from '../components/checkpoints/completebutton'
 import studentdash from '../components/clientfacing/dash/studentdash'
+import admindash from '../components/dash/admindash'
 import usersshow from '../components/users/usersshow'
 import checkout from '../components/clientfacing/payments/checkout'
 import vSelect from 'vue-select'
@@ -289,6 +290,20 @@ document.addEventListener('turbolinks:load', () => {
       },
       template: '<checkout :user="user" :course="course" :pk="pk"  />',
       components: { checkout }
+    })
+  }
+})
+
+document.addEventListener('turbolinks:load', () => {
+  var element = document.getElementById('adminDash')
+  if (element != null){
+    const app = new Vue({
+      el: element,
+      data: () => {
+        return {}
+      },
+      template: '<admindash />',
+      components: { admindash }
     })
   }
 })

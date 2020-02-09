@@ -40,4 +40,9 @@ class DashController < ApplicationController
         render json: return_arr.to_json, status: :ok
     end
 
+    def get_new_students
+        today = Date.today.beginning_of_month
+        render json: User.where(role: 'student').where('created_at >= ?', today).count.to_json, status: :ok
+    end
+
 end
