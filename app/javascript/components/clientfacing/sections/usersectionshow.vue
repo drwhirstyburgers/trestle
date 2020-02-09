@@ -114,9 +114,6 @@ export default {
     color: black;
     margin-bottom: 5px !important;
 }
-.lead {
-    font-size: 1rem;
-}
 #titlebox {
     position: relative;
 }

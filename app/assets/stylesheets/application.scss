@@ -72,5 +72,24 @@ a {
     position: relative;
 }
 
+.blue-header {
+    position: absolute;
+    bottom: 0;
+}
 
+.blue-header .index {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    overflow: hidden;
+}
+
+.blue-header-parent {
+    position: relative;
+}
+
+#info-row {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    overflow: hidden;
+}
 

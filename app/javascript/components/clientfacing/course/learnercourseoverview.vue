@@ -1,15 +1,14 @@
 <template>
 <div>
     <div class="container-fluid content-row">
-        <div class="row drop-shadow" id="cf-lco">
+        <div class="row" id="cf-lco">
             <div class="col-lg-1">
             </div>
             <div class="col-lg-10">
                 <div class="row" id="info-row">
-                    <div class="col-md-8">
-                        <div class="align-bottom">
-                            <h1 class="display-4 preview">{{ course.title }}</h1>
-                            <p class="lead">{{ course.description }}</p>
+                    <div class="col-md-8 blue-header-parent">
+                        <div class="blue-header">
+                            <h1 class="display-3">{{ course.title }}</h1>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -106,11 +105,6 @@ export default {
 }
 #ct {
     margin-bottom: 2px;
-}
-#info-row {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    overflow: hidden;
 }
 #pb {
     margin-bottom: 3px !important;
