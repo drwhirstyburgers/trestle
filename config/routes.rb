@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get '/where_you_are', to: 'dash#where_you_are'
   get '/sections_and_checkpoints', to: 'dash#get_s_and_c'
   get '/new_students', to: 'dash#get_new_students'
+  get '/get_new_guests', to: 'dash#get_new_guests'
 
   root to: 'landing_pages#index'
 end
