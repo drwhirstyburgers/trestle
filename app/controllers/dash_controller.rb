@@ -49,4 +49,10 @@ class DashController < ApplicationController
         today = Date.today.beginning_of_month
         render json: User.where(role: 'guest').where('created_at >= ?', today).count.to_json, status: :ok
     end
+
+    def monthly_revenue
+        today = Date.today.beginning_of_month
+        new_users = User.includes(:courses).where(role: 'student').where('created_at >= ?', today)
+        render json: new_users.map { |u| u.courses.map { |c| c.price } }.flatten(1).sum.to_json, status: :ok
+    end
 end

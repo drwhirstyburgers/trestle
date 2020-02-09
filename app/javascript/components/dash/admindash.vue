@@ -6,6 +6,8 @@
                 <newstudents />
                 <br>
                 <newguests />
+                <br>
+                <newrevenue />
             </div>
             <div class="col-md-10">
             </div>
@@ -16,6 +18,7 @@
 <script>
 import newstudents from './admindashcomponents/newstudents'
 import newguests from './admindashcomponents/newguests'
+import newrevenue from './admindashcomponents/newrevenue'
 
 export default {
     data() {
@@ -25,7 +28,8 @@ export default {
     },
     components: {
         newstudents,
-        newguests
+        newguests,
+        newrevenue
     },
     methods: {
 

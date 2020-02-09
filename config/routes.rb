@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get '/sections_and_checkpoints', to: 'dash#get_s_and_c'
   get '/new_students', to: 'dash#get_new_students'
   get '/get_new_guests', to: 'dash#get_new_guests'
+  get '/get_monthly_revenue', to: 'dash#monthly_revenue'
 
   root to: 'landing_pages#index'
 end
