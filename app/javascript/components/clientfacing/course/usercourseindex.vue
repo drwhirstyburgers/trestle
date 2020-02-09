@@ -26,7 +26,7 @@
                             <ol v-for="section in sects" v-bind:section="section" v-bind:key="section.key">
                                 <li>
                                     <h5>
-                                        {{section.name}}
+                                        {{section.order_number}}. {{section.name}}
                                     </h5>
                                     <p>
                                         {{section.description}}
@@ -78,5 +78,9 @@ export default {
     font-size:3rem;
     font-weight: 300;
     line-height: 1.2;
+}
+
+ol li{
+  list-style-type: none;
 }
 </style>
