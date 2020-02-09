@@ -1,4 +1,5 @@
 <template>
+    <div class="col-md-4 col-md-4 d-flex align-items-stretch">
         <div class="card">
             <a v-bind:href="'/courses/'+ course.id">
                 <img class="card-img-top" src="https://video-images.vice.com/articles/5bfda70e1fc55d0007818422/lede/1543350846130-shutterstock_514414240.jpeg?crop=1xw:0.8427xh;0xw,0.0514xh&resize=700:*" alt="Card image cap">
@@ -21,6 +22,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
