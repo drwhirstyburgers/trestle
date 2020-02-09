@@ -4,8 +4,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }}<font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
-                        <p class="card-text">{{ check.description }}</p>
+                        <h5 class="card-title"><font-awesome-icon :icon="['fas', 'cannabis']" size="md" /> {{ check.title }}<font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
+                        <p class="card-text"><font-awesome-icon :icon="['fa', 'book-reader']" size="lg" /> {{ check.description }}</p>
                     </div>
                 </div>
             </div>
@@ -14,9 +14,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">{{ check.order_number }}. {{ check.title }} - Quiz <font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
+                        <h5 class="card-title"><font-awesome-icon :icon="['fas', 'cannabis']" size="md" /> {{ check.title }} <font-awesome-icon class="float-right" v-if="check.completed == true" :icon="['fas', 'check-square']" size="md"/></h5>
                         <p v-if="check.score" class="card-text">Score: {{ check.score }}%</p>
-                        <p class="card-text">{{ check.description }}</p>
+                        <p class="card-text"><font-awesome-icon :icon="['fa', 'question-circle']" size="lg" /> {{ check.description }}</p>
                     </div>
                 </div>
             </div>

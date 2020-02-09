@@ -52,6 +52,8 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { faCannabis } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBookReader } from '@fortawesome/free-solid-svg-icons'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons'
@@ -60,7 +62,7 @@ import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueScrollTo from 'vue-scrollto'
 
-library.add(faCheckSquare, faTimes, faEdit, faHome, faSignOutAlt, faBook, faUserEdit, faCannabis, faCheckDouble, faTachometerAlt, faArrowRight)
+library.add(faBookReader, faQuestionCircle, faCheckSquare, faTimes, faEdit, faHome, faSignOutAlt, faBook, faUserEdit, faCannabis, faCheckDouble, faTachometerAlt, faArrowRight)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(TurbolinksAdapter)
