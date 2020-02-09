@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/new_students', to: 'dash#get_new_students'
   get '/get_new_guests', to: 'dash#get_new_guests'
   get '/get_monthly_revenue', to: 'dash#monthly_revenue'
+  get '/get_admin_dash_graph_data', to: 'dash#get_graph_data'
 
   root to: 'landing_pages#index'
 end

@@ -300,9 +300,11 @@ document.addEventListener('turbolinks:load', () => {
     const app = new Vue({
       el: element,
       data: () => {
-        return {}
+        return {
+          graphs: JSON.parse(element.dataset.gd)
+        }
       },
-      template: '<admindash />',
+      template: '<admindash :graphs="graphs" />',
       components: { admindash }
     })
   }

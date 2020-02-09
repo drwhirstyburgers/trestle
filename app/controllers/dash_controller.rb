@@ -8,6 +8,8 @@ class DashController < ApplicationController
         if current_user.student?
             @courses = current_user.courses
             @user_courses = current_user.user_courses
+        elsif current_user.admin?
+            @graph_data = get_graph_data
         end
     end
 
@@ -55,4 +57,21 @@ class DashController < ApplicationController
         new_users = User.includes(:courses).where(role: 'student').where('created_at >= ?', today)
         render json: new_users.map { |u| u.courses.map { |c| c.price } }.flatten(1).sum.to_json, status: :ok
     end
+
+    def get_graph_data
+        return_hash = {}
+        return_hash[:students] = []
+        return_hash[:guests] = []
+        return_hash[:months] = []
+        end_date = Date.today.end_of_month
+        start_date = Date.today - 6.months
+        (start_date..end_date).select { |d| d.day == 1 }.each do |d|
+            end_of_month = d.end_of_month
+            return_hash[:students] << User.where(role: 'student').where('created_at >= ?', d).where('created_at <= ?', end_of_month).count
+            return_hash[:guests] << User.where(role: 'guest').where('created_at >= ?', d).where('created_at <= ?', end_of_month).count
+            return_hash[:months] << d.strftime("%B")
+        end
+        return return_hash
+    end
+
 end
