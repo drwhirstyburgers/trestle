@@ -38,4 +38,7 @@ export default {
 .container-fluid {
     margin-top: 40px;
 }
+.col-md-4 {
+    max-width: 100%;
+}
 </style>
