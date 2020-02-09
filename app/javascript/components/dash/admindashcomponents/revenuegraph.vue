@@ -42,7 +42,7 @@ export default {
               curve: 'smooth'
             },
             title: {
-              text: 'Users over time',
+              text: 'New Users Month Over Month',
               align: 'left'
             },
             grid: {
@@ -66,7 +66,7 @@ export default {
                 text: 'New Users'
               },
               min: 0,
-              max: 20
+              max: Math.max(this.graphs.students) >= Math.max(this.graphs.guests) ? Math.max(this.graphs.students) + 5 : Math.max(this.graphs.guests) + 5
             },
             legend: {
               position: 'top',
@@ -99,7 +99,7 @@ export default {
             })
         },
         setMinMax(){
-
+          
         }
     }
 }
