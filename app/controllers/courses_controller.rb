@@ -25,11 +25,20 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    if current_user.admin?
+      @course = Course.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /courses/1/edit
   def edit
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /courses

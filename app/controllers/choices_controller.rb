@@ -6,7 +6,12 @@ class ChoicesController < ApplicationController
   # GET /choices
   # GET /choices.json
   def index
-    @choices = Choice.all
+    if current_user.admin?
+      @choices = Choice.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /choices/1
@@ -16,12 +21,21 @@ class ChoicesController < ApplicationController
 
   # GET /choices/new
   def new
-    @choice = Choice.new
-    @questions = Question.all
+    if current_user.admin?
+      @choice = Choice.new
+      @questions = Question.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /choices/1/edit
   def edit
+    if current_user.student? || current_user.guest
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /choices

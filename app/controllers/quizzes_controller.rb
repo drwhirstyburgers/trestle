@@ -8,8 +8,13 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @q = Quiz.ransack(params[:q])
-    @quizzes = @q.result.includes(:questions, :section).paginate(page: params[:page])
+    if current_user.admin?
+      @q = Quiz.ransack(params[:q])
+      @quizzes = @q.result.includes(:questions, :section).paginate(page: params[:page])
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /quizzes/1
@@ -24,11 +29,20 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/new
   def new
-    @quiz = Quiz.new
+    if current_user.admin?
+      @quiz = Quiz.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /quizzes/1/edit
   def edit
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /quizzes

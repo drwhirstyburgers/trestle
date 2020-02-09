@@ -7,8 +7,13 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints
   # GET /checkpoints.json
   def index
-    @q = Checkpoint.ransack(params[:q])
-    @checkpoints = @q.result.includes(:section).paginate(page: params[:page])
+    if current_user.admin?
+      @q = Checkpoint.ransack(params[:q])
+      @checkpoints = @q.result.includes(:section).paginate(page: params[:page])
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /checkpoints/1
@@ -31,6 +36,7 @@ class CheckpointsController < ApplicationController
     course = checkpoint.section.course
     next_number = checkpoint.order_number + 1
     succeeding = checkpoints.select { |c| c[:order_number] == next_number }.first
+    puts succeeding
     if succeeding.blank?
       redirect_to course
     elsif succeeding[:type] == 'quiz'
@@ -38,20 +44,30 @@ class CheckpointsController < ApplicationController
       redirect_to quiz
     else
       next_checkpoint = Checkpoint.find(succeeding[:id])
-      redirect_to checkpoints_path(next_checkpoint)
+      redirect_to checkpoint_path(next_checkpoint)
     end
   end
 
 
   # GET /checkpoints/new
   def new
-    breadcrumb "New Checkpoint", new_checkpoint_path
-    @checkpoint = Checkpoint.new
+    if current_user.admin?
+      breadcrumb "New Checkpoint", new_checkpoint_path
+      @checkpoint = Checkpoint.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /checkpoints/1/edit
   def edit
-    breadcrumb @checkpoint.title + " / Edit", edit_checkpoint_path(@checkpoint)
+    if current_user.admin?
+      breadcrumb @checkpoint.title + " / Edit", edit_checkpoint_path(@checkpoint)
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /checkpoints

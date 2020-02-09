@@ -7,7 +7,12 @@ class PreviewsController < ApplicationController
   # GET /previews
   # GET /previews.json
   def index
-    @previews = Preview.all
+    if current_user.admin?
+      @previews = Preview.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /previews/1
@@ -24,11 +29,20 @@ class PreviewsController < ApplicationController
 
   # GET /previews/new
   def new
-    @preview = Preview.new
+    if current_user.admin?
+      @preview = Preview.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /previews/1/edit
   def edit
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /previews

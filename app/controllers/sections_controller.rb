@@ -8,27 +8,46 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @q = Section.ransack(params[:q])
-    @sections = @q.result.includes(:course).paginate(page: params[:page])
+    if current_user.admin?
+      @q = Section.ransack(params[:q])
+      @sections = @q.result.includes(:course).paginate(page: params[:page])
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /sections/1
   # GET /sections/1.json
   def show
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /sections/new
   def new
-    breadcrumb "New Section", new_section_path
-    @section = Section.new
-    @courses = Course.all
+    if current_user.admin?
+      breadcrumb "New Section", new_section_path
+      @section = Section.new
+      @courses = Course.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /sections/1/edit
   def edit
-    breadcrumb @section.course.title, course_path(@section.course)
-    breadcrumb @section.name + " / Edit", edit_section_path(@section)
-    @courses = Course.all
+    if current_user.admin?
+      breadcrumb @section.course.title, course_path(@section.course)
+      breadcrumb @section.name + " / Edit", edit_section_path(@section)
+      @courses = Course.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /sections

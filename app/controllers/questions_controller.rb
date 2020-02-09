@@ -4,21 +4,39 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    if current_user.admin?
+      @questions = Question.all
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /questions/new
   def new
-    @question = Question.new
+    if current_user.admin?
+      @question = Question.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /questions/1/edit
   def edit
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /questions

@@ -21,11 +21,20 @@ class LandingPagesController < ApplicationController
 
   # GET /landing_pages/new
   def new
-    @landing_page = LandingPage.new
+    if current_user.admin?
+      @landing_page = LandingPage.new
+    else
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # GET /landing_pages/1/edit
   def edit
+    if current_user.guest? || current_user.student?
+      redirect_to root_path
+      flash[:notice] = "Whoops! You're not supposed to be there!"
+    end
   end
 
   # POST /landing_pages
