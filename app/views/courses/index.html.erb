@@ -32,7 +32,7 @@
       </div>
       <div class="col-lg-10">
         <% @courses.each do |course| %>
-          <%= tag.div id:"scourseIndex", data: { acs: course.to_json, p: course.preview.to_json } %>
+          <%= tag.div id:"scourseIndex", data: { acs: course.to_json, p: course.preview.to_json, i: rails_blob_path(course.preview.image).to_json, s: course.sections } %>
         <% end %>
       </div>
       <div class="col-lg-1">

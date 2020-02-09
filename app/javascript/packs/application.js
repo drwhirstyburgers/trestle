@@ -161,10 +161,12 @@ document.addEventListener('turbolinks:load', () => {
         data: () => {
           return {
             courses: JSON.parse(c.dataset.acs),
-            preview: JSON.parse(c.dataset.p)
+            preview: JSON.parse(c.dataset.p),
+            img: JSON.parse(c.dataset.i),
+            sects: JSON.parse(c.dataset.s)
           }
         },
-        template: '<usercourseindex :tcourse="courses" :preview="preview" />',
+        template: '<usercourseindex :tcourse="courses" :preview="preview" :img="img" :sects="sects" />',
         components: { usercourseindex }
       })
     })

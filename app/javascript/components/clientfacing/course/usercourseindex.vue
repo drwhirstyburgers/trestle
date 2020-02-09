@@ -1,21 +1,40 @@
 <template>
-    <div class="card mb-3" id="indexcard">
-        <div class="row no-gutters">
-            <div class="col-md-3">
-                <img src="https://video-images.vice.com/articles/5bfda70e1fc55d0007818422/lede/1543350846130-shutterstock_514414240.jpeg?crop=1xw:0.8427xh;0xw,0.0514xh&resize=700:*" class="card-img" alt="...">
-            </div>
-            <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img v-bind:src="img" class="card-img-top">
                 <div class="card-body">
-                    <div class="row">
-                        <a v-bind:href='"/previews/" + preview.id'>
-                            <div class="col-md-12">
-                                <h4 class="card-title">{{ course.title }}</h4>
-                                <p class="card-text" id="indexcardtext">
-                                    {{ course.description }} <br />
-                                </p>
-                                <h6>Accreditation: {{ course.accreditation }} | Duration: {{ course.duration }} months | Price: ${{ course.price }}</h6>
-                            </div>
-                        </a>
+                    <p class="card-text">{{ preview.blurb }}</p>
+                    <a v-bind:href="'/previews/' + preview.id" class="btn btn-primary">More Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title display-4"><font-awesome-icon :icon="['fas', 'cannabis']" size="md" /> {{ course.title }}</h2>
+                    <p class="lead">{{ course.description }}</p>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-md-1'>
+                            <h3><font-awesome-icon :icon="['fas', 'book']" size="lg" /></h3>
+                        </div>
+                        <div class="col-md-11">
+                            <h4 class="card-title">
+                                Sections
+                            </h4>
+                            <ol v-for="section in sects" v-bind:section="section" v-bind:key="section.key">
+                                <li>
+                                    <h5>
+                                        {{section.name}}
+                                    </h5>
+                                    <p>
+                                        {{section.description}}
+                                    </p>
+                                </li>
+                                <hr>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,7 +49,7 @@ export default {
             course: this.tcourse
         }
     },
-    props: ['tcourse', 'preview'],
+    props: ['tcourse', 'preview', 'img', 'sects'],
     methods: {
         addCourse(id){
             var id = { course_id: id }
@@ -51,13 +70,13 @@ export default {
 </script>
 
 <style scoped>
-#indexcard {
-    margin-top: 30px;
+.row {
+    margin-top: 3%;
 }
-#indexcardtext {
-    font-size: 15px
-}
-img {
-    height: 100%;
+
+.display-4 {
+    font-size:3rem;
+    font-weight: 300;
+    line-height: 1.2;
 }
 </style>
