@@ -1,10 +1,12 @@
 class BugReportsController < ApplicationController
   before_action :set_bug_report, only: [:show, :edit, :update, :destroy]
+  before_action :is_it_admin
 
   # GET /bug_reports
   # GET /bug_reports.json
   def index
-    @bug_reports = BugReport.all
+    @q = BugReport.ransack(params[:q])
+    @bug_reports = @q.result.paginate(page: params[:page])
   end
 
   # GET /bug_reports/1
@@ -76,5 +78,11 @@ class BugReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bug_report_params
       params.require(:bug_report).permit(:priority, :status, :path, :body, :subject)
+    end
+
+    def is_it_admin
+      if current_user.student? || current_user.guest?
+        redirect_to root_path
+      end
     end
 end

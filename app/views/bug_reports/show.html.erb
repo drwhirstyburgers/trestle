@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <br>
+      <div class="card">
+        <div class="card-body">
+          <p>
+            <strong>Subject:</strong>
+            <%= @bug_report.subject %>
+          </p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @bug_report.priority %>
-</p>
+          <p>
+            <strong>Priority:</strong>
+            <%= @bug_report.priority %>
+          </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @bug_report.status %>
-</p>
+          <p>
+            <strong>Status:</strong>
+            <%= @bug_report.status %>
+          </p>
 
-<p>
-  <strong>Path:</strong>
-  <%= @bug_report.path %>
-</p>
+          <p>
+            <strong>Path:</strong>
+            <%= @bug_report.path %>
+          </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @bug_report.body %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @bug_report.subject %>
-</p>
-
-<%= link_to 'Edit', edit_bug_report_path(@bug_report) %> |
-<%= link_to 'Back', bug_reports_path %>
+          <p>
+            <strong>Body:</strong>
+            <%= @bug_report.body %>
+          </p>
+          <%= link_to 'Edit', edit_bug_report_path(@bug_report) %> |
+          <%= link_to 'Back', bug_reports_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
