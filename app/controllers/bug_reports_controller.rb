@@ -12,6 +12,7 @@ class BugReportsController < ApplicationController
   # GET /bug_reports/1
   # GET /bug_reports/1.json
   def show
+    authorize @bug_report
   end
 
   # GET /bug_reports/new

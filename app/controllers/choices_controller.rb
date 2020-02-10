@@ -17,6 +17,7 @@ class ChoicesController < ApplicationController
   # GET /choices/1
   # GET /choices/1.json
   def show
+    authorize @choice
   end
 
   # GET /choices/new
@@ -32,6 +33,7 @@ class ChoicesController < ApplicationController
 
   # GET /choices/1/edit
   def edit
+    authorize @choice
     if current_user.student? || current_user.guest
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -42,7 +44,7 @@ class ChoicesController < ApplicationController
   # POST /choices.json
   def create
     @choice = Choice.new(choice_params)
-
+    authorize @choice
     respond_to do |format|
       if @choice.save
         format.html { redirect_to @choice, notice: 'Choice was successfully created.' }
@@ -67,6 +69,7 @@ class ChoicesController < ApplicationController
   # PATCH/PUT /choices/1
   # PATCH/PUT /choices/1.json
   def update
+    authorize @choice
     respond_to do |format|
       if @choice.update(choice_params)
         format.html { redirect_to @choice, notice: 'Choice was successfully updated.' }
@@ -81,6 +84,7 @@ class ChoicesController < ApplicationController
   # DELETE /choices/1
   # DELETE /choices/1.json
   def destroy
+    authorize @choice
     @choice.destroy
     respond_to do |format|
       format.html { redirect_to choices_url, notice: 'Choice was successfully destroyed.' }

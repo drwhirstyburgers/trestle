@@ -20,6 +20,7 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints/1.json
   def show
     @checkpoint = Checkpoint.includes(section: :course).find(params[:id])
+    authorize @checkpoint
     @course = @checkpoint.section.course
     breadcrumb @course.title, course_path(@course)
     breadcrumb @checkpoint.section.name, course_path(@course)
@@ -62,6 +63,7 @@ class CheckpointsController < ApplicationController
 
   # GET /checkpoints/1/edit
   def edit
+    authorize @checkpoint
     if current_user.admin?
       breadcrumb @checkpoint.title + " / Edit", edit_checkpoint_path(@checkpoint)
     else
@@ -74,7 +76,7 @@ class CheckpointsController < ApplicationController
   # POST /checkpoints.json
   def create
     @checkpoint = Checkpoint.new(checkpoint_params)
-
+    authorize @checkpoint
     respond_to do |format|
       if @checkpoint.save
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
@@ -89,6 +91,7 @@ class CheckpointsController < ApplicationController
   # PATCH/PUT /checkpoints/1
   # PATCH/PUT /checkpoints/1.json
   def update
+    authorize @checkpoint
     respond_to do |format|
       if @checkpoint.update(checkpoint_params)
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully updated.' }
@@ -103,6 +106,7 @@ class CheckpointsController < ApplicationController
   # DELETE /checkpoints/1
   # DELETE /checkpoints/1.json
   def destroy
+    authorize @checkpoint
     @checkpoint.destroy
     respond_to do |format|
       format.html { redirect_to checkpoints_url, notice: 'Checkpoint was successfully destroyed.' }

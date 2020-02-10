@@ -1,9 +1,9 @@
-class BugReportPolicy < ApplicationPolicy
-    attr_reader :user, :bug_report
+class CheckpointsPolicy < ApplicationPolicy
+    attr_reader :user, :checkpoint
 
     def initialize(user, checkpoint)
         @user = user
-        @bug_report = bug_report
+        @checkpoint = checkpoint
     end
 
     def show?
