@@ -1,0 +1,15 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+   </head>
+   <body>
+     <h1>New bug reported by "<%= @user.first_name %>"</h1>
+     <p>Subject: <%= @bug.subject %></p>
+     <p>Priority: <%= @bug.priority %></p>
+        <%= @bug.body %>
+     <p>
+       <%= link_to "View Bug on site", bug_report_url(@bug,anchor: "bug-#{@bug.id}") %>
+     </p>
+   </body>
+ </html>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @bug_report.priority %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bug_report.status %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @bug_report.path %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @bug_report.body %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @bug_report.subject %>
+</p>
+
+<%= link_to 'Edit', edit_bug_report_path(@bug_report) %> |
+<%= link_to 'Back', bug_reports_path %>

@@ -1,0 +1,49 @@
+<div class="card" id="show-form-card">
+  <div class="card-header" style='background-color: #3b3a39; color: whitesmoke;'>
+    Bug Report
+  </div>
+  <div class="card-body">
+    <%= form_with(model: bug_report, local: true) do |form| %>
+      <% if bug_report.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(bug_report.errors.count, "error") %> prohibited this bug_report from being saved:</h2>
+
+          <ul>
+            <% bug_report.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :priority %>
+        <%= form.select :priority, options_for_select(BugReport.priorities), input_html: { id: "drop" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :status %>
+        <%= form.select :status, options_for_select(BugReport.statuses), input_html: { id: "drop" } %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :path %>
+        <%= form.text_field :path, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :subject %>
+        <%= form.text_field :subject, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :body %>
+        <%= form.rich_text_area :body %>
+      </div>
+      
+      <div class="actions">
+        <%= form.button :submit, class: "btn btn-outline-success pull-right"%>
+      </div>
+    <% end %>
+  </div>
+</div>

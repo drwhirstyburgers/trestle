@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bug_reports
   resources :previews
   post '/charge_course', to: 'previews#create_charge'
   resources :choices
