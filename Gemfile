@@ -29,6 +29,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'will_paginate', '~> 3.1.0'
 gem "font-awesome-rails"
 gem 'stripe'
+gem 'pundit'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

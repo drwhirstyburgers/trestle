@@ -21,6 +21,7 @@ class BugReportsController < ApplicationController
 
   # GET /bug_reports/1/edit
   def edit
+    authorize @bug_report
   end
 
   # POST /bug_reports
@@ -32,6 +33,7 @@ class BugReportsController < ApplicationController
     @bug_report.path = params[:bug_report][:path]
     @bug_report.subject = params[:bug_report][:subject]
     @bug_report.body = params[:bug_report][:body]
+    authorize @bug_report
 
     respond_to do |format|
       if @bug_report.save
@@ -48,6 +50,7 @@ class BugReportsController < ApplicationController
   # PATCH/PUT /bug_reports/1
   # PATCH/PUT /bug_reports/1.json
   def update
+    authorize @bug_report
     respond_to do |format|
       if @bug_report.update(bug_report_params)
         format.html { redirect_to @bug_report, notice: 'Bug report was successfully updated.' }
@@ -62,6 +65,7 @@ class BugReportsController < ApplicationController
   # DELETE /bug_reports/1
   # DELETE /bug_reports/1.json
   def destroy
+    authorize @bug_report
     @bug_report.destroy
     respond_to do |format|
       format.html { redirect_to bug_reports_url, notice: 'Bug report was successfully destroyed.' }
