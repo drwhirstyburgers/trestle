@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="bar">
         <a class="navbar-brand" href="/">
-            Trestle
+            <img src="https://trestleapp.s3.us-east-2.amazonaws.com/Trestle+LOGO.png" width="30" height="30" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
