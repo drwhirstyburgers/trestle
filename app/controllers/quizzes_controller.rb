@@ -100,8 +100,10 @@ class QuizzesController < ApplicationController
     questions = quiz.questions
     temp = UserQuestion.where(question: questions, user: user)
     user_questions =  temp.map { |x| x if x.created_at == temp.select { |y| y.question ==  x.question }.map(&:created_at).max }.compact
-    return_hash = format_user_quiz(user_questions, user_quiz)
-    render json: return_hash.to_json, status: :ok
+    if user_quiz.present?
+      return_hash = format_user_quiz(user_questions, user_quiz)
+      render json: return_hash.to_json, status: :ok
+    end
   end
 
   private
