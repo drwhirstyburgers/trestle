@@ -11,7 +11,7 @@
                     <a href='/checkpoints/new'><button class="dropdown-item" type="button">New Section Checkpoint</button></a>
                     <a href='/quizzes/new'><button class="dropdown-item" type="button">New Section Quiz</button></a>
                     <a v-bind:href="'/sections/'+ sec.id +'/edit/'"><button class="dropdown-item" type="button">Edit Section</button></a>
-                    <button v-on:click="sortCheckpoints" class="dropdown-item" type="button">Sort section checkpoints(if something is missing this will likely fix it)</button></a>
+                    <button v-on:click="sortCheckpoints" class="dropdown-item" type="button">Sort section checkpoints/quizzes</button></a>
                 </div>
             </div>
         </div>
