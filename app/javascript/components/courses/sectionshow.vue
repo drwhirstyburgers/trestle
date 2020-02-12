@@ -11,6 +11,7 @@
                     <a href='/checkpoints/new'><button class="dropdown-item" type="button">New Section Checkpoint</button></a>
                     <a href='/quizzes/new'><button class="dropdown-item" type="button">New Section Quiz</button></a>
                     <a v-bind:href="'/sections/'+ sec.id +'/edit/'"><button class="dropdown-item" type="button">Edit Section</button></a>
+                    <button v-on:click="sortCheckpoints" class="dropdown-item" type="button">Sort section checkpoints(if something is missing this will likely fix it)</button></a>
                 </div>
             </div>
         </div>
@@ -35,8 +36,8 @@
                 </div>
             </div>
             <h5 class="card-title">Checkpoints</h5>
-            <div class="row">
-                <div v-if="checkpoints.length > 0" v-for="checkpoint in checkpoints" v-bind:checkpoint="checkpoint" v-bind:key="checkpoint.key" class="col-md-4">
+            <div v-if="checkpoints.length > 0" class="row">
+                <div v-for="checkpoint in checkpoints" v-bind:checkpoint="checkpoint" v-bind:key="checkpoint.key" class="col-md-4">
                     <checkpointcard :check="checkpoint" />
                 </div>
             </div>
@@ -71,6 +72,19 @@ export default {
                 }
             })
         },
+        sortCheckpoints(){
+            $.ajax({
+                type: 'POST',
+                url: '/sort_checkpoints',
+                data: { checkpoints: JSON.stringify(this.checkpoints) },
+                error: (err) => {
+                    console.log(err)
+                },
+                success: (data) => {
+                    this.checkpoints = data
+                }
+            })
+        }
     }
 }
 </script>

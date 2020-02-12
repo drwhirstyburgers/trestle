@@ -126,6 +126,14 @@ class CheckpointsController < ApplicationController
     end
   end
 
+  def sort
+    checks = JSON.parse(params[:checkpoints])
+    sample_check = Checkpoint.find(checks[0]['id'])
+    section = sample_check.section
+    assign_order(checks)
+    render json: aggregate_checkpoints_and_quizzes(section.id, current_user).sort_by { |x| x[:order_number] }.to_json, status: :ok
+  end
+
   def check_if_complete
     user_checkpoint = UserCheckpoint.find_by(user_id: params[:user_id], checkpoint_id: params[:checkpoint_id])
     if user_checkpoint.complete == true

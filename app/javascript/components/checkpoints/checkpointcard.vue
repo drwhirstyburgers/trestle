@@ -38,6 +38,11 @@ export default {
         }
     },
     props: ['check'],
+    watch: {
+        check: function(){
+            this.checkpoint = this.check
+        }
+    },
     methods: {
         changerShowRest(){
             if(this.showRest == false){

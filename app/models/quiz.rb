@@ -26,4 +26,12 @@ class Quiz < ApplicationRecord
 
   has_many :user_quizzes
   has_many :users, through: :user_quizzes
+
+  private
+  
+  def set_order_number
+    if self.order_number == '' || self.order_number.nil?
+      self.order_number = 100
+    end
+  end
 end

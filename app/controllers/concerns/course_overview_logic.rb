@@ -46,4 +46,20 @@ module CourseOverviewLogic
         return return_arr
     end
 
+    def assign_order(checks)
+        checks.each_with_index do |c,i|
+            puts c['type']
+            if c['type'] == 'checkpoint'
+                check = Checkpoint.find(c['id'])
+                check.order_number = i + 1
+                check.save!
+            else
+                quiz = Quiz.find(c['id'])
+                quiz.order_number = i + 1
+                quiz.save!
+            end
+        end
+    end
+
+ 
 end

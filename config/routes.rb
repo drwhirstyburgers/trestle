@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/mark_checkpoint_complete', to: 'checkpoints#mark_checkpoint_complete'
   get '/check_if_complete', to: 'checkpoints#check_if_complete'
   get '/next_checkpoint', to: 'checkpoints#next_checkpoint'
+  post '/sort_checkpoints', to: 'checkpoints#sort'
 
   resources :sections
   get '/get_section_progress', to: 'sections#get_section_progress'
