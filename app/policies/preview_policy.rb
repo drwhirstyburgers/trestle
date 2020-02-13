@@ -1,13 +1,13 @@
-class ChoicesPolicy < ApplicationPolicy
-    attr_reader :user, :choice
+class PreviewPolicy < ApplicationPolicy
+    attr_reader :user, :preview
 
     def initialize(user, choice)
         @user = user
-        @checkpoint = choice
+        @preview = preview
     end
 
     def show?
-        user.admin?
+        user.admin? or user.guest? or user.student?
     end
 
     def edit?

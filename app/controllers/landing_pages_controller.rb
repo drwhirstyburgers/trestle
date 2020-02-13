@@ -17,12 +17,14 @@ class LandingPagesController < ApplicationController
   # GET /landing_pages/1
   # GET /landing_pages/1.json
   def show
+    authorize @landing_page
   end
 
   # GET /landing_pages/new
   def new
     if current_user.admin?
       @landing_page = LandingPage.new
+      authorize @landing_page
     else
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -31,6 +33,7 @@ class LandingPagesController < ApplicationController
 
   # GET /landing_pages/1/edit
   def edit
+    authorize @landing_page
     if current_user.guest? || current_user.student?
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -41,6 +44,7 @@ class LandingPagesController < ApplicationController
   # POST /landing_pages.json
   def create
     @landing_page = LandingPage.new(landing_page_params)
+    authorize @landing_page
 
     respond_to do |format|
       if @landing_page.save
@@ -56,6 +60,7 @@ class LandingPagesController < ApplicationController
   # PATCH/PUT /landing_pages/1
   # PATCH/PUT /landing_pages/1.json
   def update
+    authorize @landing_page
     respond_to do |format|
       if @landing_page.update(landing_page_params)
         format.html { redirect_to @landing_page, notice: 'Landing page was successfully updated.' }
@@ -70,6 +75,7 @@ class LandingPagesController < ApplicationController
   # DELETE /landing_pages/1
   # DELETE /landing_pages/1.json
   def destroy
+    authorize @landing_page
     @landing_page.destroy
     respond_to do |format|
       format.html { redirect_to landing_pages_url, notice: 'Landing page was successfully destroyed.' }

@@ -1,9 +1,9 @@
-class CheckpointsPolicy < ApplicationPolicy
-    attr_reader :user, :checkpoint
+class ChoicesPolicy < ApplicationPolicy
+    attr_reader :user, :choice
 
-    def initialize(user, checkpoint)
+    def initialize(user, choice)
         @user = user
-        @checkpoint = checkpoint
+        @choice = choice
     end
 
     def show?

@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.includes(:sections).find(params[:id])
+    authorize @course
     breadcrumb @course.title, course_path(@course)
   end
 
@@ -27,6 +28,7 @@ class CoursesController < ApplicationController
   def new
     if current_user.admin?
       @course = Course.new
+      authorize @course
     else
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -35,6 +37,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    authorize @course
     if current_user.guest? || current_user.student?
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -45,7 +48,7 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
-
+    authorize @course
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -60,6 +63,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    authorize @course
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -74,6 +78,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    authorize @course
     if @course.destroy
       flash[:notice] = "Course was successfully destroyed"
       respond_to do |format|

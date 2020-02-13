@@ -22,4 +22,6 @@ class Preview < ApplicationRecord
   has_many :skills, dependent: :destroy
   has_rich_text :pitch
   has_one_attached :image
+
+  validates :image, presence: true
 end

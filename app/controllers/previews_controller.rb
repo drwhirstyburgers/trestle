@@ -18,6 +18,7 @@ class PreviewsController < ApplicationController
   # GET /previews/1
   # GET /previews/1.json
   def show
+    authorize @preview
     @course = @preview.course
     @sections = @course.sections
     @stripe_btn_data = {
@@ -31,6 +32,7 @@ class PreviewsController < ApplicationController
   def new
     if current_user.admin?
       @preview = Preview.new
+      authorize @preview
     else
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -39,6 +41,7 @@ class PreviewsController < ApplicationController
 
   # GET /previews/1/edit
   def edit
+    authorize @preview
     if current_user.guest? || current_user.student?
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -49,7 +52,7 @@ class PreviewsController < ApplicationController
   # POST /previews.json
   def create
     @preview = Preview.new(preview_params)
-
+    authorize @preview
     respond_to do |format|
       if @preview.save
         format.html { redirect_to @preview, notice: 'Preview was successfully created.' }
@@ -64,6 +67,7 @@ class PreviewsController < ApplicationController
   # PATCH/PUT /previews/1
   # PATCH/PUT /previews/1.json
   def update
+    authorize @preview
     respond_to do |format|
       if @preview.update(preview_params)
         format.html { redirect_to @preview, notice: 'Preview was successfully updated.' }
@@ -78,6 +82,7 @@ class PreviewsController < ApplicationController
   # DELETE /previews/1
   # DELETE /previews/1.json
   def destroy
+    authorize @preview
     @preview.destroy
     respond_to do |format|
       format.html { redirect_to previews_url, notice: 'Preview was successfully destroyed.' }
