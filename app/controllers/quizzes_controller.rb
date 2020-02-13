@@ -20,6 +20,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
+    authorize @quiz
     @complete_quiz = serve_complete_quiz_sorted(@quiz)
     @section = @quiz.section
     @course = @quiz.section.course
@@ -29,6 +30,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/new
   def new
+    authorize @quiz
     if current_user.admin?
       @quiz = Quiz.new
     else
@@ -39,6 +41,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
+    authorize @quiz
     if current_user.guest? || current_user.student?
       redirect_to root_path
       flash[:notice] = "Whoops! You're not supposed to be there!"
@@ -49,7 +52,7 @@ class QuizzesController < ApplicationController
   # POST /quizzes.json
   def create
     @quiz = Quiz.new(quiz_params)
-
+    authorize @quiz
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to new_question_path, notice: 'Quiz was successfully created.' }
@@ -64,6 +67,7 @@ class QuizzesController < ApplicationController
   # PATCH/PUT /quizzes/1
   # PATCH/PUT /quizzes/1.json
   def update
+    authorize @quiz
     respond_to do |format|
       if @quiz.update(quiz_params)
         format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
@@ -78,6 +82,7 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
   def destroy
+    authorize @quiz
     @quiz.destroy
     respond_to do |format|
       format.html { redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.' }
