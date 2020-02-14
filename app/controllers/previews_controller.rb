@@ -61,6 +61,15 @@ class PreviewsController < ApplicationController
     end
   end
 
+  def course_preview
+    course = Course.includes(:preview).find(params[:id])
+    if course.preview.present?
+      render json: course.preview.to_json, status: :ok
+    else
+      render json: nil.to_json, status: :ok
+    end
+  end
+
   # PATCH/PUT /previews/1
   # PATCH/PUT /previews/1.json
   def update

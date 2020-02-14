@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :bug_reports
+
   resources :previews
+  get '/preview_info', to: 'previews#course_preview'
   post '/charge_course', to: 'previews#create_charge'
+
   resources :choices
   post '/submit_choices', to: 'choices#submit_choices'
   post '/update_choice', to: 'choices#change_choice'
