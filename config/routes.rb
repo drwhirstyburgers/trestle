@@ -32,7 +32,10 @@ Rails.application.routes.draw do
   get '/get_course_progress_users', to: 'courses#users_show_course_progress'
   
   devise_for :users
-  resources :users
+  resources :users do
+    post :impersonate, on: :member
+    post :stop_impersonating, on: :collection
+  end
   delete '/sign_out_user', to: 'dash#sign_out'
   post '/make_admin', to: 'users#make_admin'
   get '/get_user_show_data', to: 'users#get_course_data'

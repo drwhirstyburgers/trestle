@@ -93,7 +93,11 @@
       <% end %>
       <% if (user_signed_in? && current_user.student?) %>
           <% @active_course = current_user.user_courses.where(active_course: true).first %>
-          <%= tag.div id: "topBar", data: { cs: @active_course.course, cu: current_user.to_json } %>
+          <%= tag.div id: "topBar", data: { cs: @active_course.course.to_json, cu: current_user.to_json } %>
+      <% end %>
+      <% if current_user != true_user %>
+        You (<%= true_user.first_name %>) are signed in as <%= current_user.first_name %>
+        <%= link_to "Back to admin", stop_impersonating_users_path, method: :post %>
       <% end %>
       <% if (user_signed_in? && current_user.guest?) %>
           <%= tag.div id: "topBar", data: { cs: false.to_json, cu: current_user.to_json } %>

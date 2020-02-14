@@ -145,7 +145,7 @@ document.addEventListener('turbolinks:load', () => {
       data: () => {
         return {
           courses: JSON.parse(tb.dataset.cs),
-          user: JSON.parse(tb.dataset.cu)
+          user: JSON.parse(tb.dataset.cu),
         }
       },
       template: '<topbar :user_courses="courses" :current_user="user" />',
