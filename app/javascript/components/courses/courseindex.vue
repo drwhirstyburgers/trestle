@@ -5,7 +5,7 @@
         </div>
         <div v-if="courses.length > 0" class="col-lg-10">
             <div class="row">
-                <coursecard v-for="ic in courses" v-bind:ic="ic" v-bind:key="ic.key" />
+                <coursecard v-on:archived="removeCourse" v-for="ic in courses" v-bind:ic="ic" v-bind:key="ic.key" />
             </div>
         </div>
         <div v-else cclass="col-lg-10">
@@ -28,7 +28,14 @@ export default {
         }
     },
     props: ['c'],
-    components: {coursecard}
+    components: {coursecard},
+    methods: {
+        removeCourse(id){
+            console.log("HERE")
+            var index = this.courses.indexOf(this.courses.filter(c => c.id == id)[0])
+            this.courses.splice(index, 1)
+        }
+    }
 }
 </script>
 

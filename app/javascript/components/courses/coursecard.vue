@@ -19,6 +19,8 @@
                     <a v-bind:href="'/courses/'+ course.id + '/edit/'" class="btn btn-secondary">Edit Course</a>
                     <button v-if="course.active == false" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Activate</button>
                     <button v-if="course.active == true" @click="activateCourse(course.id)" type="button" class="btn btn-secondary">Deactivate</button>
+                    <button v-if="course.archive == false" @click="archiveCourse()" type="button" class="btn btn-secondary">Archive</button>
+                    <button v-if="course.archive == true" @click="archiveCourse()" type="button" class="btn btn-secondary">Unarchive</button>
                 </div>
             </div>
         </div>
@@ -42,6 +44,19 @@ export default {
                 success: (data) =>  {
                     console.log('Course (de)activated')
                     this.course = data
+                }
+            })
+        },
+        archiveCourse(){
+            $.ajax({
+                type: 'POST',
+                url: '/archive_course',
+                data: { id: this.course.id },
+                error: (err) => {
+                    console.log
+                },
+                success: (data) => {
+                    this.$emit('archived', this.course.id)
                 }
             })
         }
