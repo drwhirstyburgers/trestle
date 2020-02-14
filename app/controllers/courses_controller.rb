@@ -89,11 +89,10 @@ class CoursesController < ApplicationController
 
   def toggle_activate_course
     course = Course.find(params[:id])
-    if course.active == false
-      course.active = true
+    course.active == false ? course.active = true : course.active = false
+
+    if course.archive == true && course.active == true
       course.archive = false
-    else
-      course.active = false
     end
     
     if course.save!
@@ -135,8 +134,12 @@ class CoursesController < ApplicationController
 
   def archive
     course = Course.find(params[:id])
-    course.active = false if course.active == true && course.archive = false
-    course.archive == true ? course.archive = false : course.archive = true
+    if course.archive == true 
+      course.archive = false
+      course.active = false
+    else 
+      course.archive = true
+    end
     course.save!
   end
 
