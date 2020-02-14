@@ -12,8 +12,12 @@ class CoursesController < ApplicationController
     if current_user.student? || current_user.guest?
       @courses = Course.where(active: true)
     elsif current_user.admin?
-      @courses = Course.all
+      @courses = Course.where(archive: false)
     end
+  end
+
+  def archived_courses
+    @courses = Course.where(archive: true)
   end
 
   # GET /courses/1

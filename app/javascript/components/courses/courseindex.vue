@@ -31,7 +31,6 @@ export default {
     components: {coursecard},
     methods: {
         removeCourse(id){
-            console.log("HERE")
             var index = this.courses.indexOf(this.courses.filter(c => c.id == id)[0])
             this.courses.splice(index, 1)
         }

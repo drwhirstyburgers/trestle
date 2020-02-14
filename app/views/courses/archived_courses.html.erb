@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="panel panel-primary filterable">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Archived courses</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr class="filters">
+                                    <th>ID</th>
+                                    <th>Course title</th>
+                                    <th>Course description</th>
+                                    <th>Price</th>
+                                    <th>Accreditation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @courses.each do |c| %>
+                                <tr>
+                                    <td><%= c.id %></td>
+                                    <td><%= c.title %></td>
+                                    <td><small><%= c.description %></small></td>
+                                    <td><%= c.price %></td>
+                                    <td><%= c.accreditation%>
+                                    <td><%= link_to 'Show', course_path(c), class: 'btn btn-primary btn-sm' %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
