@@ -17,6 +17,8 @@
                                 <a v-if="preview" v-bind:href="'/previews/' + preview.id" ><button class="dropdown-item" type="button">Show Preview</button></a>
                                 <button v-if="newCourse.active == false" @click="activateCourse(course.id)" type="button" class="dropdown-item">Activate</button>
                                 <button v-if="newCourse.active == true" @click="activateCourse(course.id)" type="button" class="dropdown-item">Deactivate</button>
+                                <a v-if="newCourse.archive == false" v-on:click="archiveCourse"><button class="dropdown-item" type="button">Archive course</button></a>
+                                <a v-else v-on:click="archiveCourse"><button class="dropdown-item" type="button">Unarchive course</button></a>
                             </div>
                         </div>
                     </div>
@@ -37,6 +39,7 @@
                                         Duration: {{newCourse.duration}} months <br />
                                         Accreditation: {{newCourse.accreditation}} <br />
                                         Active: {{newCourse.active}} <br />
+                                        Archived: {{newCourse.archive}} <br />
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +81,6 @@ export default {
                 url: '/activate',
                 data: { id: this.newCourse.id },
                 success: (data) =>  {
-                    console.log('Course (de)activated')
                     this.newCourse = data
                 }
             })
@@ -93,6 +95,24 @@ export default {
                 },
                 success: (data) => {
                     this.preview = data
+                }
+            })
+        },
+        archiveCourse(){
+            $.ajax({
+                type: 'POST',
+                url: '/archive_course',
+                data: { id: this.course.id },
+                error: (err) => {
+                    console.log
+                },
+                success: (data) => {
+                    if(this.newCourse.archive == false){
+                        this.newCourse.archive = true
+                        this.newCourse.active = false
+                    } else {
+                        this.newCourse.archive = false
+                    }
                 }
             })
         }

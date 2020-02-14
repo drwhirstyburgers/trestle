@@ -87,6 +87,7 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     if course.active == false
       course.active = true
+      course.archive = false
     else
       course.active = false
     end
@@ -126,6 +127,13 @@ class CoursesController < ApplicationController
     if user_course.save!
       redirect_to dash_path
     end
+  end
+
+  def archive
+    course = Course.find(params[:id])
+    course.active = false if course.active == true && course.archive = false
+    course.archive == true ? course.archive = false : course.archive = true
+    course.save!
   end
 
   def get_course_progress

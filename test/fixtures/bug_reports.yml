@@ -3,10 +3,9 @@
 # Table name: bug_reports
 #
 #  id         :bigint           not null, primary key
-#  body       :text
 #  path       :string
 #  priority   :integer
-#  status     :integer
+#  status     :integer          default("submitted")
 #  subject    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

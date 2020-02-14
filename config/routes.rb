@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/get_courses', to: 'courses#get_courses'
   get '/get_course_progress', to: 'courses#get_course_progress'
   get '/get_course_progress_users', to: 'courses#users_show_course_progress'
+  post '/archive_course', to: 'courses#archive'
   
   devise_for :users
   resources :users do

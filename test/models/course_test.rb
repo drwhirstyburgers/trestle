@@ -3,14 +3,15 @@
 # Table name: courses
 #
 #  id            :bigint           not null, primary key
-#  title         :string
-#  description   :string
-#  price         :float
-#  duration      :integer
 #  accreditation :string
+#  active        :boolean          default(FALSE)
+#  archive       :boolean
+#  description   :string
+#  duration      :integer
+#  price         :float
+#  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  active        :boolean          default(FALSE)
 #
 
 require 'test_helper'
